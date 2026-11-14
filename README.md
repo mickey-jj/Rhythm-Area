@@ -2,6 +2,7 @@
 
 本项目于 2026-11-14 从“期中作业”建立独立源码副本，统一使用 Rhythm Area 命名。
 GitHub 公开仓库：<https://github.com/mickey-jj/Rhythm-Area>。
+本次独立项目的命名、配置和测试结果见[验证记录](docs/fork-verification-2026-11-14.md)。
 默认网页为 <http://127.0.0.1:5284/>，API 为 8192，PostgreSQL 为 55534，数据库名为 `rhythm_area`；以根目录 `instance.config.json` 为准。
 双击 `Start.cmd` 启动，双击 `Stop.cmd` 停止。首次启动创建独立数据库，并由首次初始化者建立主办账号。
 原作业的运行数据、密码、依赖、缓存、提交包和视频未随源码复制；`.gitignore` 持续排除这些本地文件。依赖锁文件、迁移、示例和文档保留在版本管理中。

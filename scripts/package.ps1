@@ -6,7 +6,7 @@ $zipPath = Join-Path $outputDir 'rhythm-area-source.zip'
 $temporaryZipPath = Join-Path $outputDir ('rhythm-area-source.'+[Guid]::NewGuid().ToString('N')+'.tmp.zip')
 $include = @('frontend','backend','database','scripts','docs','data','examples')
 $files = @($include | ForEach-Object { Get-ChildItem -LiteralPath (Join-Path $projectRoot $_) -Recurse -File } | Where-Object { $_.FullName -notmatch '[\\/](node_modules|target|dist|\.local|\.bsp|\.metals)[\\/]' -and $_.Name -notmatch '^\.env($|\.)' -and $_.Extension -ne '.tsbuildinfo' -and $_.Name -ne 'template-center.png' })
-$files += Get-ChildItem -LiteralPath $projectRoot -File | Where-Object { $_.Extension -in '.md','.txt','.cmd' -or $_.Name -in '.gitignore','instance.config.json' }
+$files += Get-ChildItem -LiteralPath $projectRoot -File | Where-Object { $_.Extension -in '.md','.txt','.cmd' -or $_.Name -in '.gitignore','.gitattributes','instance.config.json' }
 $archive = [System.IO.Compression.ZipFile]::Open($temporaryZipPath,[System.IO.Compression.ZipArchiveMode]::Create)
 try {
   foreach ($file in $files) {
