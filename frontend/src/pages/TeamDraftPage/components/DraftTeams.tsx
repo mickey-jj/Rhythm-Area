@@ -1,0 +1,8 @@
+import { Crown, Radio } from "lucide-react";
+import { Panel, SectionHeading } from "../../../components/ui";
+import type { TeamDraftState } from "../hooks/useTeamDraft";
+export function DraftTeams({page}:{page:TeamDraftState}) {
+  const board=page.board!;
+  const order=board.draft?.teamOrder ?? board.teams.map(t=>t.id);
+  return <Panel><SectionHeading title="选人席位" action={<span className="text-base text-[var(--muted)]">{board.draft?.order==="round-robin" ? "顺序轮选" : "蛇形轮选"}</span>} /><ol className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-4">{order.map((id,i)=>{const t=board.teams.find(team=>team.id===id)!;const active=page.active?.id===id;return <li key={id} className={`relative min-w-0 rounded-2xl border p-4 ${active ? "border-[var(--accent)] bg-[var(--accent)]/5 ring-1 ring-[var(--accent)]/15" : "border-[var(--line)] bg-[var(--panel2)]"}`}><div className="mb-4 flex items-center justify-between"><span className="font-mono text-xl text-[var(--muted)]">{String(i+1).padStart(2,"0")}</span>{active ? <Radio size={19} className="text-[var(--accent)]" /> : <Crown size={18} className="text-amber-400" />}</div><h3 className="break-words text-xl font-semibold">{t.name}</h3><p className="mt-2 text-base text-[var(--muted)]">{t.members.find(m=>m.id===t.captainId)?.displayName}</p><p className="mt-4 border-t border-[var(--line)] pt-3 font-mono text-base">{t.members.length} / {page.event!.rules.team.max}</p><ul className="mt-3 space-y-2">{t.members.filter(m=>m.id!==t.captainId).map(m=><li key={m.id} className="break-words rounded-lg bg-[var(--panel)] px-3 py-2 text-base">{m.displayName}</li>)}</ul></li>;})}</ol></Panel>;
+}

@@ -1,0 +1,8 @@
+import { Check, ChevronRight } from "lucide-react";
+import { editorStepEnabled, visibleEditorSteps } from "../functions/editorNavigation";
+export function EditorNavigation({ step, entryMode, select }: { step: number; entryMode: string; select: (step: number) => void }) {
+  return <nav aria-label="创建步骤" className="min-w-0 rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-3 xl:sticky xl:top-[calc(var(--topbar-height)_+_104px)]"><p className="mb-3 px-3 pt-2 text-[length:var(--label-size)] text-[var(--muted)]">赛事配置步骤</p><div className="grid grid-cols-2 gap-1 sm:grid-cols-4 xl:block xl:space-y-1">{visibleEditorSteps(entryMode).map(({ title,index }, ordinal) => {
+    const enabled = editorStepEnabled(index, entryMode);
+    return <button key={title} type="button" aria-current={step === index ? "step" : undefined} disabled={!enabled} title={!enabled ? "选择团队赛后启用" : undefined} onClick={() => select(index)} className={`flex shrink-0 items-center gap-2 rounded-xl p-2.5 text-left text-[length:var(--body-size)] xl:w-full ${step === index ? "bg-[var(--accent)]/10 text-[var(--accent)]" : "text-[var(--muted)] hover:bg-[var(--panel2)]"}`}><span className={`grid size-7 shrink-0 place-items-center rounded-lg font-mono text-xs ${step === index ? "bg-[var(--accent)] text-[var(--on-accent)]" : "border border-[var(--line)]"}`}>{index < step ? <Check size={14} /> : String(ordinal + 1).padStart(2, "0")}</span><span className="min-w-0 text-xs leading-relaxed sm:text-sm">{title}</span>{step === index && <ChevronRight size={15} className="ml-auto hidden xl:block" />}</button>;
+  })}</div></nav>;
+}

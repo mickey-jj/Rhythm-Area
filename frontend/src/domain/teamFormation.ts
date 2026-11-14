@@ -1,0 +1,12 @@
+import type { User } from "./types";
+export type Team = { id: string; name: string; captainId: string; code: string | null; entryId: string | null; frozen: boolean; members: User[] };
+export type CaptainStatus = "none" | "pending" | "approved" | "rejected";
+export type TeamCandidate = { user: User; captainStatus: CaptainStatus; note: string; teamId: string | null };
+export type TeamPick = { userId: string; teamId: string; ordinal: number };
+export type TeamDraftView = { status: "drafting" | "completed"; teamOrder: string[]; order: "snake" | "round-robin"; pickIndex: number; version: number; picks: TeamPick[]; activeTeamId: string | null };
+export type TeamFormationView = { teams: Team[]; candidates: TeamCandidate[]; draft: TeamDraftView | null };
+export type TeamCandidateInput = { note: string };
+export type CaptainDecisionInput = { userId: string; decision: "approved" | "rejected" };
+export type TeamPickInput = { userId: string; expectedVersion: number };
+export const captainNames = { random: "随机队长", appointed: "主办认定", application: "报名审核", free: "自由队长" } as const;
+export const formationNames = { free: "自由组队", draft: "队长轮选", random: "随机组队" } as const;

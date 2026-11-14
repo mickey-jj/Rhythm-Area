@@ -1,0 +1,16 @@
+{
+  "event": "Champions Of Paradigm THU",
+  "status": "running",
+  "urls": {
+    "home": "http://127.0.0.1:5194/",
+    "rules": "http://127.0.0.1:5194/rules",
+    "participants": "http://127.0.0.1:5194/participants",
+    "ranking": "http://127.0.0.1:5194/schedule/ranking",
+    "schedule": "http://127.0.0.1:5194/schedule",
+    "final": "http://127.0.0.1:5194/matches/3b143234-cdc4-4369-a003-16fbdd5339e8-stage2-W1-0-v8",
+    "library": "http://127.0.0.1:5194/manage/library",
+    "pools": "http://127.0.0.1:5194/manage/pools",
+    "config": "http://127.0.0.1:5194/manage/config?step=3",
+    "history": "http://127.0.0.1:5194/matches/3b143234-cdc4-4369-a003-16fbdd5339e8-stage1-W1-0-v2"
+  }
+}

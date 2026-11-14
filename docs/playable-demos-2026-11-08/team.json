@@ -1,0 +1,37 @@
+{
+  "fictional": true,
+  "mode": "team",
+  "eventId": "907187a4-91b5-4759-acaa-2ce0ccc675c8",
+  "origin": "http://127.0.0.1:5198",
+  "name": "律竞 · 团队赛演示",
+  "entries": 8,
+  "members": 16,
+  "timing": {
+    "draftSeconds": 60,
+    "chartSeconds": 240
+  },
+  "urls": {
+    "home": "http://127.0.0.1:5198/",
+    "schedule": "http://127.0.0.1:5198/schedule",
+    "bp": "http://127.0.0.1:5198/matches/907187a4-91b5-4759-acaa-2ce0ccc675c8-main-W1-2-v2",
+    "playing": "http://127.0.0.1:5198/matches/907187a4-91b5-4759-acaa-2ce0ccc675c8-main-W1-1-v2",
+    "completed": "http://127.0.0.1:5198/matches/907187a4-91b5-4759-acaa-2ce0ccc675c8-main-W1-0-v2",
+    "library": "http://127.0.0.1:5198/manage/library",
+    "pools": "http://127.0.0.1:5198/manage/pools",
+    "teams": "http://127.0.0.1:5198/teams"
+  },
+  "owner": {
+    "username": "demo-host",
+    "password": "Demo-host-2026!"
+  },
+  "sideA": {
+    "username": "team-captain-02",
+    "password": "Demo-player-2026!",
+    "name": "回声边界"
+  },
+  "sideB": {
+    "username": "team-captain-07",
+    "password": "Demo-player-2026!",
+    "name": "极光轨迹"
+  }
+}

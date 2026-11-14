@@ -1,0 +1,29 @@
+{
+  "origin": "http://127.0.0.1:5194",
+  "eventId": "3b143234-cdc4-4369-a003-16fbdd5339e8",
+  "name": "律竞 · 期中展示赛",
+  "fictional": true,
+  "players": 16,
+  "completedMatches": 6,
+  "approvedAttempts": 30,
+  "finalStatus": "playing",
+  "finalists": [
+    "选手1",
+    "选手2"
+  ],
+  "finalTotals": [
+    3000000,
+    2997000
+  ],
+  "urls": {
+    "home": "http://127.0.0.1:5194/",
+    "rules": "http://127.0.0.1:5194/rules",
+    "participants": "http://127.0.0.1:5194/participants",
+    "ranking": "http://127.0.0.1:5194/qualifier",
+    "schedule": "http://127.0.0.1:5194/schedule",
+    "final": "http://127.0.0.1:5194/matches/3b143234-cdc4-4369-a003-16fbdd5339e8-stage2-W2-0-v3",
+    "library": "http://127.0.0.1:5194/manage/library",
+    "pools": "http://127.0.0.1:5194/manage/pools",
+    "config": "http://127.0.0.1:5194/manage/config?step=3"
+  }
+}

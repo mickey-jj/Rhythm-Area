@@ -1,0 +1,426 @@
+[
+  {
+    "message": "GetHealthMessage",
+    "method": "GET",
+    "path": "/health"
+  },
+  {
+    "message": "GetMeMessage",
+    "method": "GET",
+    "path": "/me"
+  },
+  {
+    "message": "GetInstanceMessage",
+    "method": "GET",
+    "path": "/instance"
+  },
+  {
+    "message": "PostInstanceEventMessage",
+    "method": "POST",
+    "path": "/instance/event"
+  },
+  {
+    "message": "PostInstanceDemoDataMessage",
+    "method": "POST",
+    "path": "/instance/demo-data"
+  },
+  {
+    "message": "GetInstanceExportMessage",
+    "method": "GET",
+    "path": "/instance/export"
+  },
+  {
+    "message": "GetTemplatesMessage",
+    "method": "GET",
+    "path": "/templates"
+  },
+  {
+    "message": "GetCatalogMessage",
+    "method": "GET",
+    "path": "/catalog"
+  },
+  {
+    "message": "GetCatalogSnapshotMessage",
+    "method": "GET",
+    "path": "/catalog/snapshot"
+  },
+  {
+    "message": "GetEventsByIdMessage",
+    "method": "GET",
+    "path": "/events/:id"
+  },
+  {
+    "message": "PutEventsByIdMessage",
+    "method": "PUT",
+    "path": "/events/:id"
+  },
+  {
+    "message": "PostEventsByIdValidateMessage",
+    "method": "POST",
+    "path": "/events/:id/validate"
+  },
+  {
+    "message": "PostEventsByIdSimulateMessage",
+    "method": "POST",
+    "path": "/events/:id/simulate"
+  },
+  {
+    "message": "PostEventsByIdPublishMessage",
+    "method": "POST",
+    "path": "/events/:id/publish"
+  },
+  {
+    "message": "PostEventsByIdReopenMessage",
+    "method": "POST",
+    "path": "/events/:id/reopen"
+  },
+  {
+    "message": "GetEventsByIdPoolMessage",
+    "method": "GET",
+    "path": "/events/:id/pool"
+  },
+  {
+    "message": "GetEventsByIdEntriesMessage",
+    "method": "GET",
+    "path": "/events/:id/entries"
+  },
+  {
+    "message": "PostEventsByIdEntriesMessage",
+    "method": "POST",
+    "path": "/events/:id/entries"
+  },
+  {
+    "message": "PostEntriesByIdReviewMessage",
+    "method": "POST",
+    "path": "/entries/:id/review"
+  },
+  {
+    "message": "GetEventsByIdScheduleMessage",
+    "method": "GET",
+    "path": "/events/:id/schedule"
+  },
+  {
+    "message": "GetEventsByIdTeamsMessage",
+    "method": "GET",
+    "path": "/events/:id/teams"
+  },
+  {
+    "message": "PostEventsByIdTeamsMessage",
+    "method": "POST",
+    "path": "/events/:id/teams"
+  },
+  {
+    "message": "PostEventsByIdTeamsJoinMessage",
+    "method": "POST",
+    "path": "/events/:id/teams/join"
+  },
+  {
+    "message": "PostMatchesByIdLineupsMessage",
+    "method": "POST",
+    "path": "/matches/:id/lineups"
+  },
+  {
+    "message": "GetMatchesByIdLineupsMessage",
+    "method": "GET",
+    "path": "/matches/:id/lineups"
+  },
+  {
+    "message": "GetEventsByIdJudgesMessage",
+    "method": "GET",
+    "path": "/events/:id/judges"
+  },
+  {
+    "message": "PostEventsByIdJudgesMessage",
+    "method": "POST",
+    "path": "/events/:id/judges"
+  },
+  {
+    "message": "PostMatchesByIdReplayMessage",
+    "method": "POST",
+    "path": "/matches/:id/replay"
+  },
+  {
+    "message": "PostMatchesByIdAppealsMessage",
+    "method": "POST",
+    "path": "/matches/:id/appeals"
+  },
+  {
+    "message": "GetEventsByIdAppealsMessage",
+    "method": "GET",
+    "path": "/events/:id/appeals"
+  },
+  {
+    "message": "PostAppealsByIdDecisionMessage",
+    "method": "POST",
+    "path": "/appeals/:id/decision"
+  },
+  {
+    "message": "PostEventsByIdEvidenceMessage",
+    "method": "POST",
+    "path": "/events/:id/evidence"
+  },
+  {
+    "message": "GetEventsByIdStagesMessage",
+    "method": "GET",
+    "path": "/events/:id/stages"
+  },
+  {
+    "message": "PostEventsByIdStagesBySidQualificationMessage",
+    "method": "POST",
+    "path": "/events/:id/stages/:sid/qualification"
+  },
+  {
+    "message": "PostEventsByIdGenerateMessage",
+    "method": "POST",
+    "path": "/events/:id/generate"
+  },
+  {
+    "message": "GetMatchesByIdPermissionsMessage",
+    "method": "GET",
+    "path": "/matches/:id/permissions"
+  },
+  {
+    "message": "GetMatchesByIdMessage",
+    "method": "GET",
+    "path": "/matches/:id"
+  },
+  {
+    "message": "GetMatchesByIdScoresMessage",
+    "method": "GET",
+    "path": "/matches/:id/scores"
+  },
+  {
+    "message": "PostMatchesByIdDraftActionsMessage",
+    "method": "POST",
+    "path": "/matches/:id/draft-actions"
+  },
+  {
+    "message": "PostMatchesByIdFinalizeMessage",
+    "method": "POST",
+    "path": "/matches/:id/finalize"
+  },
+  {
+    "message": "PostMatchesByIdRevealMessage",
+    "method": "POST",
+    "path": "/matches/:id/reveal"
+  },
+  {
+    "message": "GetEventsByIdAttemptsMessage",
+    "method": "GET",
+    "path": "/events/:id/attempts"
+  },
+  {
+    "message": "PostEventsByIdAttemptsMessage",
+    "method": "POST",
+    "path": "/events/:id/attempts"
+  },
+  {
+    "message": "PostAttemptsByIdReviewMessage",
+    "method": "POST",
+    "path": "/attempts/:id/review"
+  },
+  {
+    "message": "GetEventsByIdRankingsMessage",
+    "method": "GET",
+    "path": "/events/:id/rankings"
+  },
+  {
+    "message": "PostEventsByIdQualifierOrderMessage",
+    "method": "POST",
+    "path": "/events/:id/qualifier-order"
+  },
+  {
+    "message": "GetEventsByIdVersionsMessage",
+    "method": "GET",
+    "path": "/events/:id/versions"
+  },
+  {
+    "message": "GetEventsByIdVersionsByVersionMessage",
+    "method": "GET",
+    "path": "/events/:id/versions/:version"
+  },
+  {
+    "message": "PostEventsByIdArchiveMessage",
+    "method": "POST",
+    "path": "/events/:id/archive"
+  },
+  {
+    "message": "GetEventsByIdAuditMessage",
+    "method": "GET",
+    "path": "/events/:id/audit"
+  },
+  {
+    "message": "LoginMessage",
+    "method": "POST",
+    "path": "/auth/login"
+  },
+  {
+    "message": "RegisterMessage",
+    "method": "POST",
+    "path": "/auth/register"
+  },
+  {
+    "message": "InstanceSetupMessage",
+    "method": "POST",
+    "path": "/instance/setup"
+  },
+  {
+    "message": "LogoutMessage",
+    "method": "POST",
+    "path": "/auth/logout"
+  },
+  {
+    "message": "EvidenceReadMessage",
+    "method": "GET",
+    "path": "/evidence/:id"
+  },
+  {
+    "message": "GetLibraryMessage",
+    "method": "GET",
+    "path": "/library"
+  },
+  {
+    "message": "PutLibraryMessage",
+    "method": "PUT",
+    "path": "/library"
+  },
+  {
+    "message": "PutEventsByIdPoolMessage",
+    "method": "PUT",
+    "path": "/events/:id/pool"
+  },
+  {
+    "message": "GetChartPresetsMessage",
+    "method": "GET",
+    "path": "/chart-presets"
+  },
+  {
+    "message": "GetChartPresetsByGameMessage",
+    "method": "GET",
+    "path": "/chart-presets/:game"
+  },
+  {
+    "message": "PostLibraryArtworkMessage",
+    "method": "POST",
+    "path": "/library/artwork"
+  },
+  {
+    "message": "PutLibraryArtworkMessage",
+    "method": "PUT",
+    "path": "/library/artwork"
+  },
+  {
+    "message": "GetArtworkByKeyMessage",
+    "method": "GET",
+    "path": "/artwork/:key"
+  },
+  {
+    "message": "GetEventsByIdTeamFormationMessage",
+    "method": "GET",
+    "path": "/events/:id/team-formation"
+  },
+  {
+    "message": "PostEventsByIdTeamCandidatesMessage",
+    "method": "POST",
+    "path": "/events/:id/team-candidates"
+  },
+  {
+    "message": "PostEventsByIdCaptainsApplyMessage",
+    "method": "POST",
+    "path": "/events/:id/captains/apply"
+  },
+  {
+    "message": "PostEventsByIdCaptainsDecisionMessage",
+    "method": "POST",
+    "path": "/events/:id/captains/decision"
+  },
+  {
+    "message": "PostEventsByIdCaptainsDrawMessage",
+    "method": "POST",
+    "path": "/events/:id/captains/draw"
+  },
+  {
+    "message": "PostEventsByIdTeamDraftStartMessage",
+    "method": "POST",
+    "path": "/events/:id/team-draft/start"
+  },
+  {
+    "message": "PostEventsByIdTeamDraftPickMessage",
+    "method": "POST",
+    "path": "/events/:id/team-draft/pick"
+  },
+  {
+    "message": "PostEventsByIdTeamsRandomMessage",
+    "method": "POST",
+    "path": "/events/:id/teams/random"
+  },
+  {
+    "message": "PostEventsByIdTeamsByTidJoinMessage",
+    "method": "POST",
+    "path": "/events/:id/teams/:tid/join"
+  },
+  {
+    "message": "PostEventsByIdTeamsLeaveMessage",
+    "method": "POST",
+    "path": "/events/:id/teams/leave"
+  },
+  {
+    "message": "GetEventsByIdEliminationGroupsMessage",
+    "method": "GET",
+    "path": "/events/:id/elimination-groups"
+  },
+  {
+    "message": "GetEliminationGroupsByIdMessage",
+    "method": "GET",
+    "path": "/elimination-groups/:id"
+  },
+  {
+    "message": "PostEliminationGroupsByIdFinalizeMessage",
+    "method": "POST",
+    "path": "/elimination-groups/:id/finalize"
+  },
+  {
+    "message": "GetEventsByIdRankingBoardMessage",
+    "method": "GET",
+    "path": "/events/:id/ranking-board"
+  },
+  {
+    "message": "PostEventsByIdRankingControlMessage",
+    "method": "POST",
+    "path": "/events/:id/ranking-control"
+  },
+  {
+    "method": "GET",
+    "path": "/matches/:id/clock",
+    "message": "GetMatchesByIdClockMessage",
+    "service": "events"
+  },
+  {
+    "method": "POST",
+    "path": "/matches/:id/clock",
+    "message": "PostMatchesByIdClockMessage",
+    "service": "events"
+  },
+  {
+    "method": "GET",
+    "path": "/elimination-groups/:id/clock",
+    "message": "GetEliminationGroupsByIdClockMessage",
+    "service": "events"
+  },
+  {
+    "method": "POST",
+    "path": "/elimination-groups/:id/clock",
+    "message": "PostEliminationGroupsByIdClockMessage",
+    "service": "events"
+  },
+  {
+    "message": "PostMatchesByIdResetMessage",
+    "method": "POST",
+    "path": "/matches/:id/reset"
+  },
+  {
+    "message": "PostEliminationGroupsByIdResetMessage",
+    "method": "POST",
+    "path": "/elimination-groups/:id/reset"
+  }
+]

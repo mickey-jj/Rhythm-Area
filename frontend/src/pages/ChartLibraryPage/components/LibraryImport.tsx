@@ -1,0 +1,19 @@
+import { CheckCircle2, Upload } from "lucide-react";
+import { ErrorBox } from "../../../components/ui";
+import { ChartArtwork } from "../../../components/ui/ChartArtwork";
+import { ChartPagination } from "../../../components/ui/ChartPagination";
+import { Dialog } from "../../../components/ui/Dialog";
+import type { ChartLibraryState } from "../objects/ChartLibraryState";
+
+export function LibraryImport({page}:{page:ChartLibraryState}) {
+  const charts=page.preview?.charts ?? [];
+  const pages=Math.max(1,Math.ceil(charts.length/6));
+  const current=Math.min(page.previewPage,pages);
+  return <Dialog title="导入曲库" close={()=>{if(!page.busy)page.setImporting(false);}} actions={<><button disabled={!!page.busy} onClick={()=>page.setImporting(false)} className="rounded-xl border border-[var(--line)] px-5 py-3 text-base">取消</button><button disabled={!!page.busy || !page.text.trim()} onClick={()=>page.inspect(page.text)} className="rounded-xl border border-[var(--line)] px-5 py-3 text-base">预览</button><button disabled={!!page.busy || !charts.length || !!page.preview?.issues.length} onClick={()=>void page.confirmImport()} className="rounded-xl bg-[var(--accent)] px-5 py-3 text-base font-semibold text-[var(--on-accent)]">{page.busy==="import"?"保存中…":"确认导入"}</button></>}><fieldset disabled={!!page.busy} className="min-w-0 space-y-5">
+    <label className="relative flex cursor-pointer flex-wrap items-center justify-center gap-3 rounded-2xl border border-dashed border-[var(--accent)]/40 bg-[var(--accent)]/5 p-7 text-lg"><Upload size={26}/><span>选择 JSON / CSV / TSV</span><input aria-label="上传曲库文件" type="file" accept=".json,.csv,.tsv,application/json,text/csv" className="absolute inset-0 !m-0 size-full cursor-pointer opacity-0" onChange={e=>{const file=e.target.files?.[0];if(file)void page.readFile(file);e.target.value="";}}/></label>
+    <details open={!page.preview} className="rounded-xl border border-[var(--line)] p-4"><summary className="text-lg">谱面数据</summary><textarea aria-label="谱面数据" className="mt-3 resize-none font-mono !text-base [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" rows={5} value={page.text} onChange={e=>{page.setText(e.target.value);page.setPreview(null);}} placeholder={'[{"title":"曲名","difficulty":"IN","cover_url":"https://…"}]'}/></details>
+    <div className="flex flex-wrap gap-3">{([['merge','合并曲库'],['replace','替换当前游戏曲库']] as const).map(([value,label])=><label key={value} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-5 py-3 text-base ${page.mode===value?"border-[var(--accent)]/50 bg-[var(--accent)]/5":"border-[var(--line)]"}`}><input type="radio" name="library-import-mode" checked={page.mode===value} onChange={()=>page.setMode(value)}/>{label}</label>)}</div>
+    {page.error!=null && <ErrorBox error={page.error}/>}
+    {page.preview && (page.preview.issues.length ? <ErrorBox error={page.preview.issues.slice(0,8).map(i=>`${i.fieldPath}：${i.message}`).join("；")}/> : <section className="space-y-4 rounded-2xl border border-[var(--line)] p-4"><div className="flex items-center justify-between"><span className="flex items-center gap-2 text-lg text-[var(--accent)]"><CheckCircle2 size={21}/>预检通过</span><b className="font-mono text-xl">{charts.length.toLocaleString()}</b></div><ChartPagination name="导入预览" page={current} pages={pages} total={charts.length} change={page.setPreviewPage}/>{charts.slice((current-1)*6,current*6).map(c=><article key={c.chart_key} className="flex items-center gap-4 border-t border-[var(--line)] pt-4"><ChartArtwork chart={c} size="small"/><div className="min-w-0 flex-1"><p className="break-words text-base font-medium">{c.title}</p><p className="mt-1 text-sm text-[var(--muted)]">{c.artist || "—"}</p></div><span className="font-mono text-sm text-[var(--muted)]">{c.difficulty_label}</span><span className="font-mono text-lg text-[var(--accent)]">{c.level_value ?? "—"}</span></article>)}</section>)}
+  </fieldset></Dialog>;
+}

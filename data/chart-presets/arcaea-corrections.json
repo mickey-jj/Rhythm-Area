@@ -1,0 +1,188 @@
+{
+  "sourceUrl": "https://github.com/TechnicalVessel/Arcaea-Chart-List/blob/main/arcaea_chart_list.csv",
+  "correctionCount": 13,
+  "mappings": [
+    {
+      "oldChartKey": "arc-genesis-pst-157",
+      "newChartKey": "arc-genesis-iris-pst-157",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-iris",
+      "before": {
+        "title": "Genesis",
+        "artist": "Iris"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Iris"
+      }
+    },
+    {
+      "oldChartKey": "arc-genesis-prs-158",
+      "newChartKey": "arc-genesis-iris-prs-158",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-iris",
+      "before": {
+        "title": "Genesis",
+        "artist": "Iris"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Iris"
+      }
+    },
+    {
+      "oldChartKey": "arc-genesis-ftr-159",
+      "newChartKey": "arc-genesis-iris-ftr-159",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-iris",
+      "before": {
+        "title": "Genesis",
+        "artist": "Iris"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Iris"
+      }
+    },
+    {
+      "oldChartKey": "arc-genesis-pst-996",
+      "newChartKey": "arc-genesis-morrigan-feat-lily-pst-996",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-morrigan-feat-lily",
+      "before": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      }
+    },
+    {
+      "oldChartKey": "arc-genesis-prs-997",
+      "newChartKey": "arc-genesis-morrigan-feat-lily-prs-997",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-morrigan-feat-lily",
+      "before": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      }
+    },
+    {
+      "oldChartKey": "arc-genesis-ftr-998",
+      "newChartKey": "arc-genesis-morrigan-feat-lily-ftr-998",
+      "oldSongKey": "genesis",
+      "newSongKey": "genesis-morrigan-feat-lily",
+      "before": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      },
+      "after": {
+        "title": "Genesis",
+        "artist": "Morrigan feat.Lily"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-pst-738",
+      "newChartKey": "arc-quon-dj-noriken-pst-738",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-dj-noriken",
+      "before": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-prs-739",
+      "newChartKey": "arc-quon-dj-noriken-prs-739",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-dj-noriken",
+      "before": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-ftr-740",
+      "newChartKey": "arc-quon-dj-noriken-ftr-740",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-dj-noriken",
+      "before": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-byd-741",
+      "newChartKey": "arc-quon-dj-noriken-byd-741",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-dj-noriken",
+      "before": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "DJ Noriken"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-pst-220",
+      "newChartKey": "arc-quon-feryquitous-pst-220",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-feryquitous",
+      "before": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-prs-221",
+      "newChartKey": "arc-quon-feryquitous-prs-221",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-feryquitous",
+      "before": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      }
+    },
+    {
+      "oldChartKey": "arc-quon-ftr-222",
+      "newChartKey": "arc-quon-feryquitous-ftr-222",
+      "oldSongKey": "quon",
+      "newSongKey": "quon-feryquitous",
+      "before": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      },
+      "after": {
+        "title": "Quon",
+        "artist": "Feryquitous"
+      }
+    }
+  ]
+}

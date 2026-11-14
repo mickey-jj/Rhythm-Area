@@ -1,0 +1,136 @@
+{
+  "format": "rhythm-area-template",
+  "schemaVersion": 1,
+  "name": "COP 2025 · 第二轮预选",
+  "sourceUrl": "https://www.bilibili.com/opus/1075219294926667817",
+  "edition": "2025",
+  "gameVersion": "3.9.0",
+  "stage": "第二轮预选",
+  "rules": {
+    "schemaVersion": 1,
+    "gameKey": "paradigm-reboot",
+    "gameName": "范式：起源",
+    "clientVersion": "3.9.0",
+    "entryMode": "solo",
+    "capacity": 16,
+    "metric": {
+      "name": "分数",
+      "unit": "分",
+      "decimals": 0,
+      "minimum": "0",
+      "maximum": "1010000",
+      "higherWins": true
+    },
+    "qualifierSelection": "whole-best",
+    "pendingPolicy": "retain",
+    "matchMode": "total",
+    "winsRequired": 2,
+    "stages": [
+      {
+        "id": "cop-qualifier",
+        "name": "第二轮预选 · 四曲总分取前八",
+        "kind": "ranking",
+        "advance": 8
+      }
+    ],
+    "draft": [],
+    "playOrder": [],
+    "resolution": {
+      "tie": "manual",
+      "extraPool": "extra",
+      "extraCount": 1,
+      "scope": "extra-only",
+      "maxExtraRounds": 3,
+      "finalPolicy": "normal"
+    },
+    "team": {
+      "min": 3,
+      "max": 4,
+      "perChart": 3,
+      "maxAppearances": 3,
+      "aggregation": "sum"
+    },
+    "tieBreak": [],
+    "draftMode": "open"
+  },
+  "verifiedAt": "2026-11-01",
+  "verificationStatus": "partial",
+  "description": "第二轮预选：同次特别挑战四曲总分排名，前八获得线下资格；无 BP。",
+  "tagline": "",
+  "charts": [
+    {
+      "game_key": "paradigm-reboot",
+      "game_version": "3.9.0",
+      "song_key": "prp-song-180",
+      "title": "Zephyrs",
+      "artist": "Frums",
+      "chart_key": "prp-chart-536",
+      "chart_type": "standard",
+      "difficulty_label": "MASSIVE",
+      "level_value": null,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 1
+    },
+    {
+      "game_key": "paradigm-reboot",
+      "game_version": "3.9.0",
+      "song_key": "prp-song-241",
+      "title": "И00.",
+      "artist": "Se-U-Ra",
+      "chart_key": "prp-chart-719",
+      "chart_type": "standard",
+      "difficulty_label": "MASSIVE",
+      "level_value": null,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 2
+    },
+    {
+      "game_key": "paradigm-reboot",
+      "game_version": "3.9.0",
+      "song_key": "prp-song-140",
+      "title": "Re: End of a Dream",
+      "artist": "uma vs. モリモリあつし",
+      "chart_key": "prp-chart-420",
+      "chart_type": "standard",
+      "difficulty_label": "MASSIVE",
+      "level_value": null,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 3
+    },
+    {
+      "game_key": "paradigm-reboot",
+      "game_version": "3.9.0",
+      "song_key": "prp-song-314",
+      "title": "Emancipator",
+      "artist": "Junk",
+      "chart_key": "prp-chart-936",
+      "chart_type": "standard",
+      "difficulty_label": "MASSIVE",
+      "level_value": null,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 4
+    }
+  ],
+  "appearance": {
+    "brandName": "律竞",
+    "accentColor": "#a3edd1",
+    "contact": ""
+  },
+  "research": {
+    "sources": [
+      "https://www.bilibili.com/opus/1075219294926667817",
+      "https://www.sina.cn/news/detail/5173058836107521.html"
+    ],
+    "format": "第二轮为四曲挑战排名，前八晋级；只有第一轮合格者计入排名。",
+    "bp": "固定课题，无 Ban/Pick。",
+    "pool": "四首均为 MASSIVE；顺序按特别挑战原有曲序。",
+    "limitations": [
+      "官方同分细则未核实；保留裁判判定。",
+      "谱面定数不采用当前曲库值冒充历史定数。"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "provider": "prp",
+  "game_key": "paradigm-reboot",
+  "source_page": "https://prp.icel.site/#/songs",
+  "source_api": "https://api.prp.icel.site/api/v2/songs",
+  "retrieved_at": "2026-10-26T06:57:17.934Z",
+  "scope": "All charts returned by the public PRP songs API; no difficulty or season filter",
+  "version_semantics": "game_version preserves the upstream chart version; it is not a verified current client or region version",
+  "latest_source_chart_version": "4.12.0",
+  "song_count": 434,
+  "chart_count": 1326,
+  "difficulty_counts": {
+    "DETECTED": 434,
+    "INVADED": 434,
+    "MASSIVE": 434,
+    "REBOOT": 24
+  },
+  "level_range": {
+    "min": 1,
+    "max": 17.4
+  },
+  "title_artist_variants": [
+    {
+      "source_song_id": 430,
+      "variants": [
+        {
+          "title": "Antikythera [Vocal Version]",
+          "artist": "technoplanet feat. 木下珠子",
+          "source_chart_ids": [
+            1308
+          ]
+        },
+        {
+          "title": "Antikythera",
+          "artist": "technoplanet",
+          "source_chart_ids": [
+            1307,
+            1306,
+            1305
+          ]
+        }
+      ]
+    }
+  ],
+  "missing_fitting_level_count": 906,
+  "validation": {
+    "required_fields_valid": true,
+    "unique_chart_ids": true,
+    "unique_song_difficulty_pairs": true
+  },
+  "files": {
+    "source.json": {
+      "bytes": 495035,
+      "sha256": "6be7ebc63abd1c35457b56973b5114a472c14947e989c71b9d9863eaf6bc2c32"
+    },
+    "charts.csv": {
+      "bytes": 178111,
+      "sha256": "626a40a2c9d3f08ead3c125554ad957b18671d7916ec6afbc0deb65498047292"
+    },
+    "charts.json": {
+      "bytes": 471010,
+      "sha256": "b96a446b2dd2dd451b06b76a571643d188f3d5819e752b48d5f3d02490c33e58"
+    }
+  }
+}

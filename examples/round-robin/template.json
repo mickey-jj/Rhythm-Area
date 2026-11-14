@@ -1,0 +1,370 @@
+{
+  "format": "rhythm-area-template",
+  "schemaVersion": 1,
+  "name": "个人单循环",
+  "tagline": "EVERY NOTE, YOUR AREA.",
+  "description": "每两方交手一次；奇数方自动轮休。同名次晋级线须附加赛判定。",
+  "rules": {
+    "schemaVersion": 1,
+    "gameKey": "custom-rhythm",
+    "gameName": "自定义音游",
+    "clientVersion": "自定义版本",
+    "entryMode": "solo",
+    "capacity": 8,
+    "metric": {
+      "name": "达成率",
+      "unit": "%",
+      "decimals": 4,
+      "minimum": "0",
+      "maximum": "101",
+      "higherWins": true
+    },
+    "qualifierSelection": "whole-best",
+    "pendingPolicy": "retain",
+    "matchMode": "total",
+    "winsRequired": 2,
+    "stages": [
+      {
+        "id": "main",
+        "name": "正赛",
+        "kind": "round-robin",
+        "advance": 1
+      }
+    ],
+    "draft": [
+      {
+        "id": "ban-a",
+        "actor": "A",
+        "action": "ban",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "ban-b",
+        "actor": "B",
+        "action": "ban",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "pick-a",
+        "actor": "A",
+        "action": "pick",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "pick-b",
+        "actor": "B",
+        "action": "pick",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "random",
+        "actor": "referee",
+        "action": "random",
+        "count": 1,
+        "pool": "main",
+        "banApplies": false,
+        "target": "pool"
+      }
+    ],
+    "playOrder": [
+      {
+        "id": "song-a",
+        "source": "pick-a:1"
+      },
+      {
+        "id": "song-b",
+        "source": "pick-b:1"
+      },
+      {
+        "id": "song-r",
+        "source": "random:1"
+      }
+    ],
+    "resolution": {
+      "tie": "extra",
+      "extraPool": "extra",
+      "extraCount": 1,
+      "scope": "extra-only",
+      "maxExtraRounds": 3,
+      "finalPolicy": "normal"
+    },
+    "team": {
+      "min": 3,
+      "max": 4,
+      "perChart": 3,
+      "maxAppearances": 3,
+      "aggregation": "sum"
+    }
+  },
+  "charts": [
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-1",
+      "title": "Signal 1",
+      "artist": "Demo Composer",
+      "chart_key": "chart-1",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 12.1,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 1
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-2",
+      "title": "Orbit 2",
+      "artist": "Demo Composer",
+      "chart_key": "chart-2",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 12.2,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 2
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-3",
+      "title": "Afterglow 3",
+      "artist": "Demo Composer",
+      "chart_key": "chart-3",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 12.3,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 3
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-4",
+      "title": "Neon Path 4",
+      "artist": "Demo Composer",
+      "chart_key": "chart-4",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 12.4,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 4
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-5",
+      "title": "Dawn 5",
+      "artist": "Demo Composer",
+      "chart_key": "chart-5",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 12.5,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 5
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-6",
+      "title": "Resonance 6",
+      "artist": "Demo Composer",
+      "chart_key": "chart-6",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 12.6,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 6
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-7",
+      "title": "Signal 7",
+      "artist": "Demo Composer",
+      "chart_key": "chart-7",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 12.7,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 7
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-8",
+      "title": "Orbit 8",
+      "artist": "Demo Composer",
+      "chart_key": "chart-8",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 12.8,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 8
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-9",
+      "title": "Afterglow 9",
+      "artist": "Demo Composer",
+      "chart_key": "chart-9",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 12.9,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 9
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-10",
+      "title": "Neon Path 10",
+      "artist": "Demo Composer",
+      "chart_key": "chart-10",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 13,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 10
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-11",
+      "title": "Dawn 11",
+      "artist": "Demo Composer",
+      "chart_key": "chart-11",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 13.1,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 11
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-12",
+      "title": "Resonance 12",
+      "artist": "Demo Composer",
+      "chart_key": "chart-12",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 13.2,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 12
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-13",
+      "title": "Signal 13",
+      "artist": "Demo Composer",
+      "chart_key": "chart-13",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 13.3,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 13
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-14",
+      "title": "Orbit 14",
+      "artist": "Demo Composer",
+      "chart_key": "chart-14",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 13.4,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 14
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-15",
+      "title": "Afterglow 15",
+      "artist": "Demo Composer",
+      "chart_key": "chart-15",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 13.5,
+      "pool_tag": "main",
+      "role": "ban|pick|random",
+      "display_order": 15
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-16",
+      "title": "Neon Path 16",
+      "artist": "Demo Composer",
+      "chart_key": "chart-16",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 13.6,
+      "pool_tag": "extra",
+      "role": "extra",
+      "display_order": 16
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-17",
+      "title": "Dawn 17",
+      "artist": "Demo Composer",
+      "chart_key": "chart-17",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 13.7,
+      "pool_tag": "extra",
+      "role": "extra",
+      "display_order": 17
+    },
+    {
+      "game_key": "custom-rhythm",
+      "game_version": "1.0",
+      "song_key": "song-18",
+      "title": "Resonance 18",
+      "artist": "Demo Composer",
+      "chart_key": "chart-18",
+      "chart_type": "standard",
+      "difficulty_label": "EXPERT",
+      "level_value": 13.8,
+      "pool_tag": "extra",
+      "role": "extra",
+      "display_order": 18
+    }
+  ],
+  "appearance": {
+    "brandName": "律竞",
+    "accentColor": "#a3edd1",
+    "contact": ""
+  }
+}

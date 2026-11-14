@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root=path.resolve(import.meta.dirname,'..'),info=JSON.parse(fs.readFileSync(path.join(root,'.local/presentation.json'),'utf8'));
+assert.equal(info.origin,'http://127.0.0.1:5194');
+const response=await fetch(info.origin+'/api/instance');assert(response.ok);const current=(await response.json()).event;assert.equal(current.id,info.eventId);
+const scheduleResponse=await fetch(info.origin+'/api/events/'+current.id+'/schedule');assert(scheduleResponse.ok);const schedule=await scheduleResponse.json();
+const active=schedule.find(m=>m.scheduleState==='current'&&m.a&&m.b&&['drafting','playing','awaiting-reveal'].includes(m.status));
+const archived=schedule.find(m=>m.status==='finalized');
+info.name=current.name;const rankingStage=current.rules.stages.find(s=>s.kind==='ranking');info.urls.ranking=rankingStage?info.origin+'/schedule/'+rankingStage.id:info.urls.schedule;
+info.urls.final=active?info.origin+'/matches/'+active.id:archived?info.origin+'/matches/'+archived.id:info.urls.schedule;
+info.urls.history=archived?info.origin+'/matches/'+archived.id:info.urls.schedule+'/history';
+info.finalists=active?[active.a.displayName,active.b.displayName]:[];
+fs.writeFileSync(path.join(root,'docs/presentation-2026-11-08/current-navigation.json'),JSON.stringify({event:current.name,status:current.status,urls:info.urls},null,2)+'\n');
+const dir=path.join(root,'docs/presentation-2026-11-08');fs.mkdirSync(dir,{recursive:true});
+const pages=[['01','0:00','首页',info.urls.home],['02','0:15','规则',info.urls.rules],['03','0:35','参赛者',info.urls.participants],['04','0:50','排名赛',info.urls.ranking],['05','1:10','赛事看板',info.urls.schedule],['06','1:30','比赛室 · 开赛与图形选禁',info.urls.final],['07','2:20','已完成比赛 · 赛果回看',info.urls.history]];
+const html=`<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>期中作业 · 三分钟展示导航</title><style>body{margin:0;background:#f3f7f8;color:#193d36;font:18px/1.6 system-ui,sans-serif}main{max-width:880px;margin:40px auto;padding:24px}h1{font-size:36px}a{color:inherit}ol{padding:0;list-style:none}li{margin:12px 0}li a{display:flex;gap:22px;padding:18px 24px;background:white;border:1px solid #d4e3df;border-radius:14px;text-decoration:none}li a:hover{border-color:#267a64}b{color:#267a64}aside{padding:18px 24px;background:#e3efe9;border-radius:14px}small{color:#527469}footer{margin-top:30px}</style><main><small>RHYTHM AREA / MIDTERM</small><h1>三分钟展示导航</h1><p>目标 175 秒 · 按编号提前打开页面，再切换标签展示。</p><aside>当前赛事：${info.name}<br>当前对阵：${info.finalists.join(' 对 ')}<br>本轮展示开赛、图形选禁与暂停。赛制与进度以当前页面为准。</aside><ol>${pages.map(([n,t,label,url])=>`<li><a href="${url}" target="_blank" rel="noopener"><b>${n}</b><span>${t}</span><strong>${label}</strong></a></li>`).join('')}</ol><p><a href="${info.urls.config}" target="_blank">备用：独立阶段配置</a> · <a href="${info.urls.library}" target="_blank">曲库</a> · <a href="${info.urls.pools}" target="_blank">图池工作台</a></p><footer><a href="175秒展示稿.md">打开逐秒口播稿</a><p>账号见口播稿，录前登录。全部选手与成绩为虚构数据。</p></footer></main></html>`;
+fs.writeFileSync(path.join(dir,'展示导航.html'),html);
+for(const file of ['05-赛程.url','06-决赛-最后确认留到现场.url','07-赛程-刷新展示结果.url']){const target=path.join(dir,file);assert.equal(path.dirname(target),dir);if(fs.existsSync(target))fs.unlinkSync(target);}
+for(const [n,,label,url] of pages)fs.writeFileSync(path.join(dir,`${n}-${label.replaceAll(' · ','-')}.url`),`[InternetShortcut]\r\nURL=${url}\r\n`);
+console.log('175 秒口播稿、页面导航和七个顺序快捷方式已就绪。');

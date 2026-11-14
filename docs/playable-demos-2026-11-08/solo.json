@@ -1,0 +1,37 @@
+{
+  "fictional": true,
+  "mode": "solo",
+  "eventId": "cc960210-80a7-4934-a16f-d53851c8836c",
+  "origin": "http://127.0.0.1:5196",
+  "name": "律竞 · 个人赛演示",
+  "entries": 8,
+  "members": 8,
+  "timing": {
+    "draftSeconds": 60,
+    "chartSeconds": 240
+  },
+  "urls": {
+    "home": "http://127.0.0.1:5196/",
+    "schedule": "http://127.0.0.1:5196/schedule",
+    "bp": "http://127.0.0.1:5196/matches/cc960210-80a7-4934-a16f-d53851c8836c-main-W1-2-v2",
+    "playing": "http://127.0.0.1:5196/matches/cc960210-80a7-4934-a16f-d53851c8836c-main-W1-1-v2",
+    "completed": "http://127.0.0.1:5196/matches/cc960210-80a7-4934-a16f-d53851c8836c-main-W1-0-v2",
+    "library": "http://127.0.0.1:5196/manage/library",
+    "pools": "http://127.0.0.1:5196/manage/pools",
+    "teams": null
+  },
+  "owner": {
+    "username": "demo-host",
+    "password": "Demo-host-2026!"
+  },
+  "sideA": {
+    "username": "solo-player-02",
+    "password": "Demo-player-2026!",
+    "name": "白羽"
+  },
+  "sideB": {
+    "username": "solo-player-07",
+    "password": "Demo-player-2026!",
+    "name": "空镜"
+  }
+}

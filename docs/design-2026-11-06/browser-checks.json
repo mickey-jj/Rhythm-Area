@@ -1,0 +1,146 @@
+{
+  "mobile": [
+    {
+      "path": "/",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/rules",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/participants",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/pool",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/qualifier",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/schedule",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/me",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/manage",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/manage/config",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "path": "/auth",
+      "alerts": [],
+      "mainScrollWidth": 375,
+      "mainWidth": 375,
+      "scrollWidth": 390,
+      "width": 390
+    }
+  ],
+  "matchMobile": {
+    "mainScrollWidth": 375,
+    "mainWidth": 375,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "editorMobile": {
+    "mainScrollWidth": 375,
+    "mainWidth": 375,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "desktop": [
+    {
+      "path": "/rules",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/participants",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/pool",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/qualifier",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/schedule",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/me",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/manage",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "path": "/manage/config",
+      "alerts": [],
+      "scrollWidth": 1280,
+      "width": 1280
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+import { Link } from "react-router-dom";
+import { ArrowLeft, Play, CheckCheck } from "lucide-react";
+import { PostEventsByIdTeamDraftStartAPI } from "../../apis/events/PostEventsByIdTeamDraftStartAPI";
+import { Empty, ErrorBox, Loading, PageTitle, Panel, SectionHeading } from "../../components/ui";
+import { useTeamDraft } from "./hooks/useTeamDraft";
+import { DraftTeams } from "./components/DraftTeams";
+import { DraftCandidates } from "./components/DraftCandidates";
+import { actionButton, primaryAction } from "../../components/ui/actionStyles";
+export function TeamDraftPage() {
+  const page=useTeamDraft();
+  if (!page.event || page.event.rules.entryMode!=="team" || (page.event.rules.team.formation ?? "free")!=="draft") return <Empty title="本赛事未采用队长轮选"><Link to="/teams" className={actionButton}>返回组队大厅</Link></Empty>;
+  if (page.query.isLoading) return <Loading />;
+  if (page.query.error) return <ErrorBox error={page.query.error} />;
+  if (!page.board) return null;
+  const board=page.board;
+  const draft=board.draft;
+  return <div className="space-y-6"><PageTitle eyebrow="CAPTAIN DRAFT / LIVE" title="队长选人台" description={page.event.name} action={<Link className={actionButton} to="/teams"><ArrowLeft size={18} />组队大厅</Link>} />{page.error!=null && <ErrorBox error={page.error} />}{page.success && <p role="status" className="text-base text-[var(--accent)]">{page.success}</p>}<section className="relative overflow-hidden rounded-2xl border border-[var(--accent)]/30 bg-[var(--panel)] p-6 sm:p-8"><div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-20 size-80 rounded-full border-[40px] border-[var(--accent)]/5" /><div className="relative flex flex-wrap items-center justify-between gap-6"><div><p className="mb-3 font-mono text-sm tracking-[0.2em] text-[var(--accent)]">{draft?.status==="completed" ? "ASSEMBLY COMPLETE" : draft ? `PICK ${String(draft.picks.length+1).padStart(2,"0")}` : "WAITING FOR CAPTAINS"}</p><h2 className="font-semibold text-[length:var(--section-size)]">{draft?.status==="completed" ? "组队完成" : page.active ? `${page.active.name}选人` : "等待主办方开启轮选"}</h2><p className="mt-3 text-lg text-[var(--muted)]">{draft?.status==="completed" ? `${board.teams.length} 支队伍已就位` : page.active ? `队长 ${page.active.members.find(m=>m.id===page.active?.captainId)?.displayName}` : `队长 ${board.teams.length} / ${page.event.rules.team.captainCount ?? Math.min(2,page.event.rules.capacity)} · 候选 ${board.candidates.length} 人`}</p></div>{!draft && page.owner && page.event.status==="registration" && <button className={primaryAction} disabled={page.busy} onClick={()=>page.act(()=>new PostEventsByIdTeamDraftStartAPI(page.event!.id).send(),"已抽签确定顺序，轮选开始")}><Play size={19} />抽签并开始轮选</button>}{draft?.status==="completed" && <Link className={primaryAction} to="/teams"><CheckCheck size={20} />查看阵容与报名</Link>}{page.canPick && <span className="rounded-full bg-[var(--accent)]/10 px-4 py-3 text-base text-[var(--accent)]">{page.owner && page.active?.captainId!==page.session?.user.id ? "主办方代选" : "轮到你选择"}</span>}</div></section><DraftTeams page={page} /><DraftCandidates page={page} />{!!draft?.picks.length && <Panel><SectionHeading title="选人记录" /><ol className="grid gap-3 md:grid-cols-2">{draft.picks.map(p=><li key={p.ordinal} className="flex items-center gap-3 rounded-xl bg-[var(--panel2)] p-4 text-base"><span className="font-mono text-[var(--accent)]">{String(p.ordinal).padStart(2,"0")}</span><span className="min-w-0 break-words">{board.candidates.find(c=>c.user.id===p.userId)?.user.displayName}</span><span className="ml-auto text-right text-[var(--muted)]">{board.teams.find(t=>t.id===p.teamId)?.name}</span></li>)}</ol></Panel>}</div>;
+}

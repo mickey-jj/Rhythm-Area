@@ -1,0 +1,19 @@
+import { useEffect,useRef } from "react";
+import { Link,useLocation } from "react-router-dom";
+import { AttemptForm } from "../../../features/scoring/AttemptForm";
+import { TeamAttempt } from "./TeamAttempt";
+import { ErrorBox,Loading } from "../../../components/ui";
+import { actionButton } from "../../../components/ui/actionStyles";
+import type { MatchReady } from "../objects/MatchState";
+export function SubmitScores({page}:{page:MatchReady}){
+ const target=useRef<HTMLElement>(null),{hash}=useLocation();
+ useEffect(()=>{if(hash==="#score-submit")target.current?.scrollIntoView({block:"start"});},[hash]);
+ const {m,e,mine,pool,clock,clockActive,attempts,title,teams,session}=page;
+ const rows=(attempts.data??[]).filter(a=>a.matchId===m.id&&a.status!=="superseded");
+ const round=m.slots.filter(s=>s.extraRound===m.extraRound),count=clock.data?.enabled?Math.min(round.length,clock.data.clock.chartIndex+1):round.length;
+ const slots=round.slice(0,count),previous=rows.filter(a=>a.entryId===mine?.id&&a.status==="approved").sort((a,b)=>b.sequence-a.sequence)[0];
+ const initial=Object.fromEntries(previous?.items.map(i=>[i.slotId,i.value])??[]),active=m.scheduleState!=="historical"&&m.status==="playing";
+ const status=!active?m.status==="drafting"?"选禁完成后开放交分":m.status==="awaiting-reveal"?"等待曲目揭晓":"本场暂不可交分":clock.data?.clock.status==="finished"?"成绩已齐，等待裁判结算":clock.data?.clock.status==="expired"?"交分时间到 · 等待裁判处理":clock.data?.clock.status==="paused"?"裁判已暂停 · 暂停交分":!clockActive?"等待裁判开始本曲":"交分进行中";
+ const member=teams.data?.some(t=>[m.a?.id,m.b?.id].includes(t.entryId??"")&&t.members.some(u=>u.id===session?.user.id));
+ return <section ref={target} id="score-submit" aria-label="成绩提交" className="scroll-mt-[calc(var(--topbar-height)_+_1rem)] space-y-5 rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5 sm:p-6"><header className="flex flex-wrap items-center justify-between gap-3"><h2>成绩提交</h2><span role="status" className="text-sm text-[var(--accent)]">{status}</span></header>{active&&<p className="text-base font-medium">第 {count} 首 · {slots.length?title(slots.at(-1)!.chartKey):"等待曲目"}</p>}{mine?(attempts.isLoading?<Loading/>:attempts.error?<ErrorBox error={attempts.error}/>:m.rules.entryMode==="team"&&teams.isLoading?<Loading/>:teams.error?<ErrorBox error={teams.error}/>:active?<>{m.rules.entryMode==="team"?<TeamAttempt key={`${m.id}-${m.generation}-${m.extraRound}-${count}-${previous?.sequence??0}`} event={e} entry={mine} match={m} charts={pool.data??[]} count={count} previous={previous} teams={teams.data??[]} submissionEnabled={clockActive} lineupLocked={rows.length>0}/>:<AttemptForm key={`${m.id}-${m.generation}-${m.extraRound}-${count}-${previous?.sequence??0}`} event={e} entry={mine} matchId={m.id} metric={m.rules.metric} slots={slots.map(s=>({id:s.id,title:title(s.chartKey)}))} initialValues={initial} lockedIds={clock.data?.enabled?slots.slice(0,-1).map(s=>s.id):[]} firstTo={!clock.data?.enabled&&m.rules.matchMode==="first-to"} disabled={!clockActive}/>}</>:<p className="text-base text-[var(--muted)]">{status}</p>):<div className="space-y-4"><ul className="divide-y divide-[var(--line)] rounded-xl border border-[var(--line)]">{[m.a,m.b].map((en,i)=>{const latest=rows.filter(a=>a.entryId===en?.id&&a.items.some(i=>i.slotId===slots.at(-1)?.id)).sort((a,b)=>b.sequence-a.sequence)[0];return <li key={i} className="flex flex-wrap items-center justify-between gap-3 p-4 text-base"><span>{i?"B":"A"} 方 · {en?.displayName??"等待参赛方"}</span><span className="text-sm text-[var(--muted)]">{latest?latest.status==="pending"?"待审核":latest.status==="approved"?"已审通过":"需重新交分":"选手 / 队长交分"}</span></li>;})}</ul><p className="text-base text-[var(--muted)]">{member?"由本队队长提交成员成绩":page.isOwner?"当前为主办 / 裁判视角，交分请使用本场选手或队长账号":"本场选手或队长登录后交分"}</p>{!member&&<Link className={actionButton} to={`/auth?returnTo=${encodeURIComponent(`/matches/${m.id}#score-submit`)}`}>{session?"切换参赛账号交分":"登录交分"}</Link>}</div>}</section>;
+}

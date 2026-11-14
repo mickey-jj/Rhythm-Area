@@ -1,0 +1,21 @@
+import { chartWins } from "../functions/scoreSummary";
+import { useApi } from "../../../api/client";
+import { GetMatchesByIdScoresAPI } from "../../../apis/events/GetMatchesByIdScoresAPI";
+import { ChartArtwork } from "../../../components/ui/ChartArtwork";
+import { ErrorBox,Loading } from "../../../components/ui";
+import type { PublicMemberScore } from "../../../domain/publicScore";
+import type { User } from "../../../domain/types";
+import type { MatchReady } from "../objects/MatchState";
+const formatted=(value:string|null|undefined)=>value==null?"—":Number(value).toLocaleString("zh-CN",{maximumFractionDigits:12});
+function SideScore({value,members,roster,right,team}:{value:string|null;members:PublicMemberScore[];roster:User[];right:boolean;team:boolean}){
+ const people=members.length?members:roster.map(u=>({userId:u.id,displayName:u.displayName,value:null}));
+ return <div className={`min-w-0 ${right?"text-right":"text-left"}`}><strong className="block break-words font-mono text-[clamp(1rem,3.2vw,1.875rem)] font-semibold tabular-nums text-[var(--accent)]">{formatted(value)}</strong>{team&&<ul className="mt-3 space-y-3 border-t border-[var(--line)] pt-3">{people.map(p=><li key={p.userId} className="min-w-0 text-sm"><span className="block break-words text-[var(--muted)]">{p.displayName}</span><span className="mt-1 block break-words font-mono font-semibold tabular-nums">{formatted(p.value)}</span></li>)}</ul>}</div>;
+}
+export function Scoreboard({page}:{page:MatchReady}){
+ const {m,pool,teams}=page,q=useApi(new GetMatchesByIdScoresAPI(m.id),m.slots.length>0,2000);
+ if(!m.slots.length)return <p className="rounded-2xl border border-dashed border-[var(--line)] px-5 py-8 text-center text-base text-[var(--muted)]">选禁完成后开始演奏与交分</p>;
+ const rows=q.data??[],firstTo=m.rules.matchMode==="first-to"&&m.extraRound===0;
+ const total=(side:"aValue"|"bValue")=>rows.some(r=>r[side]!==null)?formatted(String(rows.reduce((n,r)=>n+Number(r[side]??0),0))):"—";
+ const current=m.slots.filter(s=>s.extraRound===m.extraRound)[page.clock.data?.clock.chartIndex??0];
+ return <section aria-label="当前比分" className="overflow-hidden rounded-3xl border border-[var(--line)] bg-[var(--panel)]"><header className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 border-b border-[var(--line)] p-4 sm:p-6">{([0,1] as const).map((side)=>{const en=side?m.b:m.a;return <div key={side} className={`min-w-0 ${side?"col-start-3 row-start-1 text-right":"col-start-1"}`}><p className="mb-2 break-words text-base font-semibold">{en?.displayName??"等待参赛方"}</p><strong className="break-words font-mono text-base font-semibold text-[var(--accent)] sm:text-4xl">{firstTo?chartWins(rows,m.rules.metric.higherWins,side,m.rules.initialWinsA??0):total(side?"bValue":"aValue")}</strong></div>;})}<p className="col-start-2 row-start-1 text-center text-sm text-[var(--muted)]">{firstTo?`先到 ${m.rules.winsRequired} 曲胜`:"已审累计"}</p></header>{q.isLoading?<Loading/>:q.error?<ErrorBox error={q.error}/>:<div className="divide-y divide-[var(--line)]">{rows.map((row,i)=>{const slot=m.slots.find(s=>s.id===row.slotId),c=pool.data?.find(c=>c.chart_key===slot?.chartKey),active=m.status==="playing"&&current?.id===slot?.id;return <article aria-label={`第 ${i+1} 首成绩`} key={row.slotId} className={`grid grid-cols-[minmax(0,1fr)_minmax(88px,.85fr)_minmax(0,1fr)] items-center gap-2 p-4 sm:gap-6 sm:p-6 ${active?"bg-[var(--accent)]/5":""}`}><SideScore value={row.aValue} members={row.aMembers??[]} roster={teams.data?.find(t=>t.entryId===m.a?.id)?.members??[]} right={false} team={m.rules.entryMode==="team"}/><div className="min-w-0 text-center"><p className="mb-3 font-mono text-sm text-[var(--muted)]">{active?"当前曲目":`TRACK ${String(i+1).padStart(2,"0")}`}</p>{c&&<div className="mx-auto w-fit"><ChartArtwork chart={c} size="medium"/></div>}<h3 className="mt-3 break-words text-base font-semibold">{c?.title??"等待揭晓"}</h3><p className="mt-2 break-words text-sm text-[var(--muted)]">{c?.difficulty_label}</p></div><SideScore value={row.bValue} members={row.bMembers??[]} roster={teams.data?.find(t=>t.entryId===m.b?.id)?.members??[]} right team={m.rules.entryMode==="team"}/></article>;})}</div>}</section>;
+}

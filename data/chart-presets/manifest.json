@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026-11-06",
+  "presets": [
+    {
+      "gameKey": "phigros",
+      "title": "Phigros",
+      "file": "phigros.json",
+      "chartCount": 1037,
+      "songCount": 327,
+      "sourceUrl": "https://github.com/Catrong/phi-plugin/blob/master/resources/info/info.csv",
+      "updatedAt": "2026-11-06",
+      "coverage": "phi-plugin info.csv; constants from source difficulty columns; artwork from matching phi-plugin-ill resources. Cover URLs mapped for 327/327 song keys."
+    },
+    {
+      "gameKey": "rotaeno",
+      "title": "Rotaeno",
+      "file": "rotaeno.json",
+      "chartCount": 1770,
+      "songCount": 434,
+      "sourceUrl": "https://wikiwiki.jp/rotaeno/%E6%A5%BD%E6%9B%B2%E4%B8%80%E8%A6%A7",
+      "updatedAt": "2026-11-06",
+      "coverage": "Rotaeno Wiki song list parsed table by table: 1,770 source charts / 434 title-artist entries across 428 distinct titles; 13 false IV-Alpha rows removed from prior misaligned extraction. Source provides displayed levels only; level_value is null. Main artwork attachments mapped from verified per-song detail pages; cover_url verified for 145/434 songs."
+    },
+    {
+      "gameKey": "arcaea",
+      "title": "Arcaea",
+      "file": "arcaea.json",
+      "chartCount": 1869,
+      "songCount": 573,
+      "sourceUrl": "https://github.com/TechnicalVessel/Arcaea-Chart-List/blob/main/arcaea_chart_list.csv",
+      "updatedAt": "2026-11-06",
+      "coverage": "TechnicalVessel CSV chart constants; Genesis and Quon source identities split by artist. Artwork uses individual Wiki attachments; unresolved songs have no cover_url. Cover URLs mapped for 492/573 song keys."
+    },
+    {
+      "gameKey": "maimai-dx",
+      "title": "maimai DX",
+      "file": "maimai.json",
+      "chartCount": 5578,
+      "songCount": 1404,
+      "sourceUrl": "https://www.diving-fish.com/api/maimaidxprober/music_data",
+      "updatedAt": "2026-11-06",
+      "coverage": "Diving-Fish music_data; artwork IDs follow its documented cover route. Cover URLs mapped for 1404/1404 song keys."
+    },
+    {
+      "gameKey": "chunithm",
+      "title": "CHUNITHM",
+      "file": "chunithm.json",
+      "chartCount": 6657,
+      "songCount": 1621,
+      "sourceUrl": "https://www.diving-fish.com/api/chunithmprober/music_data",
+      "updatedAt": "2026-11-06",
+      "coverage": "Diving-Fish music_data; LXNS jackets use source song IDs. Cover URLs mapped for 1621/1621 song keys."
+    },
+    {
+      "gameKey": "paradigm-reboot",
+      "title": "Paradigm: Reboot",
+      "file": "paradigm-reboot.json",
+      "chartCount": 1326,
+      "songCount": 434,
+      "sourceUrl": "https://api.prp.icel.site/api/v2/songs",
+      "updatedAt": "2026-11-06",
+      "coverage": "Existing PRP public metadata snapshot and actual source cover filenames. Cover URLs mapped for 434/434 song keys."
+    }
+  ]
+}

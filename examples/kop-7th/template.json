@@ -1,0 +1,1033 @@
+{
+  "format": "rhythm-area-template",
+  "schemaVersion": 1,
+  "name": "KOP 7th · maimai 全国决赛",
+  "sourceUrl": "https://maimai.sega.jp/kop7th/final/",
+  "edition": "7th（2026-03-01）",
+  "gameVersion": "CiRCLE",
+  "stage": "八强、半决赛、冠军赛",
+  "rules": {
+    "schemaVersion": 1,
+    "gameKey": "maimai-dx",
+    "gameName": "maimai でらっくす",
+    "clientVersion": "CiRCLE",
+    "entryMode": "solo",
+    "capacity": 8,
+    "metric": {
+      "name": "达成率",
+      "unit": "%",
+      "decimals": 4,
+      "minimum": "0",
+      "maximum": "101",
+      "higherWins": true
+    },
+    "qualifierSelection": "whole-best",
+    "pendingPolicy": "retain",
+    "matchMode": "total",
+    "winsRequired": 2,
+    "stages": [
+      {
+        "id": "quarter",
+        "name": "八强赛",
+        "kind": "single",
+        "advance": 4,
+        "plan": {
+          "metric": {
+            "name": "达成率",
+            "unit": "%",
+            "decimals": 4,
+            "minimum": "0",
+            "maximum": "101",
+            "higherWins": true
+          },
+          "matchMode": "total",
+          "winsRequired": 2,
+          "draft": [
+            {
+              "id": "pick-a",
+              "actor": "A",
+              "action": "pick",
+              "count": 1,
+              "pool": "main",
+              "banApplies": true,
+              "target": "pool"
+            },
+            {
+              "id": "pick-b",
+              "actor": "B",
+              "action": "pick",
+              "count": 1,
+              "pool": "main",
+              "banApplies": true,
+              "target": "pool"
+            }
+          ],
+          "playOrder": [
+            {
+              "id": "song-a",
+              "source": "pick-a:1"
+            },
+            {
+              "id": "song-b",
+              "source": "pick-b:1"
+            }
+          ],
+          "resolution": {
+            "tie": "manual",
+            "extraPool": "extra",
+            "extraCount": 1,
+            "scope": "extra-only",
+            "maxExtraRounds": 3,
+            "finalPolicy": "normal"
+          }
+        }
+      },
+      {
+        "id": "semi",
+        "name": "半决赛",
+        "kind": "single",
+        "advance": 2,
+        "plan": {
+          "metric": {
+            "name": "达成率",
+            "unit": "%",
+            "decimals": 4,
+            "minimum": "0",
+            "maximum": "101",
+            "higherWins": true
+          },
+          "matchMode": "total",
+          "winsRequired": 2,
+          "draft": [
+            {
+              "id": "pick-a",
+              "actor": "A",
+              "action": "pick",
+              "count": 1,
+              "pool": "main",
+              "banApplies": true,
+              "target": "pool"
+            },
+            {
+              "id": "pick-b",
+              "actor": "B",
+              "action": "pick",
+              "count": 1,
+              "pool": "main",
+              "banApplies": true,
+              "target": "pool"
+            }
+          ],
+          "playOrder": [
+            {
+              "id": "song-a",
+              "source": "pick-a:1"
+            },
+            {
+              "id": "song-b",
+              "source": "pick-b:1"
+            }
+          ],
+          "resolution": {
+            "tie": "manual",
+            "extraPool": "extra",
+            "extraCount": 1,
+            "scope": "extra-only",
+            "maxExtraRounds": 3,
+            "finalPolicy": "normal"
+          }
+        }
+      },
+      {
+        "id": "final",
+        "name": "冠军赛",
+        "kind": "single",
+        "advance": 1,
+        "plan": {
+          "metric": {
+            "name": "达成率",
+            "unit": "%",
+            "decimals": 4,
+            "minimum": "0",
+            "maximum": "101",
+            "higherWins": true
+          },
+          "matchMode": "total",
+          "winsRequired": 2,
+          "draft": [
+            {
+              "id": "pick-a",
+              "actor": "A",
+              "action": "pick",
+              "count": 1,
+              "pool": "final",
+              "banApplies": true,
+              "target": "pool"
+            },
+            {
+              "id": "pick-b",
+              "actor": "B",
+              "action": "pick",
+              "count": 1,
+              "pool": "final",
+              "banApplies": true,
+              "target": "pool"
+            }
+          ],
+          "playOrder": [
+            {
+              "id": "song-a",
+              "source": "pick-a:1"
+            },
+            {
+              "id": "song-b",
+              "source": "pick-b:1"
+            },
+            {
+              "id": "song-final",
+              "source": "fixed:maimai-dx:7 Wonders:dx:MASTER"
+            }
+          ],
+          "resolution": {
+            "tie": "manual",
+            "extraPool": "extra",
+            "extraCount": 1,
+            "scope": "extra-only",
+            "maxExtraRounds": 3,
+            "finalPolicy": "normal"
+          }
+        }
+      }
+    ],
+    "draft": [
+      {
+        "id": "pick-a",
+        "actor": "A",
+        "action": "pick",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "pick-b",
+        "actor": "B",
+        "action": "pick",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      }
+    ],
+    "playOrder": [
+      {
+        "id": "song-a",
+        "source": "pick-a:1"
+      },
+      {
+        "id": "song-b",
+        "source": "pick-b:1"
+      }
+    ],
+    "resolution": {
+      "tie": "manual",
+      "extraPool": "extra",
+      "extraCount": 1,
+      "scope": "extra-only",
+      "maxExtraRounds": 3,
+      "finalPolicy": "normal"
+    },
+    "team": {
+      "min": 3,
+      "max": 4,
+      "perChart": 3,
+      "maxAppearances": 3,
+      "aggregation": "sum"
+    },
+    "tieBreak": [],
+    "draftMode": "sealed"
+  },
+  "verifiedAt": "2026-11-01",
+  "verificationStatus": "partial",
+  "description": "八人单败；八强、半决赛各两曲，冠军赛加打 7 Wonders。赛前密封选曲，无 Ban。撞曲、跨轮禁重及 DX 同分由裁判复核。",
+  "tagline": "",
+  "charts": [
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:AMAZING MIGHTYYYY!!!!",
+      "title": "AMAZING MIGHTYYYY!!!!",
+      "artist": "",
+      "chart_key": "maimai-dx:AMAZING MIGHTYYYY!!!!:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 1
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Apollo",
+      "title": "Apollo",
+      "artist": "",
+      "chart_key": "maimai-dx:Apollo:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 2
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:ATLAS RUSH",
+      "title": "ATLAS RUSH",
+      "artist": "",
+      "chart_key": "maimai-dx:ATLAS RUSH:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 3
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Cryptarithm",
+      "title": "Cryptarithm",
+      "artist": "",
+      "chart_key": "maimai-dx:Cryptarithm:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 4
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Customized Justice",
+      "title": "Customized Justice",
+      "artist": "",
+      "chart_key": "maimai-dx:Customized Justice:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 5
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Divide et impera!",
+      "title": "Divide et impera!",
+      "artist": "",
+      "chart_key": "maimai-dx:Divide et impera!:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 6
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Excalibur ～Revived resolution～",
+      "title": "Excalibur ～Revived resolution～",
+      "artist": "",
+      "chart_key": "maimai-dx:Excalibur ～Revived resolution～:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 7
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:False Amber (from the Black Bazaar, Or by A Kervan Trader from the Lands Afar, Or Buried Beneath the Shifting Sands That Lead Everywhere but Nowhere)",
+      "title": "False Amber (from the Black Bazaar, Or by A Kervan Trader from the Lands Afar, Or Buried Beneath the Shifting Sands That Lead Everywhere but Nowhere)",
+      "artist": "",
+      "chart_key": "maimai-dx:False Amber (from the Black Bazaar, Or by A Kervan Trader from the Lands Afar, Or Buried Beneath the Shifting Sands That Lead Everywhere but Nowhere):dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 8
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:FLΛME/FRΦST",
+      "title": "FLΛME/FRΦST",
+      "artist": "",
+      "chart_key": "maimai-dx:FLΛME/FRΦST:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 9
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:GIGANTØMAKHIA",
+      "title": "GIGANTØMAKHIA",
+      "artist": "",
+      "chart_key": "maimai-dx:GIGANTØMAKHIA:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 10
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Glorious Crown",
+      "title": "Glorious Crown",
+      "artist": "",
+      "chart_key": "maimai-dx:Glorious Crown:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 11
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Heavenly Blast",
+      "title": "Heavenly Blast",
+      "artist": "",
+      "chart_key": "maimai-dx:Heavenly Blast:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 12
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:KHYMΞXΛ",
+      "title": "KHYMΞXΛ",
+      "artist": "",
+      "chart_key": "maimai-dx:KHYMΞXΛ:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 13
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:LAMIA",
+      "title": "LAMIA",
+      "artist": "",
+      "chart_key": "maimai-dx:LAMIA:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 14
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:larva",
+      "title": "larva",
+      "artist": "",
+      "chart_key": "maimai-dx:larva:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 15
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Latent Kingdom",
+      "title": "Latent Kingdom",
+      "artist": "",
+      "chart_key": "maimai-dx:Latent Kingdom:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 16
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Lia=Fail",
+      "title": "Lia=Fail",
+      "artist": "",
+      "chart_key": "maimai-dx:Lia=Fail:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 17
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Metamorphosism",
+      "title": "Metamorphosism",
+      "artist": "",
+      "chart_key": "maimai-dx:Metamorphosism:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 18
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Our Wrenally",
+      "title": "Our Wrenally",
+      "artist": "",
+      "chart_key": "maimai-dx:Our Wrenally:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 19
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:PANDORA PARADOXXX",
+      "title": "PANDORA PARADOXXX",
+      "artist": "",
+      "chart_key": "maimai-dx:PANDORA PARADOXXX:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 20
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:QZKago Requiem",
+      "title": "QZKago Requiem",
+      "artist": "",
+      "chart_key": "maimai-dx:QZKago Requiem:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 21
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:raputa",
+      "title": "raputa",
+      "artist": "",
+      "chart_key": "maimai-dx:raputa:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 22
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Regulus",
+      "title": "Regulus",
+      "artist": "",
+      "chart_key": "maimai-dx:Regulus:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 23
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:ℝ∈Χ LUNATiCA",
+      "title": "ℝ∈Χ LUNATiCA",
+      "artist": "",
+      "chart_key": "maimai-dx:ℝ∈Χ LUNATiCA:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 24
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:SILENT BLUE",
+      "title": "SILENT BLUE",
+      "artist": "",
+      "chart_key": "maimai-dx:SILENT BLUE:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 25
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:sølips",
+      "title": "sølips",
+      "artist": "",
+      "chart_key": "maimai-dx:sølips:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 26
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Straight into the lights",
+      "title": "Straight into the lights",
+      "artist": "",
+      "chart_key": "maimai-dx:Straight into the lights:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 27
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:TEmPTaTiON",
+      "title": "TEmPTaTiON",
+      "artist": "",
+      "chart_key": "maimai-dx:TEmPTaTiON:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 28
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:the EmpErroR",
+      "title": "the EmpErroR",
+      "artist": "",
+      "chart_key": "maimai-dx:the EmpErroR:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 29
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Valsqotch",
+      "title": "Valsqotch",
+      "artist": "",
+      "chart_key": "maimai-dx:Valsqotch:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 30
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:VeRForTe αRtE:VEiN",
+      "title": "VeRForTe αRtE:VEiN",
+      "artist": "",
+      "chart_key": "maimai-dx:VeRForTe αRtE:VEiN:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 31
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:VERTeX",
+      "title": "VERTeX",
+      "artist": "",
+      "chart_key": "maimai-dx:VERTeX:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 32
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:VIIIbit Explorer",
+      "title": "VIIIbit Explorer",
+      "artist": "",
+      "chart_key": "maimai-dx:VIIIbit Explorer:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 33
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:WiPE OUT MEMORIES",
+      "title": "WiPE OUT MEMORIES",
+      "artist": "",
+      "chart_key": "maimai-dx:WiPE OUT MEMORIES:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 34
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:World's end BLACKBOX",
+      "title": "World's end BLACKBOX",
+      "artist": "",
+      "chart_key": "maimai-dx:World's end BLACKBOX:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 35
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:World's end loneliness",
+      "title": "World's end loneliness",
+      "artist": "",
+      "chart_key": "maimai-dx:World's end loneliness:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 36
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:チューリングの跡",
+      "title": "チューリングの跡",
+      "artist": "",
+      "chart_key": "maimai-dx:チューリングの跡:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 37
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:怒槌",
+      "title": "怒槌",
+      "artist": "",
+      "chart_key": "maimai-dx:怒槌:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 38
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:雨露霜雪",
+      "title": "雨露霜雪",
+      "artist": "",
+      "chart_key": "maimai-dx:雨露霜雪:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 39
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:宙天",
+      "title": "宙天",
+      "artist": "",
+      "chart_key": "maimai-dx:宙天:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 40
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:康莊大道",
+      "title": "康莊大道",
+      "artist": "",
+      "chart_key": "maimai-dx:康莊大道:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 41
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:氷滅の135小節",
+      "title": "氷滅の135小節",
+      "artist": "",
+      "chart_key": "maimai-dx:氷滅の135小節:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 42
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:封焔の135秒",
+      "title": "封焔の135秒",
+      "artist": "",
+      "chart_key": "maimai-dx:封焔の135秒:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 43
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:躯樹の墓守",
+      "title": "躯樹の墓守",
+      "artist": "",
+      "chart_key": "maimai-dx:躯樹の墓守:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 44
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:系ぎて",
+      "title": "系ぎて",
+      "artist": "",
+      "chart_key": "maimai-dx:系ぎて:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 45
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Alea jacta est!",
+      "title": "Alea jacta est!",
+      "artist": "",
+      "chart_key": "maimai-dx:Alea jacta est!:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 46
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Garakuta Doll Play",
+      "title": "Garakuta Doll Play",
+      "artist": "",
+      "chart_key": "maimai-dx:Garakuta Doll Play:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 47
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:QZKago Requiem",
+      "title": "QZKago Requiem",
+      "artist": "",
+      "chart_key": "maimai-dx:QZKago Requiem:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 48
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:Schwarzschild",
+      "title": "Schwarzschild",
+      "artist": "",
+      "chart_key": "maimai-dx:Schwarzschild:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 49
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:the EmpErroR",
+      "title": "the EmpErroR",
+      "artist": "",
+      "chart_key": "maimai-dx:the EmpErroR:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 50
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:ガラテアの螺旋",
+      "title": "ガラテアの螺旋",
+      "artist": "",
+      "chart_key": "maimai-dx:ガラテアの螺旋:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 51
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:雷切-RAIKIRI-",
+      "title": "雷切-RAIKIRI-",
+      "artist": "",
+      "chart_key": "maimai-dx:雷切-RAIKIRI-:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "main|final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 52
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:PANDORA PARADOXXX",
+      "title": "PANDORA PARADOXXX",
+      "artist": "",
+      "chart_key": "maimai-dx:PANDORA PARADOXXX:standard:Re:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "Re:MASTER",
+      "level_value": null,
+      "pool_tag": "final|extra",
+      "role": "pick|assign|extra",
+      "display_order": 53
+    },
+    {
+      "game_key": "maimai-dx",
+      "game_version": "CiRCLE",
+      "song_key": "maimai-dx:7 Wonders",
+      "title": "7 Wonders",
+      "artist": "削除",
+      "chart_key": "maimai-dx:7 Wonders:dx:MASTER",
+      "chart_type": "dx",
+      "difficulty_label": "MASTER",
+      "level_value": null,
+      "pool_tag": "championship",
+      "role": "fixed",
+      "display_order": 54
+    }
+  ],
+  "appearance": {
+    "brandName": "律竞",
+    "accentColor": "#a3edd1",
+    "contact": ""
+  },
+  "research": {
+    "sources": [
+      "https://maimai.sega.jp/kop7th/final/",
+      "https://maimai.sega.jp/kop7th/_nuxt/Cxnthy6z.js",
+      "https://www.sega.jp/topics/detail/260317_8/",
+      "https://maimai.sega.jp/kop7th/final/result/"
+    ],
+    "format": "八人单败，三轮独立规则。前两轮两首总达成率，冠军赛三首总达成率。",
+    "bp": "赛前提交三轮自选；个人不能重复自选同谱；对手撞曲时第一曲保留、第二曲改由主办指定。无禁曲。",
+    "pool": "官方列出 53 张自选谱面，52 张可用于八强及半决赛，Re:MASTER PANDORA PARADOXXX 仅决赛开放。7 Wonders 为冠军赛追加指定曲。",
+    "tie": "先比较总达成率，再比较 DX 总分；仍平时主办指定追加曲。",
+    "limitations": [
+      "系统密封选曲未自动执行个人跨轮禁重、双方撞曲替换和 DX 次级指标，须裁判复核。",
+      "P 位及双方自选演奏顺序按现场决定。"
+    ]
+  }
+}

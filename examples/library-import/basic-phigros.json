@@ -1,0 +1,44 @@
+[
+  {
+    "chart_key": "phi-Glaciaxion.SunsetRay-ez",
+    "song_key": "Glaciaxion.SunsetRay",
+    "title": "Glaciaxion",
+    "difficulty_label": "EZ",
+    "level_value": 1.0
+  },
+  {
+    "chart_key": "phi-Glaciaxion.SunsetRay-hd",
+    "song_key": "Glaciaxion.SunsetRay",
+    "title": "Glaciaxion",
+    "difficulty_label": "HD",
+    "level_value": 6.5
+  },
+  {
+    "chart_key": "phi-Glaciaxion.SunsetRay-in",
+    "song_key": "Glaciaxion.SunsetRay",
+    "title": "Glaciaxion",
+    "difficulty_label": "IN",
+    "level_value": 12.6
+  },
+  {
+    "chart_key": "phi-EradicationCatastrophe.NceS-ez",
+    "song_key": "EradicationCatastrophe.NceS",
+    "title": "Eradication Catastrophe",
+    "difficulty_label": "EZ",
+    "level_value": 3.5
+  },
+  {
+    "chart_key": "phi-EradicationCatastrophe.NceS-hd",
+    "song_key": "EradicationCatastrophe.NceS",
+    "title": "Eradication Catastrophe",
+    "difficulty_label": "HD",
+    "level_value": 7.5
+  },
+  {
+    "chart_key": "phi-EradicationCatastrophe.NceS-in",
+    "song_key": "EradicationCatastrophe.NceS",
+    "title": "Eradication Catastrophe",
+    "difficulty_label": "IN",
+    "level_value": 12.7
+  }
+]

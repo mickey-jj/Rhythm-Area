@@ -1,0 +1,22 @@
+[
+  {
+    "username": "player-a",
+    "displayName": "星野",
+    "password": "area-demo-2026"
+  },
+  {
+    "username": "player-b",
+    "displayName": "空白",
+    "password": "area-demo-2026"
+  },
+  {
+    "username": "player-c",
+    "displayName": "回响",
+    "password": "area-demo-2026"
+  },
+  {
+    "username": "player-d",
+    "displayName": "北辰",
+    "password": "area-demo-2026"
+  }
+]

@@ -1,0 +1,30 @@
+import { useState } from "react";
+import { ArrowLeft,ClipboardList } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MatchCountdown } from "../../features/matches/MatchCountdown";
+import { ResetMatch } from "../../features/judging/ResetMatch";
+import { MatchOperations } from "../../features/judging/MatchOperations";
+import { roundLabel } from "../../domain/stagePresentation";
+import { Empty,ErrorBox,Loading,Notice,PageTitle } from "../../components/ui";
+import { Dialog } from "../../components/ui/Dialog";
+import { actionButton } from "../../components/ui/actionStyles";
+import { Competitors } from "./components/Competitors";
+import { ConfirmResult } from "./components/ConfirmResult";
+import { DraftAction } from "./components/DraftAction";
+import { DraftHistory } from "./components/DraftHistory";
+import { HiddenReveal } from "./components/HiddenReveal";
+import { PlayOrder } from "./components/PlayOrder";
+import { Scoreboard } from "./components/Scoreboard";
+import { ScoreHistory } from "./components/ScoreHistory";
+import { SubmitScores } from "./components/SubmitScores";
+import { MatchReviews } from "./components/MatchReviews";
+import { useMatchRoom } from "./hooks/useMatchRoom";
+export function MatchRoomPage(){
+ const page=useMatchRoom(),[operations,setOperations]=useState(false);
+ if(page.status==="loading")return <Loading/>;
+ if(page.status==="error")return <ErrorBox error={page.error}/>;
+ if(page.status==="empty")return <Empty title="场次不可用"/>;
+ const {m,e,isOwner,mine,error,message}=page;
+ const anchor="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--panel)] px-5 py-2 text-base hover:border-[var(--accent)]";
+ return <div className="space-y-6"><Link to="/schedule" className="inline-flex items-center gap-2 text-base text-[var(--muted)]"><ArrowLeft size={17}/>返回赛程</Link><PageTitle eyebrow="MATCH ROOM" title={`${m.stageName} · ${roundLabel(m.bracket,m.round,m.stageKind??e.rules.stages.find(s=>s.id===m.stageId)?.kind)} · 第 ${m.ordinal+1} 场`} action={<><ResetMatch event={e} id={m.id} version={m.version} enabled={m.scheduleState==="current"&&!!m.a&&!!m.b&&m.status!=="cancelled"}/>{(isOwner||mine)&&e.status!=="archived"&&m.scheduleState!=="historical"&&<button type="button" className={actionButton} onClick={()=>setOperations(true)}>赛务处理</button>}</>}/><nav aria-label="比赛室区域" className="flex flex-wrap gap-2"><a className={anchor} href="#room-songs">BP 与曲目</a><a className={anchor} href="#room-live">当前实况</a><a className={anchor+" !border-[var(--accent)] !bg-[var(--accent)] !text-[var(--on-accent)]"} href="#score-submit">交分</a>{isOwner&&<a className={anchor} href="#room-judge">审核与结算</a>}</nav>{m.scheduleState==="historical"&&<Notice>原赛程记录</Notice>}{error!=null&&<ErrorBox error={error}/>} {message&&<Notice>{message}</Notice>}{page.pool.error&&<ErrorBox error={page.pool.error}/>}<div id="room-songs" className="scroll-mt-[calc(var(--topbar-height)_+_1rem)] space-y-5"><DraftHistory page={page}/><PlayOrder page={page}/></div><section id="room-live" aria-label="当前实况" className="scroll-mt-[calc(var(--topbar-height)_+_1rem)] space-y-5"><header className="flex flex-wrap items-center justify-between gap-3"><h2 className="flex items-center gap-2"><ClipboardList size={22} className="text-[var(--accent)]"/>当前实况</h2></header>{m.status!=="playing"&&m.status!=="finalized"&&<Competitors page={page}/>}<MatchCountdown match={m}/>{m.status==="drafting"&&<DraftAction key={`${m.id}-${m.version}`} page={page}/>} {m.status==="awaiting-reveal"&&<HiddenReveal page={page}/>}<Scoreboard page={page}/></section><SubmitScores page={page}/><ScoreHistory page={page}/>{isOwner&&<div id="room-judge" className="scroll-mt-[calc(var(--topbar-height)_+_1rem)] space-y-5"><MatchReviews page={page}/><ConfirmResult page={page}/></div>}{operations&&<Dialog title="赛务处理" close={()=>setOperations(false)}><MatchOperations event={e} match={m} isJudge={isOwner} mine={!!mine}/></Dialog>}</div>;
+}

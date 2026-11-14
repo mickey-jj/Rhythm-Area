@@ -1,0 +1,6 @@
+{
+  "databasePort": 55534,
+  "apiPort": 8192,
+  "webPort": 5284,
+  "databaseName": "rhythm_area"
+}

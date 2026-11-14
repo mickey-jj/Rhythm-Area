@@ -1,0 +1,122 @@
+{
+  "format": "rhythm-area-template",
+  "schemaVersion": 1,
+  "name": "WEC 2026 · 中二节奏海选排名赛",
+  "sourceUrl": "https://www.bilibili.com/opus/1215489493021229093",
+  "edition": "2026",
+  "gameVersion": "中二节奏 2026",
+  "stage": "中二节奏海选排名赛",
+  "rules": {
+    "schemaVersion": 1,
+    "gameKey": "chunithm",
+    "gameName": "中二节奏",
+    "clientVersion": "中二节奏 2026",
+    "entryMode": "solo",
+    "capacity": 16,
+    "metric": {
+      "name": "分数",
+      "unit": "分",
+      "decimals": 0,
+      "minimum": "0",
+      "maximum": "1010000",
+      "higherWins": true
+    },
+    "qualifierSelection": "whole-best",
+    "pendingPolicy": "hide",
+    "matchMode": "total",
+    "winsRequired": 2,
+    "stages": [
+      {
+        "id": "wec-ranking",
+        "name": "海选排名 · 前十二晋级",
+        "kind": "ranking",
+        "advance": 12
+      }
+    ],
+    "draft": [],
+    "playOrder": [],
+    "resolution": {
+      "tie": "manual",
+      "extraPool": "extra",
+      "extraCount": 1,
+      "scope": "extra-only",
+      "maxExtraRounds": 3,
+      "finalPolicy": "normal"
+    },
+    "team": {
+      "min": 3,
+      "max": 4,
+      "perChart": 3,
+      "maxAppearances": 3,
+      "aggregation": "sum"
+    },
+    "tieBreak": [],
+    "draftMode": "open"
+  },
+  "verifiedAt": "2026-11-01",
+  "verificationStatus": "partial",
+  "description": "固定三曲按序同局完成，取最佳完整尝试，前十二晋级；无 BP。同分比较三曲绝对正义总数。",
+  "tagline": "",
+  "charts": [
+    {
+      "game_key": "chunithm",
+      "game_version": "中二节奏 2026",
+      "song_key": "chunithm:Climax",
+      "title": "Climax",
+      "artist": "",
+      "chart_key": "chunithm:Climax:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 15,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 1
+    },
+    {
+      "game_key": "chunithm",
+      "game_version": "中二节奏 2026",
+      "song_key": "chunithm:黎明に殉ず",
+      "title": "黎明に殉ず",
+      "artist": "",
+      "chart_key": "chunithm:黎明に殉ず:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 15,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 2
+    },
+    {
+      "game_key": "chunithm",
+      "game_version": "中二节奏 2026",
+      "song_key": "chunithm:The Devil Incarnate",
+      "title": "The Devil Incarnate",
+      "artist": "",
+      "chart_key": "chunithm:The Devil Incarnate:standard:MASTER",
+      "chart_type": "standard",
+      "difficulty_label": "MASTER",
+      "level_value": 15,
+      "pool_tag": "qualifier",
+      "role": "qualifier",
+      "display_order": 3
+    }
+  ],
+  "appearance": {
+    "brandName": "律竞",
+    "accentColor": "#a3edd1",
+    "contact": ""
+  },
+  "research": {
+    "sources": [
+      "https://www.bilibili.com/opus/1215489493021229093",
+      "https://i0.hdslb.com/bfs/new_dyn/3effaf574a0cf27a587e4e65c4aba689332563726.png"
+    ],
+    "format": "全国海选排名前十二晋级；弃权顺延。",
+    "bp": "无 Ban/Pick，三曲固定且按公告顺序同局完成。",
+    "pool": "Climax → 黎明に殉ず → The Devil Incarnate；全部 MASTER 15，已逐字核对官方海选海报。",
+    "tie": "三曲分数合计相同，比较三曲绝对正义总数。",
+    "limitations": [
+      "绝对正义数量目前需裁判通过成绩证明复核。"
+    ]
+  }
+}

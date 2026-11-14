@@ -1,0 +1,1192 @@
+{
+  "sourceUrl": "https://wikiwiki.jp/rotaeno/楽曲一覧",
+  "correctionCount": 65,
+  "mappings": [
+    {
+      "oldChartKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-i-764",
+      "newChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-i-764",
+      "oldSongKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "newSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "-",
+        "artist": "今天不是明天",
+        "game_version": ""
+      },
+      "after": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-ii-765",
+      "newChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-ii-765",
+      "oldSongKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "newSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "-",
+        "artist": "今天不是明天",
+        "game_version": ""
+      },
+      "after": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iii-766",
+      "newChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iii-766",
+      "oldSongKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "newSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "-",
+        "artist": "今天不是明天",
+        "game_version": ""
+      },
+      "after": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iv-767",
+      "newChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iv-767",
+      "oldSongKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "newSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "-",
+        "artist": "今天不是明天",
+        "game_version": ""
+      },
+      "after": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iv-alpha-768",
+      "newChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iv-alpha-768",
+      "oldSongKey": "rotaeno---%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "newSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "-",
+        "artist": "今天不是明天",
+        "game_version": ""
+      },
+      "after": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-i-769",
+      "newChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-i-769",
+      "oldSongKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "newSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "1",
+        "artist": "又一遍的歌",
+        "game_version": ""
+      },
+      "after": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-ii-770",
+      "newChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-ii-770",
+      "oldSongKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "newSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "1",
+        "artist": "又一遍的歌",
+        "game_version": ""
+      },
+      "after": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iii-771",
+      "newChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iii-771",
+      "oldSongKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "newSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "1",
+        "artist": "又一遍的歌",
+        "game_version": ""
+      },
+      "after": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iv-772",
+      "newChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iv-772",
+      "oldSongKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "newSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "1",
+        "artist": "又一遍的歌",
+        "game_version": ""
+      },
+      "after": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iv-alpha-773",
+      "newChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iv-alpha-773",
+      "oldSongKey": "rotaeno-1-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "newSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "1",
+        "artist": "又一遍的歌",
+        "game_version": ""
+      },
+      "after": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-i-774",
+      "newChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-i-774",
+      "oldSongKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "newSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "1",
+        "artist": "爱上想象的你",
+        "game_version": ""
+      },
+      "after": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-ii-775",
+      "newChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-ii-775",
+      "oldSongKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "newSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "1",
+        "artist": "爱上想象的你",
+        "game_version": ""
+      },
+      "after": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iii-776",
+      "newChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iii-776",
+      "oldSongKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "newSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "1",
+        "artist": "爱上想象的你",
+        "game_version": ""
+      },
+      "after": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iv-777",
+      "newChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iv-777",
+      "oldSongKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "newSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "1",
+        "artist": "爱上想象的你",
+        "game_version": ""
+      },
+      "after": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iv-alpha-778",
+      "newChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iv-alpha-778",
+      "oldSongKey": "rotaeno-1-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "newSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "1",
+        "artist": "爱上想象的你",
+        "game_version": ""
+      },
+      "after": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "game_version": "1.14.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-sonic%20surge-i-779",
+      "newChartKey": "rot-SONIC%20SURGE-i-779",
+      "oldSongKey": "rotaeno-2-sonic%20surge",
+      "newSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "2",
+        "artist": "SONIC SURGE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "game_version": "2.1.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-sonic%20surge-ii-780",
+      "newChartKey": "rot-SONIC%20SURGE-ii-780",
+      "oldSongKey": "rotaeno-2-sonic%20surge",
+      "newSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "2",
+        "artist": "SONIC SURGE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "game_version": "2.1.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-sonic%20surge-iii-781",
+      "newChartKey": "rot-SONIC%20SURGE-iii-781",
+      "oldSongKey": "rotaeno-2-sonic%20surge",
+      "newSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "2",
+        "artist": "SONIC SURGE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "game_version": "2.1.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-sonic%20surge-iv-782",
+      "newChartKey": "rot-SONIC%20SURGE-iv-782",
+      "oldSongKey": "rotaeno-2-sonic%20surge",
+      "newSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "2",
+        "artist": "SONIC SURGE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "game_version": "2.1.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-sonic%20surge-iv-alpha-783",
+      "newChartKey": "rot-SONIC%20SURGE-iv-alpha-783",
+      "oldSongKey": "rotaeno-2-sonic%20surge",
+      "newSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "2",
+        "artist": "SONIC SURGE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "game_version": "2.1.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-i-784",
+      "newChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-i-784",
+      "oldSongKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "newSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "2",
+        "artist": "甜涩之梦",
+        "game_version": ""
+      },
+      "after": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-ii-785",
+      "newChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-ii-785",
+      "oldSongKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "newSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "2",
+        "artist": "甜涩之梦",
+        "game_version": ""
+      },
+      "after": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iii-786",
+      "newChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iii-786",
+      "oldSongKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "newSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "2",
+        "artist": "甜涩之梦",
+        "game_version": ""
+      },
+      "after": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iv-787",
+      "newChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iv-787",
+      "oldSongKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "newSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "2",
+        "artist": "甜涩之梦",
+        "game_version": ""
+      },
+      "after": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iv-alpha-788",
+      "newChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iv-alpha-788",
+      "oldSongKey": "rotaeno-2-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "newSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "2",
+        "artist": "甜涩之梦",
+        "game_version": ""
+      },
+      "after": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "game_version": "2.5.1"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-i-789",
+      "newChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-i-789",
+      "oldSongKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "newSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "3",
+        "artist": "恶修女 - 永火熔铸",
+        "game_version": ""
+      },
+      "after": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "game_version": "2.6.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-ii-790",
+      "newChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-ii-790",
+      "oldSongKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "newSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "3",
+        "artist": "恶修女 - 永火熔铸",
+        "game_version": ""
+      },
+      "after": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "game_version": "2.6.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iii-791",
+      "newChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iii-791",
+      "oldSongKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "newSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "3",
+        "artist": "恶修女 - 永火熔铸",
+        "game_version": ""
+      },
+      "after": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "game_version": "2.6.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iv-792",
+      "newChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iv-792",
+      "oldSongKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "newSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "3",
+        "artist": "恶修女 - 永火熔铸",
+        "game_version": ""
+      },
+      "after": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "game_version": "2.6.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iv-alpha-793",
+      "newChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iv-alpha-793",
+      "oldSongKey": "rotaeno-3-%E6%81%B6%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "newSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "3",
+        "artist": "恶修女 - 永火熔铸",
+        "game_version": ""
+      },
+      "after": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "game_version": "2.6.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-ignite-i-794",
+      "newChartKey": "rot-IGNITE-i-794",
+      "oldSongKey": "rotaeno-4-ignite",
+      "newSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "4",
+        "artist": "IGNITE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "game_version": "2.21.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-ignite-ii-795",
+      "newChartKey": "rot-IGNITE-ii-795",
+      "oldSongKey": "rotaeno-4-ignite",
+      "newSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "4",
+        "artist": "IGNITE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "game_version": "2.21.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-ignite-iii-796",
+      "newChartKey": "rot-IGNITE-iii-796",
+      "oldSongKey": "rotaeno-4-ignite",
+      "newSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "4",
+        "artist": "IGNITE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "game_version": "2.21.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-ignite-iv-797",
+      "newChartKey": "rot-IGNITE-iv-797",
+      "oldSongKey": "rotaeno-4-ignite",
+      "newSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "4",
+        "artist": "IGNITE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "game_version": "2.21.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-ignite-iv-alpha-798",
+      "newChartKey": "rot-IGNITE-iv-alpha-798",
+      "oldSongKey": "rotaeno-4-ignite",
+      "newSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "4",
+        "artist": "IGNITE",
+        "game_version": ""
+      },
+      "after": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "game_version": "2.21.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-full%20circle-i-1600",
+      "newChartKey": "rot-Full%20Circle-i-1600",
+      "oldSongKey": "rotaeno-1-full%20circle",
+      "newSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "1",
+        "artist": "Full Circle",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-full%20circle-ii-1601",
+      "newChartKey": "rot-Full%20Circle-ii-1601",
+      "oldSongKey": "rotaeno-1-full%20circle",
+      "newSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "1",
+        "artist": "Full Circle",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-full%20circle-iii-1602",
+      "newChartKey": "rot-Full%20Circle-iii-1602",
+      "oldSongKey": "rotaeno-1-full%20circle",
+      "newSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "1",
+        "artist": "Full Circle",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-full%20circle-iv-1603",
+      "newChartKey": "rot-Full%20Circle-iv-1603",
+      "oldSongKey": "rotaeno-1-full%20circle",
+      "newSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "1",
+        "artist": "Full Circle",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-1-full%20circle-iv-alpha-1604",
+      "newChartKey": "rot-Full%20Circle-iv-alpha-1604",
+      "oldSongKey": "rotaeno-1-full%20circle",
+      "newSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "1",
+        "artist": "Full Circle",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-extraordinary-i-1605",
+      "newChartKey": "rot-Extraordinary-i-1605",
+      "oldSongKey": "rotaeno-2-extraordinary",
+      "newSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "2",
+        "artist": "Extraordinary",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-extraordinary-ii-1606",
+      "newChartKey": "rot-Extraordinary-ii-1606",
+      "oldSongKey": "rotaeno-2-extraordinary",
+      "newSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "2",
+        "artist": "Extraordinary",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-extraordinary-iii-1607",
+      "newChartKey": "rot-Extraordinary-iii-1607",
+      "oldSongKey": "rotaeno-2-extraordinary",
+      "newSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "2",
+        "artist": "Extraordinary",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-extraordinary-iv-1608",
+      "newChartKey": "rot-Extraordinary-iv-1608",
+      "oldSongKey": "rotaeno-2-extraordinary",
+      "newSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "2",
+        "artist": "Extraordinary",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-2-extraordinary-iv-alpha-1609",
+      "newChartKey": "rot-Extraordinary-iv-alpha-1609",
+      "oldSongKey": "rotaeno-2-extraordinary",
+      "newSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "2",
+        "artist": "Extraordinary",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "game_version": "2.23.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-switch%20up%21-i-1610",
+      "newChartKey": "rot-Switch%20Up%21-i-1610",
+      "oldSongKey": "rotaeno-3-switch%20up%21",
+      "newSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "3",
+        "artist": "Switch Up!",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "game_version": "2.24.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-switch%20up%21-ii-1611",
+      "newChartKey": "rot-Switch%20Up%21-ii-1611",
+      "oldSongKey": "rotaeno-3-switch%20up%21",
+      "newSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "3",
+        "artist": "Switch Up!",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "game_version": "2.24.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-switch%20up%21-iii-1612",
+      "newChartKey": "rot-Switch%20Up%21-iii-1612",
+      "oldSongKey": "rotaeno-3-switch%20up%21",
+      "newSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "3",
+        "artist": "Switch Up!",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "game_version": "2.24.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-switch%20up%21-iv-1613",
+      "newChartKey": "rot-Switch%20Up%21-iv-1613",
+      "oldSongKey": "rotaeno-3-switch%20up%21",
+      "newSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "3",
+        "artist": "Switch Up!",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "game_version": "2.24.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-3-switch%20up%21-iv-alpha-1614",
+      "newChartKey": "rot-Switch%20Up%21-iv-alpha-1614",
+      "oldSongKey": "rotaeno-3-switch%20up%21",
+      "newSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "3",
+        "artist": "Switch Up!",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "game_version": "2.24.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-another%20one%20of%20those%20times-i-1615",
+      "newChartKey": "rot-Another%20One%20of%20Those%20Times-i-1615",
+      "oldSongKey": "rotaeno-4-another%20one%20of%20those%20times",
+      "newSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "4",
+        "artist": "Another One of Those Times",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "game_version": "2.25.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-another%20one%20of%20those%20times-ii-1616",
+      "newChartKey": "rot-Another%20One%20of%20Those%20Times-ii-1616",
+      "oldSongKey": "rotaeno-4-another%20one%20of%20those%20times",
+      "newSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "4",
+        "artist": "Another One of Those Times",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "game_version": "2.25.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-another%20one%20of%20those%20times-iii-1617",
+      "newChartKey": "rot-Another%20One%20of%20Those%20Times-iii-1617",
+      "oldSongKey": "rotaeno-4-another%20one%20of%20those%20times",
+      "newSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "4",
+        "artist": "Another One of Those Times",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "game_version": "2.25.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-another%20one%20of%20those%20times-iv-1618",
+      "newChartKey": "rot-Another%20One%20of%20Those%20Times-iv-1618",
+      "oldSongKey": "rotaeno-4-another%20one%20of%20those%20times",
+      "newSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "4",
+        "artist": "Another One of Those Times",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "game_version": "2.25.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-4-another%20one%20of%20those%20times-iv-alpha-1619",
+      "newChartKey": "rot-Another%20One%20of%20Those%20Times-iv-alpha-1619",
+      "oldSongKey": "rotaeno-4-another%20one%20of%20those%20times",
+      "newSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "4",
+        "artist": "Another One of Those Times",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "game_version": "2.25.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom-i-1620",
+      "newChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-i-1620",
+      "oldSongKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom",
+      "newSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "5",
+        "artist": "Frogs Who Fight for Freedom",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "game_version": "2.26.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom-ii-1621",
+      "newChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-ii-1621",
+      "oldSongKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom",
+      "newSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "5",
+        "artist": "Frogs Who Fight for Freedom",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "game_version": "2.26.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom-iii-1622",
+      "newChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-iii-1622",
+      "oldSongKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom",
+      "newSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "5",
+        "artist": "Frogs Who Fight for Freedom",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "game_version": "2.26.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom-iv-1623",
+      "newChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-iv-1623",
+      "oldSongKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom",
+      "newSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "5",
+        "artist": "Frogs Who Fight for Freedom",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "game_version": "2.26.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom-iv-alpha-1624",
+      "newChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-iv-alpha-1624",
+      "oldSongKey": "rotaeno-5-frogs%20who%20fight%20for%20freedom",
+      "newSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "5",
+        "artist": "Frogs Who Fight for Freedom",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "game_version": "2.26.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-6-fractured%20skies-i-1625",
+      "newChartKey": "rot-Fractured%20Skies-i-1625",
+      "oldSongKey": "rotaeno-6-fractured%20skies",
+      "newSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "6",
+        "artist": "Fractured Skies",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "game_version": "2.27.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-6-fractured%20skies-ii-1626",
+      "newChartKey": "rot-Fractured%20Skies-ii-1626",
+      "oldSongKey": "rotaeno-6-fractured%20skies",
+      "newSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "6",
+        "artist": "Fractured Skies",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "game_version": "2.27.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-6-fractured%20skies-iii-1627",
+      "newChartKey": "rot-Fractured%20Skies-iii-1627",
+      "oldSongKey": "rotaeno-6-fractured%20skies",
+      "newSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "6",
+        "artist": "Fractured Skies",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "game_version": "2.27.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-6-fractured%20skies-iv-1628",
+      "newChartKey": "rot-Fractured%20Skies-iv-1628",
+      "oldSongKey": "rotaeno-6-fractured%20skies",
+      "newSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "6",
+        "artist": "Fractured Skies",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "game_version": "2.27.0"
+      }
+    },
+    {
+      "oldChartKey": "rotaeno-6-fractured%20skies-iv-alpha-1629",
+      "newChartKey": "rot-Fractured%20Skies-iv-alpha-1629",
+      "oldSongKey": "rotaeno-6-fractured%20skies",
+      "newSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "6",
+        "artist": "Fractured Skies",
+        "game_version": ""
+      },
+      "after": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "game_version": "2.27.0"
+      }
+    }
+  ],
+  "removedCount": 13,
+  "removals": [
+    {
+      "removedChartKey": "rot-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9-iv-alpha-768",
+      "removedSongKey": "rotaeno-wiki-%E4%BB%8A%E5%A4%A9%E4%B8%8D%E6%98%AF%E6%98%8E%E5%A4%A9",
+      "before": {
+        "title": "今天不是明天",
+        "artist": "PIKASONIC feat.兰音Reine",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "1.14.1"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C-iv-alpha-773",
+      "removedSongKey": "rotaeno-wiki-%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E6%AD%8C",
+      "before": {
+        "title": "又一遍的歌",
+        "artist": "TSAR feat.永雏塔菲",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.5.1"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-SONIC%20SURGE-iv-alpha-783",
+      "removedSongKey": "rotaeno-wiki-SONIC%20SURGE",
+      "before": {
+        "title": "SONIC SURGE",
+        "artist": "TSAR feat. aran",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.1.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-IGNITE-iv-alpha-798",
+      "removedSongKey": "rotaeno-wiki-IGNITE",
+      "before": {
+        "title": "IGNITE",
+        "artist": "USAO & Massive New Krew",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.21.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Full%20Circle-iv-alpha-1604",
+      "removedSongKey": "rotaeno-wiki-Full%20Circle",
+      "before": {
+        "title": "Full Circle",
+        "artist": "VITICZ",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.23.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Extraordinary-iv-alpha-1609",
+      "removedSongKey": "rotaeno-wiki-Extraordinary",
+      "before": {
+        "title": "Extraordinary",
+        "artist": "technoplanet",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.23.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Switch%20Up%21-iv-alpha-1614",
+      "removedSongKey": "rotaeno-wiki-Switch%20Up%21",
+      "before": {
+        "title": "Switch Up!",
+        "artist": "Sahqmo",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.24.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Another%20One%20of%20Those%20Times-iv-alpha-1619",
+      "removedSongKey": "rotaeno-wiki-Another%20One%20of%20Those%20Times",
+      "before": {
+        "title": "Another One of Those Times",
+        "artist": "Poh Hock feat. Debo Ray",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.25.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Frogs%20Who%20Fight%20for%20Freedom-iv-alpha-1624",
+      "removedSongKey": "rotaeno-wiki-Frogs%20Who%20Fight%20for%20Freedom",
+      "before": {
+        "title": "Frogs Who Fight for Freedom",
+        "artist": "Jamphibious",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.26.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-Fractured%20Skies-iv-alpha-1629",
+      "removedSongKey": "rotaeno-wiki-Fractured%20Skies",
+      "before": {
+        "title": "Fractured Skies",
+        "artist": "Flay! feat. xia & Yoominel",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.27.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0-iv-alpha-778",
+      "removedSongKey": "rotaeno-wiki-%E7%88%B1%E4%B8%8A%E6%83%B3%E8%B1%A1%E7%9A%84%E4%BD%A0",
+      "before": {
+        "title": "爱上想象的你",
+        "artist": "KOTONOHOUSE feat.穆小泠",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "1.14.1"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6-iv-alpha-788",
+      "removedSongKey": "rotaeno-wiki-%E7%94%9C%E6%B6%A9%E4%B9%8B%E6%A2%A6",
+      "before": {
+        "title": "甜涩之梦",
+        "artist": "YUC'e feat.早稲叽",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.5.1"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    },
+    {
+      "removedChartKey": "rot-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8-iv-alpha-793",
+      "removedSongKey": "rotaeno-wiki-%E6%82%AA%E4%BF%AE%E5%A5%B3%20-%20%E6%B0%B8%E7%81%AB%E7%86%94%E9%93%B8",
+      "before": {
+        "title": "恶修女 - 永火熔铸",
+        "artist": "离子SYNTHETIC feat.黒澤ノアNOIR",
+        "difficulty_label": "IV-Alpha",
+        "game_version": "2.6.0"
+      },
+      "reason": "False IV-Alpha generated by the 8-column table offset error; corrected source table has only I/II/III/IV."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+import assert from 'node:assert/strict';
+import {client} from './test-client.mjs';
+const A=client(8083),owner=await A.setup(),checks=[];
+const pass=message=>{checks.push(message);console.log('PASS '+message);};
+const preset=(await A.get('/templates',owner)).data.find(t=>t.id==='custom');
+let rules={...preset.rules,capacity:8,stages:[{id:'main',name:'原单败',kind:'single',advance:1}]};
+let charts=preset.charts.map(c=>({...c,cover_url:`https://example.test/${c.chart_key}.jpg`}));
+let e=(await A.post('/instance/event',{...preset,name:'开赛改制回归',rules,charts},owner)).data;
+e=(await A.post(`/events/${e.id}/publish`,{expectedVersion:e.version},owner)).data;
+async function update(nextRules=rules,nextCharts=charts,expected=e.version,session=owner,status=200){
+ const result=await A.req(`/events/${e.id}`,{method:'PUT',session,expected:status,body:{name:e.name,tagline:e.tagline,description:e.description,rules:nextRules,charts:nextCharts,expectedVersion:expected}});
+ if(status===200){e=result.data;rules=nextRules;charts=nextCharts;}return result.data;
+}
+await update({...rules,gameName:'更新的游戏名称'});assert.equal(e.status,'registration');
+pass('published rules are editable without returning to draft');
+const players=[];
+for(let i=0;i<8;i++){
+ const session=await A.register(`live-player-${i}`);
+ const entry=(await A.post(`/events/${e.id}/entries`,{displayName:`选手 ${i+1}`},session)).data;
+ await A.post(`/entries/${entry.id}/review`,{decision:'accepted',reason:'通过'},owner);players.push({session,entry});
+}
+e=(await A.get(`/events/${e.id}`,owner)).data;
+await A.post(`/events/${e.id}/generate`,{expectedVersion:e.version},owner);
+e=(await A.get(`/events/${e.id}`,owner)).data;
+const schedule=async()=> (await A.get(`/events/${e.id}/schedule`,owner)).data;
+const detail=async id=>(await A.get(`/matches/${id}`,owner)).data;
+async function drafted(id){let m=await detail(id);while(m.currentStep)m=(await A.post(`/matches/${id}/draft-actions`,{expectedVersion:m.version,chartKey:m.candidates[0]?.chart_key??null,idempotencyKey:crypto.randomUUID()},owner)).data;return m;}
+async function submit(m,en,value){const p=players.find(p=>p.entry.id===en.id);return(await A.post(`/events/${e.id}/attempts`,{entryId:en.id,matchId:m.id,items:m.slots.filter(s=>s.extraRound===m.extraRound).map(s=>({slotId:s.id,value})),evidenceNote:'改制隔离验证'},p.session)).data;}
+async function finish(id){let m=await drafted(id);if(m.status==='awaiting-reveal'){await A.post(`/matches/${id}/reveal`,{expectedVersion:m.version},owner);m=await detail(id);}await submit(m,m.a,'99');await submit(m,m.b,'98');for(const a of (await A.get(`/events/${e.id}/attempts`,owner)).data.filter(a=>a.matchId===id&&a.status==='pending'))await A.post(`/attempts/${a.id}/review`,{decision:'approved',reason:'完整核对'},owner);await A.post(`/matches/${id}/finalize`,{expectedVersion:m.version},owner);return detail(id);}
+const initial=await schedule();const first=initial.find(m=>m.status==='drafting');
+const completed=await finish(first.id);
+const oldScores=(await A.get(`/matches/${completed.id}/scores`,owner)).data;
+const loser=[completed.a,completed.b].find(en=>en.id!==completed.winnerId).id;
+const second=(await schedule()).find(m=>m.status==='drafting');const underway=await drafted(second.id);
+await submit(underway,underway.a,'97');
+const pending=(await A.get(`/events/${e.id}/attempts`,owner)).data.find(a=>a.matchId===underway.id&&a.status==='pending');
+const oldChart=charts.find(c=>c.chart_key===completed.slots[0].chartKey);
+const beforeMetadata=await schedule();
+await update(rules,charts.map(c=>c.chart_key===oldChart.chart_key?{...c,title:'新版曲名'}:c));
+assert.deepEqual(await schedule(),beforeMetadata);
+assert((await A.get(`/events/${e.id}/pool?matchId=${encodeURIComponent(completed.id)}`,owner)).data.some(c=>c.chart_key===oldChart.chart_key&&c.title===oldChart.title));
+pass('metadata-only changes retain completed chart labels without rebuilding active matches');
+const beforeVersion=e.version;
+await update({...rules,stages:[{id:'league',name:'新循环赛',kind:'round-robin',advance:1}]},charts.filter(c=>c.chart_key!==oldChart.chart_key));
+assert.equal(e.status,'running');assert.equal(e.ruleVersion,e.version);
+const now=await schedule(),active=now.filter(m=>m.scheduleState==='current');
+assert(active.every(m=>!['a','b'].some(side=>m[side]?.id===loser)));
+assert(active.length===21);assert(active.every(m=>!initial.some(x=>x.id===m.id)));
+pass('running single-elimination becomes a seven-player round robin without reviving the eliminated player');
+const preserved=await detail(completed.id);
+assert.equal(preserved.status,'finalized');assert.equal(preserved.winnerId,completed.winnerId);assert.equal(preserved.scheduleState,'historical');assert.deepEqual(preserved.rules,completed.rules);
+assert.deepEqual((await A.get(`/matches/${completed.id}/scores`,owner)).data,oldScores);
+const oldPool=(await A.get(`/events/${e.id}/pool?matchId=${encodeURIComponent(completed.id)}`,owner)).data;
+assert(oldPool.some(c=>c.chart_key===oldChart.chart_key&&c.title===oldChart.title&&c.cover_url===oldChart.cover_url));
+assert(!(await A.get(`/events/${e.id}/pool`,owner)).data.some(c=>c.chart_key===oldChart.chart_key));
+pass('completed rules, scores and removed chart artwork remain available through the original match URL');
+const superseded=(await A.get(`/events/${e.id}/attempts`,owner)).data.find(a=>a.id===pending.id);
+assert.equal(superseded.status,'superseded');assert.equal(superseded.items[0].value,'97');
+await A.post(`/attempts/${pending.id}/review`,{decision:'approved',reason:'too late'},owner,409);
+assert.equal((await detail(underway.id)).status,'cancelled');
+await A.post(`/matches/${underway.id}/draft-actions`,{expectedVersion:underway.version,chartKey:null,idempotencyKey:crypto.randomUUID()},owner,409);
+pass('unfinished attempts are retained as superseded and obsolete match actions are rejected');
+await update(rules,charts,beforeVersion,owner,409);
+const outsider=await A.register('live-outsider');await update(rules,charts,e.version,outsider,403);
+const beforeInvalid=await schedule();const beforeInvalidVersion=e.version;
+await update({...rules,stages:[]},charts,e.version,owner,400);
+assert.deepEqual(await schedule(),beforeInvalid);assert.equal((await A.get(`/events/${e.id}`,owner)).data.version,beforeInvalidVersion);
+pass('stale, unauthorized and invalid changes cannot partially replace the schedule');
+const rrDone=await finish(active.find(m=>m.status==='drafting').id);
+await update({...rules,metric:{...rules.metric,maximum:'102'}});
+const rrAfter=await schedule();assert.equal(rrAfter.filter(m=>m.scheduleState==='current').length,21);
+assert.equal(rrAfter.find(m=>m.id===rrDone.id).scheduleState,'current');assert.equal((await detail(rrDone.id)).winnerId,rrDone.winnerId);
+pass('a completed round-robin pairing is carried forward instead of being played twice');
+await update({...rules,stages:[{id:'double',name:'双败续赛',kind:'double',advance:1}],resolution:{...rules.resolution,finalPolicy:'reset'}});
+const doubleFirst=(await schedule()).find(m=>m.scheduleState==='current'&&m.status==='drafting');
+const doubleDone=await finish(doubleFirst.id);const oneLoss=[doubleDone.a,doubleDone.b].find(en=>en.id!==doubleDone.winnerId).id;
+await update({...rules,matchMode:'first-to',winsRequired:2});
+assert((await A.get(`/events/${e.id}/stages`,owner)).data.find(s=>s.id==='double').participants.includes(oneLoss));
+assert((await detail(doubleDone.id)).scheduleState==='historical');
+pass('replanning double elimination carries a one-loss entrant into the new lower bracket');
+let guard=0;
+while(guard++<100){const next=(await schedule()).find(m=>m.scheduleState==='current'&&['drafting','playing'].includes(m.status));if(!next)break;await finish(next.id);}
+e=(await A.get(`/events/${e.id}`,owner)).data;assert.equal(e.status,'completed');
+const terminal=await schedule();assert(terminal.filter(m=>m.scheduleState==='current').every(m=>['finalized','bye','empty','cancelled'].includes(m.status)));
+assert((await A.get(`/events/${e.id}/stages`,owner)).data.find(s=>s.id==='double').placements.filter(p=>p.rank!==1).every(p=>p.losses===2));
+pass('the rebuilt bracket reaches a real champion, retains prior losses and keeps all historical results readable');
+const finals=terminal.filter(m=>m.status==='finalized').map(m=>m.id);
+await update({...rules,gameName:'结束后仍可维护'});assert.equal(e.status,'completed');assert.deepEqual((await schedule()).filter(m=>m.status==='finalized').map(m=>m.id),finals);
+pass('completed-event configuration maintenance preserves all match results');
+console.log(JSON.stringify({liveRules:'passed',checks:checks.length}));

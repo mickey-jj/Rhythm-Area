@@ -1,0 +1,56 @@
+# Local application state: database, generated passwords, uploads, logs and caches
+.local/
+deliverables/
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Node / TypeScript / Vite
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Scala / sbt / JVM
+target/
+.bsp/
+.bloop/
+.metals/
+.scala-build/
+*.class
+*.tasty
+*.hprof
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Generated logs, recordings, archives and database backups
+*.log
+*.pid
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.mp4
+*.mov
+*.mkv
+*.dump
+*.backup
+# SQL migrations, dependency lockfiles and documentation screenshots stay tracked.

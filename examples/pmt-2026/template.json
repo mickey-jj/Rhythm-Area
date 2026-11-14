@@ -1,0 +1,123 @@
+{
+  "format": "rhythm-area-template",
+  "schemaVersion": 1,
+  "name": "PMT 2026 · 前段两曲对局",
+  "sourceUrl": "https://pmt.pigeongames.net/rules",
+  "edition": "2026",
+  "gameVersion": "待主办确认",
+  "stage": "前段两曲对局（单场参考）",
+  "rules": {
+    "schemaVersion": 1,
+    "gameKey": "phigros",
+    "gameName": "Phigros",
+    "clientVersion": "待主办确认",
+    "entryMode": "solo",
+    "capacity": 2,
+    "metric": {
+      "name": "分数（待核对计分口径）",
+      "unit": "分",
+      "decimals": 0,
+      "minimum": "0",
+      "maximum": "1000000",
+      "higherWins": true
+    },
+    "qualifierSelection": "whole-best",
+    "pendingPolicy": "retain",
+    "matchMode": "total",
+    "winsRequired": 2,
+    "stages": [
+      {
+        "id": "pmt-match",
+        "name": "前段单场 · 两曲（流程待确认）",
+        "kind": "single",
+        "advance": 1
+      }
+    ],
+    "draft": [
+      {
+        "id": "ban-a",
+        "actor": "A",
+        "action": "ban",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "ban-b",
+        "actor": "B",
+        "action": "ban",
+        "count": 1,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      },
+      {
+        "id": "songs",
+        "actor": "referee",
+        "action": "assign",
+        "count": 2,
+        "pool": "main",
+        "banApplies": true,
+        "target": "pool"
+      }
+    ],
+    "playOrder": [
+      {
+        "id": "song-1",
+        "source": "songs:1"
+      },
+      {
+        "id": "song-2",
+        "source": "songs:2"
+      }
+    ],
+    "resolution": {
+      "tie": "manual",
+      "extraPool": "extra",
+      "extraCount": 2,
+      "scope": "extra-only",
+      "maxExtraRounds": 3,
+      "finalPolicy": "normal"
+    },
+    "team": {
+      "min": 3,
+      "max": 4,
+      "perChart": 3,
+      "maxAppearances": 3,
+      "aggregation": "sum"
+    },
+    "tieBreak": [],
+    "draftMode": "open"
+  },
+  "verifiedAt": "2026-11-01",
+  "verificationStatus": "partial",
+  "description": "前段对局：投币定先后，各禁一谱、游玩两谱。后段五谱含神秘曲。完整图池及选曲步骤仍待官方材料核实。",
+  "tagline": "",
+  "charts": [],
+  "appearance": {
+    "brandName": "律竞",
+    "accentColor": "#a3edd1",
+    "contact": ""
+  },
+  "research": {
+    "sources": [
+      "https://pmt.pigeongames.net/rules",
+      "https://pmt.pigeongames.net/"
+    ],
+    "format": [
+      "8→6：两轮胜败组分流",
+      "6→3：败者组继续淘汰",
+      "3→2：胜者组、败者组决赛",
+      "冠军赛：两人五谱"
+    ],
+    "bp": "前段投币决定先后，各禁一谱后游玩两谱；3→2 与冠军赛改为五谱并包含神秘曲。冠军赛由胜者组晋级者决定先后。",
+    "tie": "按既定先后双方各选一谱，两谱结算；仍平继续加赛。",
+    "pool": "官方规则页、赛事详情海报均未列出完整选曲名单，当前未核实。",
+    "limitations": [
+      "不把社区近三年曲池说法作为完整官方清单。",
+      "当前模板仅为前段单场，指定两曲只是未公开选曲步骤的占位；不能宣称完整双败赛程。",
+      "计分口径、加赛累计范围及图池未确认，保留空图池阻止直接发布。"
+    ]
+  }
+}

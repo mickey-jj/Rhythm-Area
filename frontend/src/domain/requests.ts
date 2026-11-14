@@ -1,0 +1,16 @@
+import type { AppealDecisionKind,EventInput,ReviewDecision } from "./types";
+export type Credentials = { username: string; password: string; displayName?: string | null };
+export type VersionInput = { expectedVersion: number };
+export type ReviewInput = { decision: ReviewDecision; reason: string; expectedVersion?: number | null };
+export type DraftInput = VersionInput & { chartKey: string | null; idempotencyKey: string };
+export type EntryInput = { displayName: string };
+export type TeamInput = { name?: string; code?: string | null };
+export type JudgeInput = { username: string; matchId: string | null; remove: boolean };
+export type MatchDecision = VersionInput & { reason: string; winnerId: string | null };
+export type MatchResetInput = VersionInput & { reason: string };
+export type AppealInput = { reason: string };
+export type AppealDecision = VersionInput & { decision: AppealDecisionKind; reason: string };
+export type QualificationInput = { order: string[]; reason: string; expectedVersion: number };
+export type LineupInput = VersionInput & { entryId: string; items: { slotId: string; userIds: string[] }[] };
+export type AttemptInput = { groupId?: string | null; entryId: string; matchId: string | null; items: { slotId: string; value: string }[]; evidenceNote: string; evidenceId?: string | null; memberScores?: { slotId: string; userId: string; value: string }[] };
+export type EventConfigInput = EventInput;
