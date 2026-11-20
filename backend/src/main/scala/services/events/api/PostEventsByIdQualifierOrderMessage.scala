@@ -23,21 +23,18 @@ final case class PostEventsByIdQualifierOrderMessage(idKey: EventId, user: User,
     val in = input
     val result = {
       val id = idKey.value
-      val service = new ServiceSupport(connection)
-      import service.*
       val repo = new RepositorySupport(connection)
       import repo.*
       (for
           e <- ReadEventMessage(id,true).plan(connection); _ <- RequireEventOwnerMessage(e,user.id).plan(connection); _ <- requireVersion(e.version,in.expectedVersion)
           _ <- check(e.status=="registration" && in.reason.trim.nonEmpty,409,"INVALID_STATE","仅排名赛阶段可以记录同分判定依据")
           board <- new RankingSupport(connection).synchronize(e)
-          all <- rankingsTx(e)
-          rows=if board.exists(_.session.status=="closed") then all.filter(_.complete) else all
-          _ <- check(rows.forall(_.complete) && in.order.distinct.size==rows.size && in.order.toSet==rows.map(_.entry.id).toSet,400,"INVALID_ORDER","需为完整有效成绩提供不重不漏的排序")
-          ranks = in.order.map(id=>rows.find(_.entry.id==id).get.rank.get)
-          _ <- check(ranks==ranks.sorted,400,"INVALID_ORDER","只能在同分组内调整，不能越过已确定名次")
-          snapshot = json(all.map(r=>Map("entryId"->r.entry.id,"total"->r.total.getOrElse(""))))
-          _ <- services.events.tables.qualification_orders.QualificationOrdersTable.insertServiceResolvequalifier(connection, id, snapshot, json(in.order), in.reason, user.id)
+            .flatMap(_.liftTo[IO](AppError(409,ApiError("NO_RANKING","本赛事没有排名赛阶段"))))
+          snapshot = QualificationSupport.snapshot(board.rankings)
+          _ <- check(in.expectedSnapshotKey.forall(_ == QualificationSupport.snapshotKey(snapshot)),409,"QUALIFICATION_CHANGED","有效成绩已更新，请按当前榜单重新记录同分判定")
+          rows = if board.session.status == "closed" then board.rankings.filter(_.complete) else board.rankings
+          _ <- check(rows.forall(_.complete) && QualificationSupport.validOrder(rows,in.order),400,"INVALID_ORDER","请完整排序所有有效成绩，只能在同分组内调整顺序")
+          _ <- services.events.tables.qualification_orders.QualificationOrdersTable.insertServiceResolvequalifier(connection, id, snapshot.noSpaces, json(in.order), in.reason, user.id)
           _ <- ReadAuditMessage(id,user.id,"qualifier.tiebreak",in.reason+" · "+in.order.mkString(",")).plan(connection)
         yield ())
     }

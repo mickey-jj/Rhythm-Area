@@ -23,7 +23,7 @@ private[events] final class RankingSupport(connection: Connection):
     next=if e.status=="draft" then initial.copy(status="waiting",startedAt=None,endsAt=None,closedAt=None,stopReason=None,policy=policy) else RankingLogic.progress(initial,policy,now,count,e.status)
     updated=if stored.nonEmpty && next!=initial then next.copy(version=initial.version+1) else next
     _ <- if e.status!="draft" && !stored.contains(updated) then RankingSessionsTable.save(connection,updated).void else IO.unit
-  yield RankingBoard(stage.id,stage.name,updated,now,count,rows.map(r=>r.copy(entry=r.entry.copy(reason=""),attemptIds=Nil)),false) }
+  yield RankingBoard(stage.id,stage.name,updated,now,count,rows,false) }
   private[events] def requireOpen(e: EventView): IO[Unit] = for
     board <- synchronize(e)
     _ <- check(board.exists(_.session.status=="open") && e.status=="registration",409,"RANKING_CLOSED","排名赛尚未开始或已停止收分")

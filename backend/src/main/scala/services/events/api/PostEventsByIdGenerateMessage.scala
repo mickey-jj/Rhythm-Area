@@ -23,8 +23,6 @@ final case class PostEventsByIdGenerateMessage(idKey: EventId, user: User, input
     val version = input.expectedVersion
     val result = {
       val id = idKey.value
-      val service = new ServiceSupport(connection)
-      import service.*
       val repo = new RepositorySupport(connection)
       import repo.*
       val competition = new CompetitionSupport(connection)
@@ -39,17 +37,16 @@ final case class PostEventsByIdGenerateMessage(idKey: EventId, user: User, input
           pending <- services.events.tables.attempts.AttemptsTable.findServiceGenerate(connection, id)
           _ <- check(pending == 0,409,"PENDING_REVIEWS","请先处理排名赛待审成绩")
           board <- new RankingSupport(connection).synchronize(e)
-          ranks <- rankingsTx(e)
+          ranks = board.toList.flatMap(_.rankings)
           ranked = ranks.filter(_.complete)
           hasQualifier = e.rules.stages.headOption.exists(_.kind == "ranking")
           stopped=board.exists(_.session.status=="closed")
           _ <- check(!hasQualifier || stopped || board.exists(_.session.policy.endMode=="manual") && ranked.size==es.size,409,"RANKING_OPEN","请先结束排名赛收分，再确认晋级")
           _ <- check(!hasQualifier || stopped || ranked.size==es.size,409,"INCOMPLETE_QUALIFIER","排名赛尚未全员完成，可先停止收分后按完整有效成绩确认晋级")
           _ <- check(!hasQualifier || ranked.size>=math.min(e.rules.stages.head.advance,es.size),409,"INSUFFICIENT_QUALIFIERS","完整有效成绩不足以满足实际晋级名额，请调整截止设置重新开放收分")
-          tieDecision <- services.events.tables.qualification_orders.QualificationOrdersTable.findServiceGenerate(connection, id)
-          snapshot = json(ranks.map(r=>Map("entryId"->r.entry.id,"total"->r.total.getOrElse(""))))
-          resolved = tieDecision.filter(t=>readJson[io.circe.Json](t._1)==readJson[io.circe.Json](snapshot)).map(t=>readJson[List[String]](t._2))
-          _ <- check(!hasQualifier || ranked.flatMap(_.total.flatMap(Engine.decimal)).distinct.size == ranked.size || resolved.nonEmpty,409,"QUALIFICATION_TIE","排名赛存在同分，请在后台记录资格附加赛结果和并列排序")
+          tieDecision <- QualificationSupport.decision(connection, id, ranks)
+          resolved = tieDecision.flatMap(_.order)
+          _ <- check(tieDecision.isEmpty || resolved.nonEmpty,409,"QUALIFICATION_TIE","排名赛存在同分，请在后台记录资格附加赛结果和并列排序")
           ordered = if hasQualifier then resolved.map(ids=>ids.flatMap(id=>es.find(_.id==id))).getOrElse(ranked.map(_.entry)) else es
           _ <- if hasQualifier then services.events.tables.qualifier_snapshots.QualifierSnapshotsTable.insertServiceGenerate(connection, id, json(ranks)).void else ().pure[IO]
           advance = if hasQualifier then e.rules.stages.head.advance else ordered.size

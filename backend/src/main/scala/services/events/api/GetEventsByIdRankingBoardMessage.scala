@@ -11,4 +11,10 @@ final case class GetEventsByIdRankingBoardMessage(idKey: EventId, viewer: Option
     e <- ReadEventMessage(idKey.value,true).plan(connection)
     _ <- new RepositorySupport(connection).visible(e,viewer)
     board <- new RankingSupport(connection).synchronize(e).flatMap(_.liftTo[IO](AppError(404,ApiError("NO_RANKING","本赛事没有排名赛阶段"))))
-  yield board.copy(canManage=viewer.contains(e.ownerId) && e.status=="registration")
+    canManage = viewer.contains(e.ownerId) && e.status == "registration"
+    decision <- if canManage then QualificationSupport.decision(connection, e.id, board.rankings) else IO.pure(None)
+  yield board.copy(
+    canManage = canManage,
+    qualificationDecision = decision,
+    rankings = board.rankings.map(row => row.copy(entry = row.entry.copy(reason = ""), attemptIds = Nil))
+  )

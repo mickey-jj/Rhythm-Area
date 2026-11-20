@@ -1,7 +1,12 @@
 import type { Ranking, RuleSet } from "./types";
 export type RankingPolicy = { startMode:"publish"|"manual"|"scheduled"; endMode:"manual"|"fixed"|"duration"|"threshold"; startAt:string|null; deadline:string|null; durationSeconds:number|null; targetCount:number|null; targetScore:string|null };
 export type RankingSession = { eventId:string; stageId:string; status:"waiting"|"open"|"closed"; startedAt:number|null; endsAt:number|null; closedAt:number|null; stopReason:"manual"|"deadline"|"threshold"|"advanced"|null; version:number; policy:RankingPolicy };
-export type RankingBoard = { stageId:string; stageName:string; session:RankingSession; serverNow:number; qualifiedCount:number; rankings:Ranking[]; canManage:boolean };
+export type QualificationDecision = {
+  status: "required" | "stale" | "resolved";
+  snapshotKey: string;
+  order: string[] | null;
+};
+export type RankingBoard = { stageId:string; stageName:string; session:RankingSession; serverNow:number; qualifiedCount:number; rankings:Ranking[]; canManage:boolean; qualificationDecision:QualificationDecision|null };
 export type RankingControlInput = { action:"start"|"close"|"reopen"; expectedVersion:number };
 export function rankingPolicy(rules:RuleSet,stage:RuleSet["stages"][number]):RankingPolicy {
   return stage.ranking ?? {startMode:"publish",endMode:rules.windows?.qualifierClose ? "fixed" : "manual",startAt:null,deadline:rules.windows?.qualifierClose ?? null,durationSeconds:null,targetCount:null,targetScore:null};

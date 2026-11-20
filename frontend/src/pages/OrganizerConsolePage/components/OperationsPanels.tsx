@@ -3,13 +3,10 @@ import { useApi,useRefresh } from "../../../api/client";
 import { GetEventsByIdAppealsAPI } from "../../../apis/events/GetEventsByIdAppealsAPI";
 import { GetEventsByIdAttemptsAPI } from "../../../apis/events/GetEventsByIdAttemptsAPI";
 
-import { GetEventsByIdRankingBoardAPI } from "../../../apis/events/GetEventsByIdRankingBoardAPI";
-
 import { GetMatchesByIdAPI } from "../../../apis/events/GetMatchesByIdAPI";
 import { PostAppealsByIdDecisionAPI } from "../../../apis/events/PostAppealsByIdDecisionAPI";
 
-import { PostEventsByIdQualifierOrderAPI } from "../../../apis/events/PostEventsByIdQualifierOrderAPI";
-import { ErrorBox,Notice } from "../../../components/ui";
+import { ErrorBox } from "../../../components/ui";
 import type { AppealDecisionKind,Attempt,Event } from "../../../domain/types";
 import { useCurrentSession } from "../../../state/session";
 import { ScoreReviews } from "./ReviewPanels";
@@ -96,13 +93,4 @@ export function JudgeConsole({ event: e }: { event: Event }) {
       <AppealsPanel event={e} />
     </>
   );
-}
-export function QualifierOrder({event:e}:{event:Event}){
- const q=useApi(new GetEventsByIdRankingBoardAPI(e.id),e.status==="registration"&&e.rules.stages.some(s=>s.kind==="ranking"));
- const rows=(q.data?.rankings??[]).filter(r=>q.data?.session.status!=="closed"||r.complete);
- const [chosen,setChosen]=useState<string[]>([]),[reason,setReason]=useState(""),[saved,setSaved]=useState<string|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState<unknown>(null);
- const refresh=useRefresh(),order=chosen.length===rows.length&&chosen.every(id=>rows.some(r=>r.entry.id===id))?chosen:rows.map(r=>r.entry.id);
- const fingerprint=JSON.stringify(rows.map(r=>({id:r.entry.id,total:r.total,rank:r.rank})));
- if(e.status!=="registration"||!rows.length||!rows.every(r=>r.complete)||!rows.some((r,i)=>rows.findIndex(x=>x.rank===r.rank)!==i))return null;
- return <section className="space-y-4 rounded-xl border border-[var(--warning)]/40 p-4"><h3>资格同分：记录附加赛结果</h3><Notice>原始成绩不改写。只能在同分组内调整顺序；请记录真实附加赛结果及证据。重新交分改变总分后，旧判定自动失效。</Notice><ol className="space-y-2">{order.map((id,i)=>{const row=rows.find(r=>r.entry.id===id);return <li key={id} className="flex flex-wrap justify-between gap-3"><span>{i+1}. {row?.entry.displayName} · {row?.total}</span><button type="button" disabled={busy||i===0||row?.rank!==rows.find(r=>r.entry.id===order[i-1])?.rank} className="rounded border border-[var(--line)] px-3 py-1" onClick={()=>setChosen(order.map((value,index)=>index===i-1?order[i]:index===i?order[i-1]:value))}>在同分组内上移</button></li>;})}</ol><label>附加赛经过与证据（必填）<textarea value={reason} onChange={ev=>setReason(ev.target.value)} maxLength={2000}/></label><button type="button" disabled={busy||!reason.trim()} className="rounded-lg bg-[var(--accent)] px-4 py-2 text-[var(--on-accent)]" onClick={async()=>{setBusy(true);setError(null);await new PostEventsByIdQualifierOrderAPI(e.id,{order,reason,expectedVersion:e.version}).send().then(async()=>{setSaved(fingerprint);await refresh();},setError).finally(()=>setBusy(false));}}>保存资格判定</button>{saved===fingerprint&&<p role="status">判定已记录，可继续确认晋级。</p>}{error!=null&&<ErrorBox error={error}/>}</section>;
 }

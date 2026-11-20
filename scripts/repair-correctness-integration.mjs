@@ -33,6 +33,7 @@ if(mode==='secure'){
 const A=client(),owner=await A.setup(),template=(await A.get('/templates',owner)).data.find(t=>t.id==='custom');
 const rules=structuredClone(template.rules),charts=template.charts,isTeam=mode==='team';
 rules.capacity=mode==='ranking'?3:2;rules.timing=null;
+if(mode==='ranking')rules.qualifierSelection='last-approved';
 rules.entryMode=isTeam?'team':'solo';rules.team={...rules.team,min:2,max:2,perChart:1,maxAppearances:2,aggregation:'sum'};
 rules.stages=[...(mode==='ranking'?[{id:'qualifier',name:'海选',kind:'ranking',advance:2}]:[]),{id:'main',name:'正赛',kind:'single',advance:1}];
 rules.draft=[];rules.playOrder=charts.filter(c=>c.pool_tag.split('|').includes('main')).slice(0,2).map((c,i)=>({id:'fixed-'+i,source:'fixed:'+c.chart_key}));
@@ -66,15 +67,47 @@ async function review(){
 }
 if(mode==='ranking'){
  const songs=charts.filter(c=>c.pool_tag.split('|').includes('qualifier'));
+ assert(songs.length>=2);
  for(let i=0;i<players.length;i++)await A.post(`/events/${event.id}/attempts`,{entryId:entries[i].id,matchId:null,items:songs.map(c=>({slotId:c.chart_key,value:['99','99.0','99.00'][i]})),evidenceNote:'数值等值，必须同分裁决'},players[i]);
  await review();
- const board=(await A.get(`/events/${event.id}/ranking-board`,owner)).data;
+ const getBoard=async(session=owner)=>(await A.get(`/events/${event.id}/ranking-board`,session)).data;
+ const board=await getBoard();
  assert(board.rankings.every(r=>r.rank===1));
- const rejected=await A.post(`/events/${event.id}/generate`,{expectedVersion:event.version},owner,409);
- assert.equal(rejected.data.code,'QUALIFICATION_TIE');
- await A.post(`/events/${event.id}/qualifier-order`,{order:entries.map(e=>e.id),reason:'独立附加赛的真实回归排序',expectedVersion:event.version},owner);
+ assert.equal(board.qualificationDecision.status,'required');
+ assert.equal((await getBoard(players[0])).qualificationDecision,null);
+ assert(board.rankings.every(r=>r.attemptIds.length===0));
+ const rejectGenerate=async()=>{
+  const rejected=await A.post(`/events/${event.id}/generate`,{expectedVersion:event.version},owner,409);
+  assert.equal(rejected.data.code,'QUALIFICATION_TIE');
+ };
+ const save=async(current,order,status=200)=>A.post(`/events/${event.id}/qualifier-order`,{
+  order,reason:'独立附加赛回归排序',expectedVersion:event.version,expectedSnapshotKey:current.qualificationDecision.snapshotKey,
+ },owner,status);
+ const order=entries.map(e=>e.id).reverse();
+ await rejectGenerate();
+ await save(board,order);
+ const resolved=await getBoard();
+ assert.equal(resolved.qualificationDecision.status,'resolved');
+ assert.deepEqual(resolved.qualificationDecision.order,order);
+
+ // A fresh approved attempt changes the effective scores even when its total is unchanged.
+ await A.post(`/events/${event.id}/attempts`,{
+  entryId:entries[0].id,matchId:null,
+  items:songs.map((song,i)=>({slotId:song.chart_key,value:String(i===0?98:i===1?100:99)})),
+  evidenceNote:'重新交分，逐曲成绩改变但总分相同',
+ },players[0]);
+ assert.equal((await getBoard()).qualificationDecision.status,'resolved');
+ await review();
+ const stale=await getBoard();
+ assert.deepEqual(stale.rankings.map(r=>r.total),resolved.rankings.map(r=>r.total));
+ assert.equal(stale.qualificationDecision.status,'stale');
+ assert.notEqual(stale.qualificationDecision.snapshotKey,resolved.qualificationDecision.snapshotKey);
+ assert.equal((await save(resolved,order,409)).data.code,'QUALIFICATION_CHANGED');
+ await rejectGenerate();
+ await save(stale,order);
+ assert.equal((await getBoard()).qualificationDecision.status,'resolved');
  await A.post(`/events/${event.id}/generate`,{expectedVersion:event.version},owner);
- console.log('PASS S01 99 / 99.0 / 99.00 tie across the advancement cutoff requires an explicit resolution');
+ console.log('PASS S01/U01: numeric ties block generation, valid saved order is returned only to the owner, and changed effective scores invalidate it even at equal totals');
  process.exit(0);
 }
 await A.post(`/events/${event.id}/generate`,{expectedVersion:event.version},owner);
