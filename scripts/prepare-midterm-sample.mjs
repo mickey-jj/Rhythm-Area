@@ -1,3 +1,4 @@
+import {withSetupToken} from './setup-token.mjs';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ assert.equal(config.databaseName, 'rhythm_area_midterm', 'This sample initialize
 const origin = `http://127.0.0.1:${config.webPort}`;
 const base = `http://127.0.0.1:${config.apiPort}/api`;
 async function request(resource, body, session) {
-  const response = await fetch(base + resource, { method: body === undefined ? 'GET' : 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', ...(session ? { Cookie: session.cookie, 'X-Area-CSRF': session.csrf } : {}) }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+  const response = await fetch(base + resource, { method: body === undefined ? 'GET' : 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', ...(session ? { Cookie: session.cookie, 'X-Area-CSRF': session.csrf } : {}) }, ...(body === undefined ? {} : { body: JSON.stringify(withSetupToken(resource,body)) }) });
   const data = await response.json();
   if (!response.ok) throw new Error(`${resource}: ${data.message ?? response.status}`);
   return { data, cookie: response.headers.get('set-cookie')?.split(';')[0] };

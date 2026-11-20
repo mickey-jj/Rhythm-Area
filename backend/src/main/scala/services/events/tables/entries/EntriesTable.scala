@@ -19,6 +19,10 @@ import services.system.utils.*
 import org.typelevel.doobie.implicits.*
 
 object EntriesTable:
+  private val eligibleEvidenceSql = """select exists(select 1 from entries e where e.event_id=? and e.status='accepted' and (e.user_id=? or exists(select 1 from teams t join team_members m on m.team_id=t.id where t.entry_id=e.id and m.user_id=?)))"""
+  def eligibleEvidence(connection: Connection, eventId: String, userId: String): IO[Boolean] =
+    Database.run(connection)(org.typelevel.doobie.Query[(String,String,String),Boolean](eligibleEvidenceSql).unique((eventId,userId,userId)))
+
   private val findRepositoryEntriesSql = """select id,event_id,user_id,display_name,status,seed,reason from entries where event_id=? order by seed nulls last,created_at"""
   def findRepositoryEntries(connection: Connection, eventId: String): IO[List[Entry]] =
     Database.run(connection)(org.typelevel.doobie.Query[String,Entry](findRepositoryEntriesSql).to[List](eventId))

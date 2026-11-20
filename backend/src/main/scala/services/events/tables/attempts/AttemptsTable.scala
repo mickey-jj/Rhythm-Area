@@ -19,6 +19,10 @@ import services.system.utils.*
 import org.typelevel.doobie.implicits.*
 
 object AttemptsTable:
+  private val approvedMatchSlotsSql = """select distinct a.entry_id,i.slot_id from attempts a join attempt_items i on i.attempt_id=a.id where a.match_id=? and a.generation=? and a.status='approved'"""
+  def approvedMatchSlots(connection: Connection, matchId: String, generation: Int): IO[List[(String,String)]] =
+    Database.run(connection)(org.typelevel.doobie.Query[(String,Int),(String,String)](approvedMatchSlotsSql).to[List]((matchId,generation)))
+
   private val supersedeGroupSql = "update attempts set status='superseded' where group_id=? and status<>'superseded'"
   def supersedeGroup(connection: Connection, groupId: String): IO[Int] =
     Database.run(connection)(org.typelevel.doobie.Update[String](supersedeGroupSql).run(groupId))
@@ -66,9 +70,9 @@ object AttemptsTable:
   def updateServiceReviewattempt(connection: Connection, status: String, id: String): IO[Int] =
     Database.run(connection)(org.typelevel.doobie.Update[(String,String)](updateServiceReviewattemptSql).run((status,id)))
 
-  private val findTeamsLineupSql = """select count(*) from attempts where match_id=? and entry_id=? and generation=?"""
-  def findTeamsLineup(connection: Connection, matchId: String, entryId: String, generation: Int): IO[Long] =
-    Database.run(connection)(org.typelevel.doobie.Query[(String,String,Int),Long](findTeamsLineupSql).unique((matchId,entryId,generation)))
+  private val findTeamsLineupSql = """select count(*) from attempts a join attempt_items i on i.attempt_id=a.id join play_slots s on s.match_id=a.match_id and s.id=i.slot_id where a.match_id=? and a.entry_id=? and a.generation=? and s.extra_round=?"""
+  def findTeamsLineup(connection: Connection, matchId: String, entryId: String, generation: Int, extraRound: Int): IO[Long] =
+    Database.run(connection)(org.typelevel.doobie.Query[(String,String,Int,Int),Long](findTeamsLineupSql).unique((matchId,entryId,generation,extraRound)))
 
   private val updateOperationsReplaytxSql = """update attempts set status='superseded' where match_id=? and status<>'superseded'"""
   def updateOperationsReplaytx(connection: Connection, matchId: String): IO[Int] =
@@ -79,8 +83,8 @@ object AttemptsTable:
     Database.run(connection)(org.typelevel.doobie.Query[String,Option[String]](findEvidenceReadSql).to[List](evidenceId))
 
   private val findRepositoryAttemptsRowsSql = """select a.id,a.event_id,a.match_id,a.entry_id,e.display_name,a.submitted_by,a.status,a.sequence,a.evidence_note,
-      (select reason from reviews where attempt_id=a.id) from attempts a join entries e on e.id=a.entry_id
+      (select reason from reviews where attempt_id=a.id),(extract(epoch from a.created_at)*1000)::bigint from attempts a join entries e on e.id=a.entry_id
       where a.event_id=? and (? or a.submitted_by=?) order by a.sequence desc"""
-  def findRepositoryAttemptsRows(connection: Connection, eventId: String, privileged: Boolean, submittedBy: String): IO[List[(String,String,Option[String],String,String,String,AttemptStatus,Long,String,Option[String])]] =
-    Database.run(connection)(org.typelevel.doobie.Query[(String,Boolean,String),(String,String,Option[String],String,String,String,AttemptStatus,Long,String,Option[String])](findRepositoryAttemptsRowsSql).to[List]((eventId,privileged,submittedBy)))
+  def findRepositoryAttemptsRows(connection: Connection, eventId: String, privileged: Boolean, submittedBy: String): IO[List[(String,String,Option[String],String,String,String,AttemptStatus,Long,String,Option[String],Long)]] =
+    Database.run(connection)(org.typelevel.doobie.Query[(String,Boolean,String),(String,String,Option[String],String,String,String,AttemptStatus,Long,String,Option[String],Long)](findRepositoryAttemptsRowsSql).to[List]((eventId,privileged,submittedBy)))
 

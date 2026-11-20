@@ -1,5 +1,5 @@
 import type { AppealDecisionKind,EventInput,ReviewDecision } from "./types";
-export type Credentials = { username: string; password: string; displayName?: string | null };
+export type Credentials = { username: string; password: string; displayName?: string | null; setupToken?: string };
 export type VersionInput = { expectedVersion: number };
 export type ReviewInput = { decision: ReviewDecision; reason: string; expectedVersion?: number | null };
 export type DraftInput = VersionInput & { chartKey: string | null; idempotencyKey: string };

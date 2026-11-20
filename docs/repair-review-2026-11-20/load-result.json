@@ -1,0 +1,16 @@
+{
+  "S07": "mixed-load-passed",
+  "slowIncompleteBodies": 3,
+  "viewerWorkers": 8,
+  "viewRequests": 96,
+  "judgeRounds": 6,
+  "p50Ms": 77,
+  "p95Ms": 321,
+  "maxMs": 868,
+  "sqlSelects": 2232,
+  "matchClockScoreQueries": 135,
+  "connectionWaitSamples": 132,
+  "connectionWaitP95Ms": 164.8627,
+  "connectionWaitMaxMs": 273.2232,
+  "scope": "local isolated database; not a production capacity claim"
+}

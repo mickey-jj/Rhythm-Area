@@ -26,13 +26,13 @@
     "stages": [
       {
         "id": "qualifier",
-        "name": "海选 · 固定三首",
+        "name": "海选排名赛",
         "kind": "ranking",
         "advance": 8
       },
       {
         "id": "stage1",
-        "name": "阶段 1 · 16.0–16.5",
+        "name": "单败晋级赛 · 16.0–16.5",
         "kind": "single",
         "advance": 4,
         "plan": {
@@ -119,7 +119,7 @@
       },
       {
         "id": "stage2",
-        "name": "阶段 2 · 16.0–16.9",
+        "name": "单败决赛 · 16.0–16.9",
         "kind": "single",
         "advance": 1,
         "plan": {

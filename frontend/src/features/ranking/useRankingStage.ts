@@ -1,16 +1,16 @@
 import { useEffect,useState } from "react";
-import { GetEventsByIdRankingBoardAPI } from "../../../apis/events/GetEventsByIdRankingBoardAPI";
-import { useApi } from "../../../api/client";
-import { GetEventsByIdAttemptsAPI } from "../../../apis/events/GetEventsByIdAttemptsAPI";
-import { GetEventsByIdEntriesAPI } from "../../../apis/events/GetEventsByIdEntriesAPI";
-import { GetEventsByIdPoolAPI } from "../../../apis/events/GetEventsByIdPoolAPI";
-import { GetEventsByIdStagesAPI } from "../../../apis/events/GetEventsByIdStagesAPI";
-import { poolTags } from "../../../domain/configuration";
-import { qualificationRows } from "../../../domain/qualification";
-import type { Event } from "../../../domain/types";
-import { useCurrentSession } from "../../../state/session";
+import { GetEventsByIdRankingBoardAPI } from "../../apis/events/GetEventsByIdRankingBoardAPI";
+import { useApi } from "../../api/client";
+import { GetEventsByIdAttemptsAPI } from "../../apis/events/GetEventsByIdAttemptsAPI";
+import { GetEventsByIdEntriesAPI } from "../../apis/events/GetEventsByIdEntriesAPI";
+import { GetEventsByIdPoolAPI } from "../../apis/events/GetEventsByIdPoolAPI";
+import { GetEventsByIdStagesAPI } from "../../apis/events/GetEventsByIdStagesAPI";
+import { poolTags } from "../../domain/configuration";
+import { qualificationRows } from "../../domain/qualification";
+import type { Event } from "../../domain/types";
+import { useCurrentSession } from "../../state/session";
 
-export function useQualifierPage(event: Event) {
+export function useRankingStage(event: Event) {
   const session = useCurrentSession();
   const qualifier = event.rules.stages.find(stage => stage.kind === "ranking");
   const charts = useApi(new GetEventsByIdPoolAPI(event.id), !!qualifier);

@@ -1,3 +1,4 @@
+import {withSetupToken} from './setup-token.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -6,7 +7,7 @@ const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8').replace
 const config=read('instance.config.json');assert.equal(config.databaseName,'rhythm_area_midterm');
 const origin=`http://127.0.0.1:${config.webPort+10}`,base=`http://127.0.0.1:${config.apiPort+10}/api`;
 async function request(resource,body,session,method=body===undefined?'GET':'POST'){
- const r=await fetch(base+resource,{method,headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
+ const r=await fetch(base+resource,{method,headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(withSetupToken(resource,body))})});
  const data=await r.json();assert(r.ok,`${resource}: ${r.status} ${data.message}`);return {data,cookie:r.headers.get('set-cookie')?.split(';')[0]};
 }
 const title='律竞 · 期中展示赛',state=(await request('/instance')).data;

@@ -26,10 +26,11 @@ export function usePoolSelection() {
   const [selected,setSelected] = useState<string[]>([]);
   const [search,setSearch] = useState("");
   const [sort,setSort] = useState<ChartSort>("level-desc");
-  const [scope,setScope] = useState<"all"|"assigned"|"unassigned"|"target">("all");
+  const [scope,setScope] = useState<"all"|"assigned"|"unassigned"|"target">("target");
   const [difficulty,setDifficulty] = useState("");
   const [minimum,setMinimum] = useState("");
   const [maximum,setMaximum] = useState("");
+  const [pageSize,setPageSize]=useState(24);
   const [page,setPage] = useState(1);
   const [busy,setBusy] = useState(false);
   const saving = useRef(false);
@@ -57,9 +58,9 @@ export function usePoolSelection() {
   const metadata = new Map((library.data ?? []).map(c=>[c.chart_key,c]));
   const rows = useMemo(()=>[...(library.data ?? []),...(pool.data ?? []).filter(c=>!metadata.has(c.chart_key))],[library.data,pool.data]);
   const filtered = useMemo(()=>queryCharts(rows,{search,sort,difficulty,minimum,maximum}).filter(c=>scope==="all" || scope==="assigned" && byKey.has(c.chart_key) || scope==="unassigned" && !byKey.has(c.chart_key) || scope==="target" && byKey.get(c.chart_key)?.pools.includes(target)),[rows,search,sort,difficulty,minimum,maximum,scope,target,assignments]);
-  const pages = Math.max(1,Math.ceil(filtered.length/6));
+  const pages = Math.max(1,Math.ceil(filtered.length/pageSize));
   const activePage = Math.min(page,pages);
-  const visible = filtered.slice((activePage-1)*6,activePage*6);
+  const visible = filtered.slice((activePage-1)*pageSize,activePage*pageSize);
   const pools = configuredPools(event.data?.rules,assignments,customPools);
   useEffect(()=>{if(event.data && !pools.includes(target))setTarget(pools[0]);},[event.data,pools.join("|"),target]);
   const targetCount=assignments.filter(a=>a.pools.includes(target)).length;
@@ -98,5 +99,5 @@ export function usePoolSelection() {
   }
   function closeNavigation(){if(!saving.current)setDestination(null);}
   async function leave(saveFirst:boolean){if(!destination || saving.current)return;const path=destination;if(!saveFirst || await save()){setDestination(null);navigate(path);}}
-  return { instance,event,pool,library,rows,assignments,byKey,draft,target,setTarget,pools,customPools,newPool,setNewPool,addPool,targetCount,properties,setProperties,preview,setPreviewKey,selectedAssigned,selected,setSelected,toggle,assign,remove,applyAccess,undo,selectPage,selectFiltered,resetFilters,drop,search,setSearch,sort,setSort,scope,setScope,difficulty,setDifficulty,minimum,setMinimum,maximum,setMaximum,difficulties:[...new Set(rows.map(c=>c.difficulty_label))].toSorted(),filtered,visible,page:activePage,pages,setPage,dirty,busy,error,notice,save,destination,closeNavigation,leave };
+  return {pageSize,setPageSize, instance,event,pool,library,rows,assignments,byKey,draft,target,setTarget,pools,customPools,newPool,setNewPool,addPool,targetCount,properties,setProperties,preview,setPreviewKey,selectedAssigned,selected,setSelected,toggle,assign,remove,applyAccess,undo,selectPage,selectFiltered,resetFilters,drop,search,setSearch,sort,setSort,scope,setScope,difficulty,setDifficulty,minimum,setMinimum,maximum,setMaximum,difficulties:[...new Set(rows.map(c=>c.difficulty_label))].toSorted(),filtered,visible,page:activePage,pages,setPage,dirty,busy,error,notice,save,destination,closeNavigation,leave };
 }

@@ -422,5 +422,11 @@
     "message": "PostEliminationGroupsByIdResetMessage",
     "method": "POST",
     "path": "/elimination-groups/:id/reset"
+  },
+  {
+    "message": "GetJudgeCandidatesMessage",
+    "method": "GET",
+    "path": "/events/:id/judge-candidates",
+    "service": "events"
   }
 ]

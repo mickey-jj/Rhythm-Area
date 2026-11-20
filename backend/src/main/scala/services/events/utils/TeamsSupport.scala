@@ -26,7 +26,7 @@ private[events] final class TeamsSupport(connection: Connection):
       services.events.tables.team_members.TeamMembersTable.findTeamsViewstx(connection, id).map(ms => TeamView(id,n,c,Option.when(viewer.exists(v => ms.exists(_.id==v)))(code),en,frozen,ms))
     })
   private[events] def aggregateTx(e: EventView,en: Entry,in: AttemptInput): IO[List[ScoreItem]] =
-    if e.rules.entryMode!="team" then in.items.pure[IO]
+    if e.rules.entryMode!="team" then check(in.memberScores.forall(_.isEmpty),400,"UNEXPECTED_MEMBER_SCORES","个人赛不能提交团队成员成绩").as(in.items)
     else for
       scores <- if in.groupId.nonEmpty then
         for

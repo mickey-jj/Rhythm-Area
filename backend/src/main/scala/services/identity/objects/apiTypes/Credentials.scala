@@ -7,7 +7,7 @@ import services.events.objects.*
 import services.events.objects.given
 import services.identity.objects.*
 import services.instance.objects.*
-final case class Credentials(username: String, password: String, displayName: Option[String])
+final case class Credentials(username: String, password: String, displayName: Option[String], setupToken: Option[String] = None)
 
 object Credentials:
   given io.circe.Codec.AsObject[Credentials] = io.circe.generic.semiauto.deriveCodec[Credentials]

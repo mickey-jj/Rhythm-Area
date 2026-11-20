@@ -24,11 +24,11 @@ final case class ReadAttemptsMessage(idKey: EventId, viewer: Option[String], pri
     val repo = new RepositorySupport(connection)
     import repo.*
     services.events.tables.attempts.AttemptsTable.findRepositoryAttemptsRows(connection, id, privileged, viewer.getOrElse("")).flatMap(_.traverse { row =>
-            val (a,e,m,en,n,u,s,seq,note,reason) = row
+            val (a,e,m,en,n,u,s,seq,note,reason,submittedAt) = row
             for
               items <- services.events.tables.attempt_items.AttemptItemsTable.findRepositoryAttempts(connection, a)
               fid <- services.events.tables.attempts.AttemptsTable.findRepositoryAttempts(connection, a)
               groupId <- services.events.tables.attempts.AttemptsTable.groupId(connection,a)
               members <- services.events.tables.attempt_member_scores.AttemptMemberScoresTable.findAttempt(connection,a)
-            yield AttemptView(a,e,m,en,n,u,s,seq,note,items,reason,fid,groupId,members)
+            yield AttemptView(a,e,m,en,n,u,s,seq,note,items,reason,fid,groupId,members,Some(submittedAt))
           })

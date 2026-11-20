@@ -24,10 +24,11 @@ export function ReviewCard({
   const [error, setError] = useState<unknown>(null);
   const refresh = useRefresh();
   async function decide(accept: boolean) {
+    if(busy || (!accept || kind==="attempts") && !reason.trim())return;
     setBusy(true);
     setError(null);
     try {
-      await (kind === "entries" ? new PostEntriesByIdReviewAPI(id, { decision: accept ? "accepted" : "rejected", reason }) : new PostAttemptsByIdReviewAPI(id, { decision: accept ? "approved" : "rejected", reason })).send();
+      await (kind === "entries" ? new PostEntriesByIdReviewAPI(id, { decision: accept ? "accepted" : "rejected", reason:reason.trim() || (accept ? "已核对报名信息，符合参赛条件" : "") }) : new PostAttemptsByIdReviewAPI(id, { decision: accept ? "approved" : "rejected", reason })).send();
       await refresh();
     } catch (e) {
       setError(e);
@@ -52,7 +53,7 @@ export function ReviewCard({
               <input
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
-                placeholder="例如：已确认参赛资格 / 已核对完整尝试"
+                placeholder={kind==="entries"?"常规通过默认记录：已核对报名信息，符合参赛条件":"请填写核对证据与完整尝试的依据"}
               />
             </label>
             <div className={"button-row [display:flex] [align-items:center] [gap:9px] [flex-wrap:wrap] [@media((max-width:_1000px))]:[.console-event-heading_&]:[flex-direction:column] [@media((max-width:_540px))]:[.console-event-heading_&]:[flex-direction:row]"}>
@@ -66,7 +67,7 @@ export function ReviewCard({
               </button>
               <button
                 className={"button [border:1px_solid_transparent] [border-radius:6px] [display:inline-flex] [align-items:center] [justify-content:center] [gap:9px] [min-height:40px] [padding:11px_17px] [font-size:var(--type-11-19)] [font-weight:500] [white-space:nowrap] [transition:background_0.2s,_border-color_0.2s,_transform_0.2s] [&.primary]:[background:var(--accent)] [&.primary]:[color:var(--palette-102a21)] [&.primary]:[border-color:var(--accent)] [&.primary:hover:not(:disabled)]:[background:var(--palette-baf5df)] [&.primary:hover:not(:disabled)]:[transform:translateY(-1px)] [&.secondary]:[background:var(--palette-1c2228)] [&.secondary]:[border-color:var(--palette-353e46)] [&.secondary]:[color:var(--palette-cdd5da)] [&.secondary:hover:not(:disabled)]:[background:var(--palette-283139)] [&.secondary:hover:not(:disabled)]:[border-color:var(--palette-536660)] [&.ghost]:[background:transparent] [&.ghost]:[color:var(--palette-bcc9c8)] [&.ghost:hover]:[background:var(--palette-202926)] [&.small]:[min-height:31px] [&.small]:[padding:8px_11px] [&.small]:[font-size:var(--type-10-18)] [&.small]:[gap:7px] [.panel-toolbar_&]:[font-size:var(--type-9-18)] [.panel-toolbar_&]:[padding:8px] [.builtin-strip_&]:[font-size:var(--type-8-18)] [.builtin-strip_&]:[padding:7px] [@media((max-width:_1250px))]:[.hero-buttons_&]:[font-size:var(--type-10-18)] [@media((max-width:_1250px))]:[.hero-buttons_&]:[padding:10px_12px] [@media((max-width:_1000px))]:[.hero-buttons_&]:[font-size:var(--type-9-18)] [@media((max-width:_1000px))]:[.hero-buttons_&]:[gap:6px] [@media((max-width:_760px))]:[.top-actions_>_&]:[display:none] [@media((max-width:_760px))]:[.hero-buttons_&]:[font-size:var(--type-9-18)] [@media((max-width:_540px))]:[.hero-buttons_&]:[font-size:var(--type-11-19)] [@media((max-width:_540px))]:[.hero-buttons_&]:[padding:12px_15px] [@media((max-width:_540px))]:[.bottom-banner_>_&]:[font-size:var(--type-10-18)] [@media((max-width:_540px))]:[.bottom-banner_>_&]:[width:100%] [@media((max-width:_540px))]:[.page-heading_>_&]:[font-size:var(--type-10-18)] [@media((max-width:_540px))]:[.builtin-strip_&]:[width:100%] [@media((max-width:_540px))]:[.wizard-bottom_>_&]:[font-size:var(--type-9-18)] [@media((max-width:_540px))]:[.wizard-bottom_>_&]:[padding:9px] [&.full-width]:[white-space:normal] [&.full-width]:[line-height:1.5] [&.full-width]:[text-align:center] [&.full-width]:[height:auto] [&.full-width]:[min-height:44px] small primary [.hero-buttons_&]:[min-height:43px] [.hero-buttons_&]:[padding:12px_17px]"}
-                disabled={busy || !reason.trim()}
+                disabled={busy || kind === "attempts" && !reason.trim()}
                 onClick={() => decide(true)}
               >
                 <Check size={14} />

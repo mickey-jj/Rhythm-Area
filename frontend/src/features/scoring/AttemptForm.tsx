@@ -25,6 +25,7 @@ export function AttemptForm({
   initialValues?:Record<string,string>; lockedIds?:string[];disabled?:boolean;
 }) {
   const [evidenceId, setEvidenceId] = useState<string | null>(null);
+  const [evidenceBlocked, setEvidenceBlocked] = useState(false);
   const [prefix, setPrefix] = useState(slots.length);
   const [values, setValues] = useState<Record<string, string>>(initialValues);
   const [evidence, setEvidence] = useState("");
@@ -34,7 +35,7 @@ export function AttemptForm({
   const refresh = useRefresh();
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if(disabled)return;
+    if(disabled||busy||evidenceBlocked)return;
     setBusy(true);
     setError(null);
     setSuccess(false);
@@ -98,18 +99,19 @@ export function AttemptForm({
           </label>
         ))}
         <label className={"full"}>
-          现场见证说明 / 外部证据链接
+          现场见证说明 / 外部证据链接（必填）
           <textarea
             required
             rows={3}
             maxLength={2000}
             value={evidence}
             onChange={(e) => setEvidence(e.target.value)}
-            placeholder="现场见证 / 证据链接"
+            placeholder="例如：裁判小林现场见证；或填写可访问的成绩证据链接"
           />
         </label>
       </div>
-      <EvidenceInput eventId={event.id} onChange={setEvidenceId} />
+      <p className="text-sm text-[var(--muted)]">请填写见证人及核验方式，或外部证据链接。私有附件可选，上传完成后才能提交；附件不能替代上述说明。</p>
+      <EvidenceInput eventId={event.id} onChange={setEvidenceId} onBlockedChange={setEvidenceBlocked} />
       {error != null && <ErrorBox error={error} />}{" "}
       {success && (
         <div className={"notice [background:var(--palette-a3edd108)] [border:1px_solid_var(--palette-a3edd123)] [color:var(--palette-a2b9b2)] [display:flex] [gap:9px] [align-items:flex-start] [padding:12px_14px] [font-size:var(--type-11-19)] [line-height:1.9] [border-radius:6px] [margin:16px_0] [&_>_svg]:[margin-top:2px] [&.error]:[color:var(--palette-eea8ad)] [&.error]:[background:var(--palette-a6464e14)] [&.error]:[border-color:var(--palette-ab586540)] [&.success]:[color:var(--palette-a6e9c1)] [&.success]:[background:var(--palette-427b4f15)] [&.success]:[border-color:var(--palette-54966c50)] [&_p]:[margin:0] [&_p]:[font-size:var(--type-11-19)] [&:has(>_p)]:[display:block] success"}>已提交，等待主办方审核。</div>
@@ -117,7 +119,7 @@ export function AttemptForm({
       <button
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--accent)] px-5 py-3 text-base font-semibold text-[var(--on-accent)]"
         type="submit"
-        disabled={busy || !slots.length}
+        disabled={busy || evidenceBlocked || !slots.length || !evidence.trim()}
       >
         <Send size={15} />
         {busy ? "提交中…" : matchId ? "提交本曲成绩" : "提交完整尝试"}

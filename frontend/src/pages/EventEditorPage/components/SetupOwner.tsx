@@ -9,6 +9,7 @@ export function SetupOwner() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
+  const [setupToken, setSetupToken] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>(null);
   const refresh = useRefresh();
@@ -25,6 +26,7 @@ export function SetupOwner() {
         username,
         password,
         displayName: name,
+        setupToken,
       })).send();
       setCurrentSession(s);
       await refresh();
@@ -42,6 +44,11 @@ export function SetupOwner() {
       <div className={"two-column [display:grid] [grid-template-columns:minmax(0,_1.85fr)_minmax(270px,_1fr)] [gap:22px] [align-items:start] [&_>_div]:[min-width:0] [&_>_aside]:[min-width:0] [@media((max-width:_1250px))]:[grid-template-columns:minmax(0,_1.65fr)_minmax(265px,_1fr)] [@media((max-width:_1250px))]:[gap:16px] [@media((max-width:_1000px))]:[grid-template-columns:1fr] [@media((max-width:_1000px))]:[&_>_aside]:[display:grid] [@media((max-width:_1000px))]:[&_>_aside]:[grid-template-columns:1fr_1fr] [@media((max-width:_1000px))]:[&_>_aside]:[gap:16px] [@media((max-width:_1000px))]:[&_>_aside_>_.panel]:[margin-bottom:0] [@media((max-width:_540px))]:[&_>_aside]:[grid-template-columns:1fr] [@media((max-width:_540px))]:[gap:0]"}>
         <form className={"panel [border:1px_solid_var(--line)] [border-radius:var(--radius)] [background:var(--panel)] [padding:26px] [margin-bottom:20px] [&_>_h2]:[font-size:var(--type-20-22)] [&_.section-heading]:[margin-bottom:19px] [&_.section-heading_h2]:[font-size:var(--type-16-20)] [@media((max-width:_1250px))]:[padding:22px] [@media((max-width:_540px))]:[padding:20px]"} onSubmit={submit}>
           <div className={"form-grid [display:grid] [grid-template-columns:1fr_1fr] [gap:20px_17px] [&_>_.full]:[grid-column:1/-1] [&_label]:[font-size:var(--type-11-19)] [&_input]:[font-size:var(--type-12-19)] [&_select]:[font-size:var(--type-12-19)] [@media((max-width:_540px))]:[grid-template-columns:1fr] [@media((max-width:_540px))]:[gap:17px] [@media((max-width:_540px))]:[&_>_*]:[grid-column:1]"}>
+            <label className="col-span-full">
+              部署初始化码（必填）
+              <input required type="password" autoComplete="off" value={setupToken} onChange={e=>setSetupToken(e.target.value)} />
+              <small>由部署者提供。本机启动生成在项目 .local/setup-token 文件中，仅首次建立主办身份时使用。</small>
+            </label>
             <label>
               管理账号
               <input

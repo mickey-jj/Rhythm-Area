@@ -7,6 +7,9 @@ $javaBin = if ($env:JAVA_HOME) { Join-Path $env:JAVA_HOME 'bin/java.exe' } elsei
 $launcher = if ($env:SBT_LAUNCH_JAR) { $env:SBT_LAUNCH_JAR } else { Join-Path $profileDir 'AppData/Roaming/JetBrains/IntelliJIdea2026.2/plugins/Scala/launcher/sbt-launch.jar' }
 if (!(Test-Path -LiteralPath $javaBin) -or !(Test-Path -LiteralPath $launcher)) { throw 'Set JAVA_HOME and SBT_LAUNCH_JAR. See README.md.' }
 $env:AREA_ROOT = $projectRoot
+$setupTokenPath = Join-Path $projectRoot '.local/setup-token'
+New-Item -ItemType Directory -Force -Path (Split-Path $setupTokenPath -Parent) | Out-Null
+if (!(Test-Path -LiteralPath $setupTokenPath)) { [Convert]::ToHexString([System.Security.Cryptography.RandomNumberGenerator]::GetBytes(32)) | Set-Content -LiteralPath $setupTokenPath -NoNewline }
 if (!$env:DB_PASSWORD -and (Test-Path "$projectRoot/.local/database-password")) { $env:DB_PASSWORD = (Get-Content "$projectRoot/.local/database-password" -Raw).Trim() }
 $env:COURSIER_REPOSITORIES = 'https://repo.maven.apache.org/maven2'
 $env:COURSIER_CACHE = "$projectRoot/.local/coursier"

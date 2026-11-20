@@ -17,6 +17,7 @@ final case class RebuildEventScheduleMessage(before: EventView, updated: EventVi
     import repo.*
     val competition=new CompetitionSupport(connection)
     for
+      _ <- check(before.status!="archived" && updated.status!="archived",409,"ARCHIVED_READ_ONLY","归档赛事不能重排赛程")
       source <- CompetitionStagesTable.findRebuildSource(connection,before.id)
       schedule <- ReadScheduleMessage(before).plan(connection).map(_.filter(_.scheduleState==ScheduleState.Current))
       _ <- schedule.traverse_(m=>MatchHistoryTable.insertOperationsReplaytx(connection,m.id,m.generation,m.id,m.id,m.id,s"赛制调整 v${updated.version}",userId,m.id).void)

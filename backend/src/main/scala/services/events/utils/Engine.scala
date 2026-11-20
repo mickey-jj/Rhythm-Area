@@ -152,8 +152,8 @@ private[events] object Engine:
     val primary = if r.matchMode == "first-to" then aWins.compare(bWins) else a.sum.compare(b.sum) * direction
     val secondary = r.tieBreak.getOrElse(Nil).map {
       case "chart-wins" => aWins.compare(bWins)
-      case "best-chart" => a.maxOption.zip(b.maxOption).headOption.map((x,y) => x.compare(y)*direction).getOrElse(0)
-      case "worst-chart" => a.minOption.zip(b.minOption).headOption.map((x,y) => x.compare(y)*direction).getOrElse(0)
+      case "best-chart" => (if r.metric.higherWins then a.maxOption.zip(b.maxOption) else a.minOption.zip(b.minOption)).headOption.map((x,y) => x.compare(y)*direction).getOrElse(0)
+      case "worst-chart" => (if r.metric.higherWins then a.minOption.zip(b.minOption) else a.maxOption.zip(b.maxOption)).headOption.map((x,y) => x.compare(y)*direction).getOrElse(0)
       case _ => 0
     }.find(_ != 0).getOrElse(0)
     val comparison = if primary != 0 then primary else secondary

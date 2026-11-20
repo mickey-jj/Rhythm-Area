@@ -29,6 +29,7 @@ final case class PostMatchesByIdFinalizeMessage(idKey: MatchId, user: User, inpu
       (for
           initial <- GetMatchesByIdMessage(id,Some(user.id)).plan(connection)
           e <- ReadEventMessage(initial.eventId,true).plan(connection)
+          _ <- check(e.status!="archived",409,"ARCHIVED_READ_ONLY","归档赛果不可重新结算")
           m <- GetMatchesByIdMessage(id,Some(user.id),true).plan(connection)
           _ <- RequireJudgeMessage(e,user.id,Some(id)).plan(connection)
           _ <- requireVersion(m.version,expected)

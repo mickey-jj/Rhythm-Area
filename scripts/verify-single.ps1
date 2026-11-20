@@ -1,6 +1,6 @@
-param([switch]$KeepRunning,[switch]$Advanced,[string]$Case="",[switch]$LibraryOnly,[switch]$LiveRulesOnly,[switch]$TeamsOnly,[switch]$FairOnly,[string]$FairModes="",[switch]$RankingOnly,[string]$RankingModes="",[switch]$ClockOnly,[switch]$ResetOnly)
+param([switch]$KeepRunning,[switch]$Advanced,[string]$Case="",[switch]$LibraryOnly,[switch]$LiveRulesOnly,[switch]$TeamsOnly,[switch]$FairOnly,[string]$FairModes="",[switch]$RankingOnly,[string]$RankingModes="",[switch]$ClockOnly,[switch]$ResetOnly,[switch]$RepairOnly)
 $ErrorActionPreference='Stop'
-$environmentKeys=@('DB_NAME','DB_PORT','HTTP_PORT','WEB_PORT','APP_ORIGIN','VITE_API_TARGET','AREA_ROOT','DB_PASSWORD','PGPASSWORD')
+$environmentKeys=@('DB_NAME','DB_PORT','HTTP_PORT','WEB_PORT','APP_ORIGIN','VITE_API_TARGET','AREA_ROOT','DB_PASSWORD','PGPASSWORD','AREA_DB_METRICS')
 $previousEnvironment=@{}
 foreach($key in $environmentKeys){$previousEnvironment[$key]=[Environment]::GetEnvironmentVariable($key,'Process')}
 $projectRoot=Split-Path $PSScriptRoot -Parent
@@ -25,13 +25,15 @@ foreach($testPort in @(8083,8084)){
 }
 $servers=[System.Collections.Generic.List[object]]::new()
 $succeeded=$false
-function Start-TestApi([string]$suffix,[int]$port,[int]$webPort){
+function Start-TestApi([string]$suffix,[int]$port,[int]$webPort,[string]$originOverride="",[switch]$ReuseDatabase){
   $dbName=$runKey+'_'+$suffix
   $env:PGPASSWORD=(Get-Content "$projectRoot/.local/database-password" -Raw).Trim()
-  & "$pgBin/createdb.exe" -h 127.0.0.1 -p $env:DB_PORT -U area $dbName
-  if($LASTEXITCODE -ne 0){throw 'Test database creation failed'}
+  if(!$ReuseDatabase){& "$pgBin/createdb.exe" -h 127.0.0.1 -p $env:DB_PORT -U area $dbName;if($LASTEXITCODE -ne 0){throw 'Test database creation failed'}}
+  if($suffix -eq 'repair_load'){& "$pgBin/psql.exe" -h 127.0.0.1 -p $env:DB_PORT -U area -d postgres -X -q -c "ALTER DATABASE $dbName SET log_min_duration_statement=0";if($LASTEXITCODE -ne 0){throw 'Test query measurement configuration failed'}}
   Remove-Item Env:PGPASSWORD
   $env:DB_NAME=$dbName;$env:HTTP_PORT=[string]$port;$env:APP_ORIGIN="http://127.0.0.1:$webPort";$env:AREA_ROOT=$projectRoot
+  if($originOverride){$env:APP_ORIGIN=$originOverride}
+  $env:AREA_DB_METRICS=if($suffix -eq 'repair_load'){'1'}else{'0'}
   $env:DB_PASSWORD=(Get-Content "$projectRoot/.local/database-password" -Raw).Trim()
   $process=Start-Process -FilePath $javaBin -ArgumentList @('-Dfile.encoding=UTF-8','-cp',('"'+$classpath+'"'),'services.system.api.Main') -WorkingDirectory "$projectRoot/backend" -RedirectStandardOutput "$projectRoot/.local/test-$suffix.out.log" -RedirectStandardError "$projectRoot/.local/test-$suffix.err.log" -WindowStyle Hidden -PassThru
   Remove-Item Env:DB_PASSWORD
@@ -48,6 +50,22 @@ function Stop-TestApi($record){
   if($process -and $process.StartTime.ToUniversalTime().Ticks -eq $saved.UtcDateTime.Ticks){Stop-Process -Id $record.id}
 }
 try{
+  if($RepairOnly){
+    foreach($mode in @('ranking','solo','team','load','secure')){
+      $repairServer=if($mode -eq 'secure'){Start-TestApi ('repair_'+$mode) 8083 5175 'https://rhythm-test.example.test'}else{Start-TestApi ('repair_'+$mode) 8083 5175}
+      Push-Location $projectRoot
+      try{& node scripts/repair-correctness-integration.mjs $mode;if($LASTEXITCODE -ne 0){throw "Repair regression failed: $mode"}}finally{Pop-Location}
+      Stop-TestApi $repairServer
+      if($mode -eq 'solo'){
+        $maintenanceServer=Start-TestApi 'repair_solo' 8083 5175 -ReuseDatabase
+        Push-Location $projectRoot
+        try{& node scripts/repair-correctness-integration.mjs maintenance;if($LASTEXITCODE -ne 0){throw 'Evidence expiry regression failed'}}finally{Pop-Location}
+        Stop-TestApi $maintenanceServer
+      }
+    }
+    $succeeded=$true
+    return
+  }
   if($ResetOnly){
     foreach($mode in @('solo','team','fixed','group','group-team','double')){
       $resetServer=Start-TestApi ('reset_'+$mode.Replace('-','_')) 8083 5175

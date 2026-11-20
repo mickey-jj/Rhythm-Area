@@ -1,3 +1,5 @@
+import {useInstance} from "../../../app/InstanceContext";
+import {JudgeAssignments} from "../../../features/judging/JudgeAssignments";
 import { ShieldCheck, UserRound, Users } from "lucide-react";
 import { patchRules } from "../../../domain/configuration";
 import type { RuleSet } from "../../../domain/types";
@@ -53,5 +55,7 @@ export function TeamSettings({ value, setValue }: RulePanelProps) {
 }
 
 export function PermissionsSettings() {
+  const instance=useInstance();
+  if(instance.event&&instance.isOwner)return <JudgeAssignments event={instance.event}/>;
   return <div className="space-y-4">{[{ title: "主办方 / 裁判", detail: "配置发布、报名与成绩审核、赛果确认和获授权的异常处理。", Icon: ShieldCheck }, { title: "参赛者", detail: "本人报名、轮到自己的选禁动作、本人或本队成绩提交。", Icon: UserRound }, { title: "观众", detail: "查看已发布规则、公开图池、榜单和比赛进度。", Icon: Users }].map(({ title, detail, Icon }) => <article key={title} className="flex items-start gap-4 rounded-xl border border-[var(--line)] p-4"><Icon size={21} className="mt-1 shrink-0 text-[var(--accent)]" /><div><h3 className="mb-2">{title}</h3><p className="text-sm leading-relaxed text-[var(--muted)]">{detail}</p></div></article>)}</div>;
 }

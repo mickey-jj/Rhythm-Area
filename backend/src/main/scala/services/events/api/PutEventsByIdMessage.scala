@@ -27,6 +27,7 @@ final case class PutEventsByIdMessage(idKey: EventId, user: User, input: EventIn
         _ <- services.instance.tables.instance_settings.InstanceSettingsTable.findServiceUpdate(connection)
         e <- ReadEventMessage(id,true).plan(connection)
         _ <- RequireEventOwnerMessage(e,user.id).plan(connection)
+        _ <- check(e.status!="archived",409,"ARCHIVED_READ_ONLY","归档赛事只读，不能修改规则、赛程或公开赛果")
         _ <- requireVersion(e.version,input.expectedVersion.getOrElse(-1))
         previousCharts <- ReadPoolMessage(id).plan(connection)
         changed = RuleChanges.affectsSchedule(e.rules,input.rules,previousCharts,input.charts)

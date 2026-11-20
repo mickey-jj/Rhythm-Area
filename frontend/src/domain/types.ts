@@ -199,6 +199,7 @@ export type Match = {
   generation: number;
 };
 export type Attempt = {
+  submittedAt?: number | null;
   memberScores?:{slotId:string;userId:string;value:string}[];
   groupId?: string | null;
   id: string;

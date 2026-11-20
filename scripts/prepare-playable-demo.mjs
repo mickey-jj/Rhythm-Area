@@ -1,3 +1,4 @@
+import {withSetupToken} from './setup-token.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ const offset=team?14:12,origin=`http://127.0.0.1:${config.webPort+offset}`,base=
 const savedPath=path.join(root,`.local/playable-${mode}.json`);
 const checkpoint=path.join(root,`.local/playable-${mode}-initializing.json`);
 async function request(resource,body,session,method=body===undefined?'GET':'POST'){
- const response=await fetch(base+resource,{method,headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
+ const response=await fetch(base+resource,{method,headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(withSetupToken(resource,body))})});
  const data=await response.json();assert(response.ok,`${resource}: ${data.message}`);return {data,cookie:response.headers.get('set-cookie')?.split(';')[0]};
 }
 const state=(await request('/instance')).data;

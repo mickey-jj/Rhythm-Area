@@ -28,6 +28,7 @@ final case class PostAttemptsByIdReviewMessage(idKey: AttemptId, user: User, inp
       (for
           initial <- services.events.tables.attempts.AttemptsTable.findServiceReviewattempt(connection, id).flatMap(_.liftTo[IO](AppError(404,ApiError("NOT_FOUND","成绩不存在"))))
           e <- ReadEventMessage(initial._1,true).plan(connection)
+          _ <- check(e.status!="archived",409,"ARCHIVED_READ_ONLY","归档赛事成绩只读")
           a <- services.events.tables.attempts.AttemptsTable.findServiceReviewattempt(connection,id).flatMap(_.liftTo[IO](AppError(404,ApiError("NOT_FOUND","成绩不存在"))))
           mid <- services.events.tables.attempts.AttemptsTable.findServiceReviewattempt2(connection, id)
           _ <- RequireJudgeMessage(e,user.id,mid).plan(connection)

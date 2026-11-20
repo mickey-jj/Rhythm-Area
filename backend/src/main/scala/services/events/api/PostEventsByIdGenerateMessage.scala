@@ -49,7 +49,7 @@ final case class PostEventsByIdGenerateMessage(idKey: EventId, user: User, input
           tieDecision <- services.events.tables.qualification_orders.QualificationOrdersTable.findServiceGenerate(connection, id)
           snapshot = json(ranks.map(r=>Map("entryId"->r.entry.id,"total"->r.total.getOrElse(""))))
           resolved = tieDecision.filter(t=>readJson[io.circe.Json](t._1)==readJson[io.circe.Json](snapshot)).map(t=>readJson[List[String]](t._2))
-          _ <- check(!hasQualifier || ranked.map(_.total).distinct.size == ranked.size || resolved.nonEmpty,409,"QUALIFICATION_TIE","排名赛存在同分，请在后台记录资格附加赛结果和并列排序")
+          _ <- check(!hasQualifier || ranked.flatMap(_.total.flatMap(Engine.decimal)).distinct.size == ranked.size || resolved.nonEmpty,409,"QUALIFICATION_TIE","排名赛存在同分，请在后台记录资格附加赛结果和并列排序")
           ordered = if hasQualifier then resolved.map(ids=>ids.flatMap(id=>es.find(_.id==id))).getOrElse(ranked.map(_.entry)) else es
           _ <- if hasQualifier then services.events.tables.qualifier_snapshots.QualifierSnapshotsTable.insertServiceGenerate(connection, id, json(ranks)).void else ().pure[IO]
           advance = if hasQualifier then e.rules.stages.head.advance else ordered.size

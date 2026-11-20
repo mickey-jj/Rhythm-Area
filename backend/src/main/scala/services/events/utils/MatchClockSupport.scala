@@ -19,8 +19,8 @@ private[events] final class MatchClockSupport(c: Connection):
     e <- ReadEventMessage(m.eventId).plan(c)
     policy=if m.scheduleState==ScheduleState.Current then e.rules.stages.find(_.id==m.stageId).flatMap(_.effective(e.rules).timing).orElse(m.rules.timing) else m.rules.timing
     current=MatchClockLogic.progress(m.copy(rules=m.rules.copy(timing=policy)),stored,now)
-    scores <- if m.status=="playing" then ReadAttemptsMessage(e.id,Some(e.ownerId),true).plan(c).map(_.filter(a=>a.matchId.contains(m.id) && a.status=="approved")) else IO.pure(Nil)
-    complete=m.status=="playing" && m.slots.nonEmpty && List(m.a,m.b).flatten.size==2 && List(m.a,m.b).flatten.forall(en=>m.slots.filter(_.extraRound==m.extraRound).forall(s=>scores.exists(a=>a.entryId==en.id && a.items.exists(_.slotId==s.id))))
+    scores <- if m.status=="playing" then services.events.tables.attempts.AttemptsTable.approvedMatchSlots(c,m.id,m.generation) else IO.pure(Nil)
+    complete=m.status=="playing" && m.slots.nonEmpty && List(m.a,m.b).flatten.size==2 && List(m.a,m.b).flatten.forall(en=>m.slots.filter(_.extraRound==m.extraRound).forall(s=>scores.contains((en.id,s.id))))
     next=if complete && current.status!="finished" then current.copy(status="finished",endsAt=None,remainingMs=0,version=current.version+1) else current
     enabled=stored.nonEmpty || policy.nonEmpty
     _ <- if enabled && !stored.contains(next) then MatchClocksTable.save(c,next).void else IO.unit

@@ -15,6 +15,7 @@ export function client(port=8083){
  if(![8083,8084].includes(port))throw new Error('Tests only support isolated API ports 8083/8084')
  const base=`http://127.0.0.1:${port}/api`,origin=`http://127.0.0.1:${port===8083?5175:5176}`
  async function req(path,{session,method='GET',body,expected=200,csrf=true,withOrigin=true}={}){
+   if(path==='/instance/setup'&&body&&!Object.hasOwn(body,'setupToken'))body={...body,setupToken:readFileSync(new URL('../.local/setup-token',import.meta.url),'utf8').trim()}
    const response=await fetch(base+canonical(path,method),{method,headers:{'Content-Type':'application/json',...(withOrigin?{Origin:origin}:{}),...(session?{Cookie:session.cookie,...(csrf?{'X-Area-CSRF':session.csrf}:{})}:{})},...(body!==undefined?{body:JSON.stringify(body)}:{})})
    const data=await response.json();assert.equal(response.status,expected,`${port} ${method} ${path}: ${JSON.stringify(data)}`);return {data,response}
  }

@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict'
 import {client} from './test-client.mjs'
+import {readFileSync} from 'node:fs'
 const A=client(8083),B=client(8084);const checks=[]
 function pass(name){checks.push(name);console.log('PASS '+name)}
 assert.deepEqual((await A.get('/instance')).data,{needsSetup:true,hasEvent:false,published:false,isOwner:false,event:null,appearance:{brandName:'律竞',accentColor:'#a3edd1',contact:''},demoLoaded:false,isJudge:false})
 await A.post('/auth/register',{username:'too-early',password:'test-player-2026',displayName:'No'},null,409)
 pass('clean first run has no event, no demo accounts and no public registration')
-const race=await Promise.all([0,1].map(()=>fetch(A.base+'/instance/setup',{method:'POST',headers:{Origin:A.origin,'Content-Type':'application/json'},body:JSON.stringify({username:'organizer',password:'test-owner-2026',displayName:'测试主办'})})))
+await A.post('/instance/setup',{username:'intruder',password:'test-owner-2026',displayName:'No',setupToken:''},null,403)
+const race=await Promise.all([0,1].map(()=>fetch(A.base+'/instance/setup',{method:'POST',headers:{Origin:A.origin,'Content-Type':'application/json'},body:JSON.stringify({username:'organizer',password:'test-owner-2026',displayName:'测试主办',setupToken:readFileSync('.local/setup-token','utf8').trim()})})))
 assert.deepEqual(race.map(r=>r.status).sort(),[200,409])
 const winning=race.find(r=>r.status===200);const ownerA={...await winning.json(),cookie:winning.headers.get('set-cookie').split(';')[0]}
 const ownerB=await B.setup()

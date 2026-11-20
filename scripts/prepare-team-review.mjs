@@ -1,3 +1,4 @@
+import {withSetupToken} from './setup-token.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ const config=read('instance.config.json');assert.equal(config.databaseName,'rhyt
 const mode=process.argv[2] ?? 'draft';assert(['free','draft'].includes(mode));
 const offset=mode==='free'?6:4,base=`http://127.0.0.1:${config.apiPort+offset}/api`,origin=`http://127.0.0.1:${config.webPort+offset}`;
 async function request(resource,body,session){
- const response=await fetch(base+resource,{method:body===undefined?'GET':'POST',headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
+ const response=await fetch(base+resource,{method:body===undefined?'GET':'POST',headers:{Origin:origin,'Content-Type':'application/json',...(session?{Cookie:session.cookie,'X-Area-CSRF':session.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(withSetupToken(resource,body))})});
  const data=await response.json();assert(response.ok,`${resource}: ${data.message}`);return {data,cookie:response.headers.get('set-cookie')?.split(';')[0]};
 }
 const state=(await request('/instance')).data;

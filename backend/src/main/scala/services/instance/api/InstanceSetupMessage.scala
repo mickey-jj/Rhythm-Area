@@ -24,6 +24,11 @@ import services.instance.utils.*
 final case class InstanceSetupMessage(c: Credentials) extends APIMessage[User]:
   def plan(connection: Connection): IO[User] =
     for
+        expected <- IO.blocking(sys.env.get("AREA_SETUP_TOKEN").getOrElse {
+          val path=SystemConfig.root.resolve(".local/setup-token")
+          if Files.exists(path) then Files.readString(path).trim else ""
+        })
+        _ <- check(expected.length>=32 && java.security.MessageDigest.isEqual(expected.getBytes(java.nio.charset.StandardCharsets.UTF_8),c.setupToken.getOrElse("").getBytes(java.nio.charset.StandardCharsets.UTF_8)),403,"SETUP_TOKEN_REQUIRED","请提供部署者持有的初始化码")
         _ <- IO.raiseUnless(c.username.matches("[a-zA-Z0-9_-]{3,32}") && c.password.length >= 10 && c.password.length <= 256 && c.displayName.exists(n => n.trim.nonEmpty && n.length <= 50))(AppError(400,ApiError("INVALID_CREDENTIALS","账号 3–32 位英文数字；密码 10–256 位；昵称 1–50 字")))
         hash <- HashPasswordMessage(c.password).plan(connection)
         id <- NewIdMessage().plan(connection)

@@ -1,7 +1,7 @@
 import { Music2 } from "lucide-react";
 import { Empty, ErrorBox, Loading, Panel, SectionHeading } from "../../../components/ui";
 import { ChartArtwork } from "../../../components/ui/ChartArtwork";
-import type { QualifierReady } from "../objects/QualifierPage";
+import type { QualifierReady } from "../../../features/ranking/RankingStage";
 
 export function QualifierTasks({page}:{page:QualifierReady}) {
   const {charts,songs}=page;

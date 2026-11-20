@@ -128,6 +128,7 @@ export function useEventEditor() {
   const view: EditorViewState = instance.needsSetup ? { kind: "setup" }
     : !session ? { kind: "sign-in" }
     : !instance.isOwner ? { kind: "error", error: new Error("仅本实例主办可以配置赛事") }
+    : instance.event?.status==="archived" ? {kind:"error",error:new Error("归档赛事只读。请前往赛事规则和历史赛果查看最终记录。")}
     : existing.error || pool.error || (!eventId && templates.error) ? { kind: "error", error: existing.error ?? pool.error ?? templates.error }
     : !draft ? { kind: "loading" }
     : { kind: "ready", draft };

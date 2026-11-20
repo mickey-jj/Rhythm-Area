@@ -29,6 +29,8 @@ private[events] final class OperationsSupport(connection: Connection):
     _ <- check(m.scheduleState==ScheduleState.Current,409,"HISTORICAL_MATCH","原赛程场次已保留为历史记录，请操作新赛程")
     _ <- check(m.a.nonEmpty && m.b.nonEmpty,409,"WAITING","两方尚未确定，不可重赛或改判")
     _ <- requireVersion(m.version,in.expectedVersion)
+    participants <- List(m.a,m.b).flatten.traverse(en => services.events.tables.team_members.TeamMembersTable.findTeamsLineup(connection,en.id).map(_ :+ en.userId)).map(_.flatten)
+    _ <- check(in.winnerId.isEmpty || !participants.contains(user.id),403,"SELF_DECISION","禁止对本人或本队参赛的比赛进行胜负改判，请由独立裁判处理")
     _ <- check(in.reason.trim.nonEmpty && in.reason.length<=2000 && e.status!="archived",400,"REASON_REQUIRED","请填写故障、重赛或改判的详细依据；归档后不可修改")
     key <- services.events.tables.matches.MatchesTable.findOperationsReplaytx(connection, mid)
     reset=new MatchResetSupport(connection)

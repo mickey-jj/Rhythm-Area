@@ -1,11 +1,18 @@
 import { ReviewCard } from "../../../features/reviews/ReviewCard";
 import { EvidenceReadAPI } from "../../../apis/events/EvidenceReadAPI";
 import { Empty } from "../../../components/ui";
+import { useState } from "react";
+import { AttemptScores } from "../../../features/scoring/AttemptScores";
 import type { Attempt,Audit,Entry } from "../../../domain/types";
 export function EntryReviews({ entries }: { entries: Entry[] }) {
+  const [search,setSearch]=useState("");
+  const [filter,setFilter]=useState("pending");
+  const visible=entries.filter(e=>(filter==="all"||e.status===filter)&&e.displayName.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())).sort((a,b)=>Number(b.status==="pending")-Number(a.status==="pending"));
   return entries.length ? (
     <div>
-      {entries.map((en) => (
+      <div className="mb-4 grid gap-3 sm:grid-cols-2"><input aria-label="搜索报名选手" value={search} onChange={e=>setSearch(e.target.value)} placeholder="搜索参赛昵称"/><select aria-label="筛选报名状态" value={filter} onChange={e=>setFilter(e.target.value)}><option value="pending">待审报名（优先）</option><option value="accepted">已通过</option><option value="rejected">已驳回</option><option value="all">全部报名</option></select></div>
+      {!visible.length&&<Empty title="当前筛选下没有报名记录"/>}
+      {visible.map((en) => (
         <ReviewCard
           key={en.id}
           id={en.id}
@@ -39,9 +46,7 @@ export function ScoreReviews({
           kind="attempts"
           selfReview={a.submittedBy === userId}
         >
-          <p className={"mono [font-family:'Cascadia_Code',_Consolas,_monospace] [font-variant-numeric:tabular-nums] [.table-scroll_&]:[white-space:nowrap] score-review-values [font-size:var(--type-20-22)] [color:var(--palette-bddbc5)] [margin:12px_0] [@media((max-width:_1000px))]:[font-size:var(--type-16-20)]"}>
-            {a.items.map((i) => i.value).join(" / ")}
-          </p>
+          <AttemptScores attempt={a} />
           <p className={"muted [color:var(--muted)] preserve-lines [white-space:pre-wrap]"}>{a.evidenceNote}</p>
           {a.evidenceId && (
             <a

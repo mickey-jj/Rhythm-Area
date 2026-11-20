@@ -136,3 +136,13 @@ class EngineSuite extends munit.FunSuite:
     assert(Engine.validate(ranking,charts.filter(_.pool_tag=="qualifier")).valid)
     assert(Engine.summary(ranking).exists(_.contains("排名赛 / 海选 / 刷分赛")))
   }
+
+  test("best and worst chart follow the published score direction after tied totals") {
+    val base=r.copy(playOrder=r.playOrder.take(2),tieBreak=Some(List("best-chart")))
+    val a=List(BigDecimal(1),BigDecimal(9))
+    val b=List(BigDecimal(4),BigDecimal(6))
+    assertEquals(Engine.compare(base.copy(metric=base.metric.copy(higherWins=false)),a,b,0),Decision.Winner("A","10","10"))
+    assertEquals(Engine.compare(base.copy(metric=base.metric.copy(higherWins=true)),a,b,0),Decision.Winner("A","10","10"))
+    assertEquals(Engine.compare(base.copy(metric=base.metric.copy(higherWins=false),tieBreak=Some(List("worst-chart"))),a,b,0),Decision.Winner("B","10","10"))
+    assertEquals(Engine.compare(base,a,a,0),Decision.ExtraRound(base.resolution.scope))
+  }

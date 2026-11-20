@@ -25,5 +25,12 @@ $env:PGPASSWORD = (Get-Content "$runtimeDir/database-password" -Raw).Trim()
 $dbExists = & "$pgBin/psql.exe" -h 127.0.0.1 -p $env:DB_PORT -U area -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$($env:DB_NAME)'"
 if ($LASTEXITCODE -ne 0) { throw 'Database connection failed; no instance data was modified.' }
 if ($dbExists -ne '1') { & "$pgBin/createdb.exe" -h 127.0.0.1 -p $env:DB_PORT -U area $env:DB_NAME; if ($LASTEXITCODE -ne 0) { throw 'createdb failed' } }
+$runtimePasswordPath = Join-Path $runtimeDir 'runtime-password'
+if (!(Test-Path -LiteralPath $runtimePasswordPath)) { [Convert]::ToHexString([System.Security.Cryptography.RandomNumberGenerator]::GetBytes(32)) | Set-Content -LiteralPath $runtimePasswordPath -NoNewline }
+$runtimePassword = (Get-Content -LiteralPath $runtimePasswordPath -Raw).Trim()
+if ($runtimePassword -notmatch '^[A-Fa-f0-9]{64}$') { throw 'Invalid local runtime credential format' }
+$runtimeRoleSql = "DO `$$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='area_app') THEN CREATE ROLE area_app LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS PASSWORD '$runtimePassword'; END IF; END `$$;"
+$runtimeRoleSql | & "$pgBin/psql.exe" -h 127.0.0.1 -p $env:DB_PORT -U area -d $env:DB_NAME -X -q -v ON_ERROR_STOP=1
+if ($LASTEXITCODE -ne 0) { throw 'Runtime role preparation failed' }
 Remove-Item Env:PGPASSWORD
 Write-Output "HW2 PostgreSQL ready at 127.0.0.1:$($env:DB_PORT)/$($env:DB_NAME)"

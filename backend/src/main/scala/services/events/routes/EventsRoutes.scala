@@ -20,6 +20,7 @@ import services.system.routes.{ApiName, ResourceAlias}
 
 object EventsRoutes:
   val aliases: Map[String, services.system.routes.ResourceAlias] = Map(
+    ApiName.of[services.events.api.GetJudgeCandidatesMessage] -> ResourceAlias(org.http4s.Method.GET,"/events/:id/judge-candidates"),
     ApiName.of[services.events.api.PostMatchesByIdResetMessage] -> ResourceAlias(org.http4s.Method.POST,"/matches/:id/reset"),
     ApiName.of[services.events.api.PostEliminationGroupsByIdResetMessage] -> ResourceAlias(org.http4s.Method.POST,"/elimination-groups/:id/reset"),
     ApiName.of[services.events.api.GetEliminationGroupsByIdClockMessage] -> ResourceAlias(org.http4s.Method.GET,"/elimination-groups/:id/clock"),
@@ -105,6 +106,10 @@ object EventsRoutes:
         user <- write(req)
         input <- req.asJsonDecode[services.events.objects.apiTypes.MatchResetInput]
         response <- respond(PostEliminationGroupsByIdResetMessage(id,user,input).plan(connection))
+      yield response
+      case req @ GET -> Root / "api" / "events" / id / "judge-candidates" => for
+        viewer <- auth(req)
+        response <- respond(GetJudgeCandidatesMessage(id,viewer.user,req.params.getOrElse("search","")).plan(connection))
       yield response
       case req @ GET -> Root / "api" / "events" / id / "ranking-board" => for
         viewer <- current(req)
@@ -314,7 +319,8 @@ object EventsRoutes:
       yield response
       case req @ GET -> Root / "api" / "evidence" / id => for
         u <- auth(req); file <- EvidenceReadMessage(u.user,id).plan(connection)
-      yield Response[IO](Status.Ok).withBodyStream(fs2.io.file.Files[IO].readAll(fs2.io.file.Path.fromNioPath(SystemConfig.root.resolve(".local/evidence").resolve(file.id)))).putHeaders(Header.Raw(CIString("Content-Type"),file.mime),Header.Raw(CIString("Content-Disposition"),"inline; filename=evidence"),Header.Raw(CIString("Cache-Control"),"private, no-store"),Header.Raw(CIString("X-Content-Type-Options"),"nosniff"))
+        path <- IO.blocking { val current=SystemConfig.evidenceDirectory.resolve(file.id); if java.nio.file.Files.exists(current) then current else SystemConfig.root.resolve(".local/evidence").resolve(file.id) }
+      yield Response[IO](Status.Ok).withBodyStream(fs2.io.file.Files[IO].readAll(fs2.io.file.Path.fromNioPath(path))).putHeaders(Header.Raw(CIString("Content-Type"),file.mime),Header.Raw(CIString("Content-Disposition"),"inline; filename=evidence"),Header.Raw(CIString("Cache-Control"),"private, no-store"),Header.Raw(CIString("X-Content-Type-Options"),"nosniff"))
       case req @ GET -> Root / "api" / "events" / id / "stages" => for
         viewer <- current(req)
         response <- respond(GetEventsByIdStagesMessage(id, viewer.map(_.user)).plan(connection))

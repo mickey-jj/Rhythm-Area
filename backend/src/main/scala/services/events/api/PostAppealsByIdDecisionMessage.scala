@@ -29,6 +29,7 @@ final case class PostAppealsByIdDecisionMessage(idKey: EventId, user: User, inpu
       (for
           row <- services.events.tables.appeals.AppealsTable.findOperationsDecide(connection, id)
           e <- ReadEventMessage(row._1,true).plan(connection); _ <- RequireJudgeMessage(e,user.id,Some(row._2)).plan(connection)
+          _ <- check(e.status!="archived",409,"ARCHIVED_READ_ONLY","归档赛事不能处理申诉或变更赛果")
           _ <- check(row._3!=user.id && row._4=="pending" && Set("uphold","replay","reject").contains(in.decision) && in.reason.trim.nonEmpty,400,"INVALID_DECISION","禁止处理本人的申诉；决定和依据须完整")
           m <- GetMatchesByIdMessage(row._2,Some(user.id)).plan(connection)
           _ <- requireVersion(m.version,in.expectedVersion)

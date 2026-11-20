@@ -19,9 +19,9 @@ import services.system.utils.*
 import org.typelevel.doobie.implicits.*
 
 object LineupsTable:
-  private val deleteTeamsLineupSql = """delete from lineups where match_id=? and entry_id=?"""
-  def deleteTeamsLineup(connection: Connection, matchId: String, entryId: String): IO[Int] =
-    Database.run(connection)(org.typelevel.doobie.Update[(String,String)](deleteTeamsLineupSql).run((matchId,entryId)))
+  private val deleteTeamsLineupSql = """delete from lineups l using play_slots s where l.match_id=? and l.entry_id=? and s.match_id=l.match_id and s.id=l.slot_id and s.extra_round=?"""
+  def deleteTeamsLineup(connection: Connection, matchId: String, entryId: String, extraRound: Int): IO[Int] =
+    Database.run(connection)(org.typelevel.doobie.Update[(String,String,Int)](deleteTeamsLineupSql).run((matchId,entryId,extraRound)))
 
   private val insertTeamsLineupSql = """insert into lineups(match_id,entry_id,slot_id,user_id) values(?,?,?,?)"""
   def insertTeamsLineup(connection: Connection, matchId: String, entryId: String, slotId: String, userId: String): IO[Int] =

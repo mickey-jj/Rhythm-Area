@@ -19,6 +19,18 @@ import services.system.utils.*
 import org.typelevel.doobie.implicits.*
 
 object EvidenceFilesTable:
+  private val uploadUsageSql = """select coalesce(sum(size) filter(where user_id=?),0)::bigint,coalesce(sum(size),0)::bigint,count(*) filter(where user_id=? and created_at>now()-interval '1 day'),count(*) filter(where user_id=? and created_at>now()-interval '1 minute'),count(*) from evidence_files where event_id=?"""
+  def uploadUsage(connection: Connection, eventId: String, userId: String): IO[(Long,Long,Long,Long,Long)] =
+    Database.run(connection)(org.typelevel.doobie.Query[(String,String,String,String),(Long,Long,Long,Long,Long)](uploadUsageSql).unique((userId,userId,userId,eventId)))
+
+  private val expireUnlinkedSql = """delete from evidence_files f where f.created_at<now()-interval '1 day' and not exists(select 1 from attempts a where a.evidence_id=f.id) returning f.id"""
+  def expireUnlinked(connection: Connection): IO[List[String]] =
+    Database.run(connection)(org.typelevel.doobie.Query[Unit,String](expireUnlinkedSql).to[List](()))
+
+  private val retainedIdsSql = "select id from evidence_files"
+  def retainedIds(connection: Connection): IO[List[String]] =
+    Database.run(connection)(org.typelevel.doobie.Query[Unit,String](retainedIdsSql).to[List](()))
+
   private val findServiceSubmitSql = """select count(*) from evidence_files where id=? and event_id=? and user_id=?"""
   def findServiceSubmit(connection: Connection, id: String, eventId: String, userId: String): IO[Long] =
     Database.run(connection)(org.typelevel.doobie.Query[(String,String,String),Long](findServiceSubmitSql).unique((id,eventId,userId)))
